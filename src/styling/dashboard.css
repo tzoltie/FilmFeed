@@ -1,0 +1,40 @@
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-area: header;
+    background-color: #96B6C5;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    border-radius: 20px;
+}
+
+.left-sidebar {
+    grid-area: left;
+    background-color: #96B6C5;
+    margin: 0.5rem;
+    border-radius: 20px;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: #ADC4CE;
+}
+
+.search-bar-container, .logo-container {
+    background-color: #96B6C5;
+}
+
+.search-bar-container {
+    place-self: center end;
+    margin-right: 1rem;
+}
+
+.logo-container {
+    place-self: center start;
+    margin-left: 1rem;
+}
+
+
+#search, #film-reel {
+    background-color: #96B6C5;
+}
+

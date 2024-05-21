@@ -1,0 +1,32 @@
+.feed-container {
+    grid-area: main;
+    background-color: #F1F0E8;
+    margin: 0.5rem;
+}
+
+.film-list {
+    display: flex;
+    gap: 0.9rem;
+    margin-left: -3.4%;
+    margin-top: 2.5rem;
+    background-color: #F1F0E8;
+}
+
+.poster {
+    height: 200px;
+}
+
+.feed-container {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.feed-container::-webkit-scrollbar {
+    display: none;
+}
+
+.list-title {
+    position: absolute;
+}
