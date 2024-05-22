@@ -16,7 +16,7 @@
     height: 200px;
 }
 
-.feed-container, .cast-crew-box {
+.feed-container {
     overflow-x: scroll;
     overflow-y: hidden;
     -ms-overflow-style: none;

@@ -4,14 +4,13 @@
     height: fit-content;
 }
 
+
 .poster-title-box{
     display: grid;
-    border: 1px solid black;
 }
 
 .crew-box{
     display: grid;
-    border: 1px solid black;
 }
 
 .poster-title-box {
@@ -37,7 +36,39 @@
     margin-top: 1.2rem;
 }
 
+.cast-crew-box {
+    width: 100vw;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.cast-crew-box::-webkit-scrollbar {
+    display: none;
+}
+
 .cast-list {
     display: flex;
     gap: 3rem;
+    padding: 5rem 2.5rem;
+    height: fit-content;
+}
+
+.heading {
+    position: absolute;
+    margin: 2.5rem;
+}
+
+
+.profile-image, #unknown-profile-image {
+    border-radius: 50px;
+    height: 138px;
+    width: 92px;
+}
+
+#unknown-profile-image {
+    border: 1px solid #96B6C5;
+    background-color: #ADC4CE;
+    place-content: center;
 }
