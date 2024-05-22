@@ -10,7 +10,8 @@
 }
 
 .crew-box{
-    display: grid;
+    display: flex;
+    gap: 3rem;
 }
 
 .poster-title-box {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../../styling/FilmPage.css";
+import Cast from "./Cast";
 
 export default function FilmPage() {
   const [film, setFilm] = useState({});
@@ -14,27 +15,53 @@ export default function FilmPage() {
       .then((json) => setFilm(json));
   }, [urlPararms, setFilm]);
 
-
   if (!film) {
     return <p>Loading...</p>;
   }
 
-  //   function checkSynopsis(film) {
-  //     const synopsis = film.overview;
-  //     if (synopsis.length < 5) {
-  //       return (
-  //         <p>
-  //           Oops, looks like this synopsis is unavailable. Pesky borrowers upto
-  //           their mischief
-  //         </p>
-  //       );
-  //     }
-  //     return synopsis;
-  //   }
+    function checkSynopsis(film) {
+      const synopsis = film.overview;
+      if (synopsis.length < 5) {
+        return (
+          <p>
+            Oops, looks like this synopsis is unavailable. Pesky borrowers upto
+            their mischief
+          </p>
+        );
+      }
+      return synopsis;
+    }
+
+  function getDirector(film) {
+    const crew = film.credits.crew;
+    const findDirector = crew.find((crewMember) => {
+      if (crewMember.job === "Director") return crewMember;
+    });
+
+    return (
+      <>
+        {checkImage(findDirector)}
+        <h4>{findDirector.name}</h4>
+      </>
+    );
+  }
+
+  function getWriter(film) {
+    const crew = film.credits.crew;
+    const findWriter = crew.find((crewMember) => {
+      if (crewMember.job === "Writer") return crewMember;
+    });
+
+    return (
+      <>
+        {checkImage(findWriter)}
+        <h4>{findWriter.name}</h4>
+      </>
+    );
+  }
 
   function checkImage(cast) {
     const profileImage = cast.profile_path;
-    console.log(profileImage)
     if (profileImage === null) {
       return <h2 id="unknown-profile-image">{getInitials(cast)}</h2>;
     }
@@ -69,6 +96,7 @@ export default function FilmPage() {
               <h4 id="release-date">{film.release_date}</h4>
               <img
                 src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                alt={`${film.title} poster`}
                 className="poster"
                 id="page-poster"
               />
@@ -76,27 +104,11 @@ export default function FilmPage() {
               {/* <p id="synopsis">{checkSynopsis(film)}</p> */}
             </section>
             <section className="crew-box">
-              <h4>Director: {}</h4>
-              <h4>Writer: </h4>
+              <h4 id="Director">Director: {getDirector(film)}</h4>
+              <h4 id="Writer">Writer: {getWriter(film)}</h4>
             </section>
           </div>
-          <div className="cast-crew-box">
-            <h2 className="heading">Cast</h2>
-            <ul className="cast-list">
-              {film.credits.cast.map((cast) => (
-                <li key={cast.id} className="cast-list-item">
-                    {checkImage(cast)}
-                  {/* <img
-                    src={`http://image.tmdb.org/t/p/w92${cast.profile_path}`}
-                    alt={`${cast.name} image`}
-                    className="profile-image"
-                  /> */}
-                  <p>{cast.character}</p>
-                  <h4>{cast.name}</h4>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* <Cast film={film} checkImage={checkImage}/> */}
         </div>
       )}
     </>
