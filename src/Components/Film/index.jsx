@@ -1,38 +1,68 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import '../../styling/FilmPage.css'
 
 export default function FilmPage() {
     const [film, setFilm] = useState({})
     const urlPararms = useParams()
 
-    // const title = film.node.titleText.text
-    // const poster = film.node.primaryImage.url
-    // const release = film.node.releaseYear.year
+    // const id = film.id
 
-    if(!film) {
-        <p>Getting film</p>
-    }
-
+      
+    
     useEffect(() => {
-        fetch(`https://online-movie-database.p.rapidapi.com/title/v2/get-details?tconst=${urlPararms.id}&country=US&language=en-US`,
-        {method: 'GET',
-        headers: {
-          'x-rapidapi-key': '700d36cd97msh5886fe3882d5a97p1e376bjsn524492e792ba',
-          'x-rapidapi-host': 'moviesdatabase.p.rapidapi.com'
-        }
-      })
+        fetch(`https://api.themoviedb.org/3/movie/${urlPararms.id}?api_key=017864b5160abacb16620d2413135901&append_to_response=credits,images`)
         .then(response => response.json())
-        .then(json => console.log(json))
+        .then(json => setFilm(json))
     }, [urlPararms, setFilm])
     console.log(film)
-    
+
+    // function checkSynopsis() {
+    //     const synopsis = film.overview
+    //         if(synopsis.length < 5) {
+    //             return <p>Oops, looks like this synopsis is unavailable. Pesky borrowers upto their mischief</p>
+    //         }
+    //     return synopsis
+    // }
+
+    if(!film) {
+       return <p>Loading...</p>
+    }  
+    // const crewCredit = film.credits.crew
+    // console.log(crewCredit)
+
 
     return (
-        <div className="film-page-container">
-            {/* <h1>{title}</h1>
-            <p>{release}</p>
-            <img src={poster}
-            className="poster"/> */}
-        </div>
+        <>
+        {film && (
+            <div className="film-page-container">
+                <h1>{film.title}</h1>
+                <div className="film-page-header">
+                    <section className="poster-title-box">
+                        <h4 id="release-date">{film.release_date}</h4>
+                        <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                        className="poster" id="page-poster"/>
+                        <p id="synopsis">{film.overview}</p>
+                        {/* <p id="synopsis">{checkSynopsis()}</p> */}
+                    </section>
+                    <section className="crew-box">
+                        <h4>Director: {}</h4>
+                        <h4>Writer: </h4>
+                    </section>
+                </div>
+                <div className="cast-crew-box">
+                    <ul className="cast-list">
+                        {/* {film.credits.cast.map((cast) =>
+                        <li key={cast.id} className="cast-list-item">
+                            <img src={`http://image.tmdb.org/t/p/w92${cast.profile_path}`}/>
+                            <p>{cast.character}</p>
+                            <h6>{cast.name}</h6>
+                        </li>
+                    )}  */}
+                    </ul>
+                </div>
+            </div>
+        )}
+        </>
     )
 }

@@ -16,7 +16,7 @@
     height: 200px;
 }
 
-.feed-container {
+.feed-container, .cast-crew-box {
     overflow-x: scroll;
     overflow-y: hidden;
     -ms-overflow-style: none;
@@ -30,3 +30,4 @@
 .list-title {
     position: absolute;
 }
+

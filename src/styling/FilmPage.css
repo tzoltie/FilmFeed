@@ -1,0 +1,43 @@
+.film-page-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: fit-content;
+}
+
+.poster-title-box{
+    display: grid;
+    border: 1px solid black;
+}
+
+.crew-box{
+    display: grid;
+    border: 1px solid black;
+}
+
+.poster-title-box {
+    display: grid;
+    grid-template: 
+    'date text'
+    'poster text';
+    gap: 0.5rem;
+}
+
+#release-date {
+    grid-area: date;
+}
+
+#page-poster {
+    grid-area: poster;
+    height: 400px;
+}
+
+#synopsis {
+    grid-area: text;
+    padding: 0.5rem;
+    margin-top: 1.2rem;
+}
+
+.cast-list {
+    display: flex;
+    gap: 3rem;
+}
