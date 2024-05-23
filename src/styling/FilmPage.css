@@ -101,12 +101,34 @@
 
 .images-container {
     display: flex;
-    gap: 10rem;
-    border: 1px solid black;
+    gap: 2.5rem;
     place-content: center;
     padding: 2rem;
 }
 
 .posters-box, .backdrops-box, .logos-box {
     height: fit-content;
+}
+
+.film-image-list {
+    display: grid;
+    grid-auto-columns: min-content;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    place-content: center;
+    list-style: none;
+    
+}
+
+.posters-box, .backdrops-box, .logos-box {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#back{
+    margin: 2rem 0 0 2rem;
 }
