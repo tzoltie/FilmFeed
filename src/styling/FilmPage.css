@@ -73,3 +73,40 @@
     background-color: #ADC4CE;
     place-content: center;
 }
+
+.images-videos-container {
+    display: flex;
+    gap: 10rem;
+    place-content: center;
+    margin-top: 2.5rem;
+}
+
+.images-box, .videos-box {
+    border-bottom: 5px solid #96B6C5;
+}
+
+.images-box:hover, .videos-box:hover {
+    color: #96B6C5;
+    border-bottom: 5px solid black
+}
+
+.images-box:focus, .videos-box:focus, .images-box:active, .videos-box:active {
+    color: #96B6C5;
+    border-bottom: 5px solid black
+}
+
+.link {
+    text-decoration: none;
+}
+
+.images-container {
+    display: flex;
+    gap: 10rem;
+    border: 1px solid black;
+    place-content: center;
+    padding: 2rem;
+}
+
+.posters-box, .backdrops-box, .logos-box {
+    height: fit-content;
+}

@@ -9,7 +9,7 @@ export default function Dashboard() {
             <header className="header">
                 <section 
                 className="logo-container">
-                    <Link to="/">
+                    <Link to="/" className='link'>
                     <img 
                     src={film}
                     className='icon'

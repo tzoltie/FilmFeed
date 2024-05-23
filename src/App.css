@@ -20,6 +20,10 @@
   width: 30px;
 }
 
+.link {
+  text-decoration: none;
+}
+
 /* .footer {
   display: none;
 } */

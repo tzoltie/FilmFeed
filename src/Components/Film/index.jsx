@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "../../styling/FilmPage.css";
 import Cast from "./Cast";
 
@@ -19,43 +19,29 @@ export default function FilmPage() {
     return <p>Loading...</p>;
   }
 
-    function checkSynopsis(film) {
-      const synopsis = film.overview;
-      if (synopsis.length < 5) {
-        return (
-          <p>
-            Oops, looks like this synopsis is unavailable. Pesky borrowers upto
-            their mischief
-          </p>
-        );
-      }
-      return synopsis;
-    }
+  //   function checkSynopsis(film) {
+  //     const synopsis = film.overview;
+  //     if (synopsis.length < 5) {
+  //       return (
+  //         <p>
+  //           Oops, looks like this synopsis is unavailable. Pesky borrowers upto
+  //           their mischief
+  //         </p>
+  //       );
+  //     }
+  //     return synopsis;
+  //   }
 
-  function getDirector(film) {
+  function getCrew(film, job) {
     const crew = film.credits.crew;
-    const findDirector = crew.find((crewMember) => {
-      if (crewMember.job === "Director") return crewMember;
+    const findCrewByJob = crew.find((crewMember) => {
+      if (crewMember.job === job) return crewMember;
     });
 
     return (
       <>
-        {checkImage(findDirector)}
-        <h4>{findDirector.name}</h4>
-      </>
-    );
-  }
-
-  function getWriter(film) {
-    const crew = film.credits.crew;
-    const findWriter = crew.find((crewMember) => {
-      if (crewMember.job === "Writer") return crewMember;
-    });
-
-    return (
-      <>
-        {checkImage(findWriter)}
-        <h4>{findWriter.name}</h4>
+        {checkImage(findCrewByJob)}
+        <h4>{findCrewByJob.name}</h4>
       </>
     );
   }
@@ -68,7 +54,7 @@ export default function FilmPage() {
     return (
       <img
         src={`http://image.tmdb.org/t/p/w92${cast.profile_path}`}
-        alt={`${cast.name} image`}
+        alt={`${cast.name}'s image`}
         className="profile-image"
       />
     );
@@ -85,7 +71,7 @@ export default function FilmPage() {
     }
     return initials;
   }
-
+console.log(film)
   return (
     <>
       {film && (
@@ -104,8 +90,19 @@ export default function FilmPage() {
               {/* <p id="synopsis">{checkSynopsis(film)}</p> */}
             </section>
             <section className="crew-box">
-              <h4 id="Director">Director: {getDirector(film)}</h4>
-              <h4 id="Writer">Writer: {getWriter(film)}</h4>
+              {/* <h4>Director: {getCrew(film, "Director")}</h4>
+              <h4>Writer: {getCrew(film, "Writer")}</h4> */}
+            </section>
+          </div>
+          <div className="images-videos-container">
+            <Link to={`/${film.id}/images`}
+            className="link">
+              <section className="images-box">
+                <h2 id="images-heading">Images</h2>
+              </section>
+            </Link>
+            <section className="videos-box">
+              <h2 id="videos-heading">Videos</h2>
             </section>
           </div>
           {/* <Cast film={film} checkImage={checkImage}/> */}
