@@ -19,18 +19,18 @@ export default function FilmPage() {
     return <p>Loading...</p>;
   }
 
-  //   function checkSynopsis(film) {
-  //     const synopsis = film.overview;
-  //     if (synopsis.length < 5) {
-  //       return (
-  //         <p>
-  //           Oops, looks like this synopsis is unavailable. Pesky borrowers upto
-  //           their mischief
-  //         </p>
-  //       );
-  //     }
-  //     return synopsis;
-  //   }
+    function checkSynopsis(film) {
+      const synopsis = film.overview;
+      if (synopsis.length < 5) {
+        return (
+          <p>
+            Oops, looks like this synopsis is unavailable. Pesky borrowers upto
+            their mischief
+          </p>
+        );
+      }
+      return synopsis;
+    }
 
   function getCrew(film, job) {
     const crew = film.credits.crew;
@@ -87,11 +87,11 @@ console.log(film)
                 id="page-poster"
               />
               <p id="synopsis">{film.overview}</p>
-              {/* <p id="synopsis">{checkSynopsis(film)}</p> */}
+              <p id="synopsis">{checkSynopsis(film)}</p>
             </section>
             <section className="crew-box">
-              {/* <h4>Director: {getCrew(film, "Director")}</h4>
-              <h4>Writer: {getCrew(film, "Writer")}</h4> */}
+              <h4>Director: {getCrew(film, "Director")}</h4>
+              <h4>Writer: {getCrew(film, "Writer")}</h4>
             </section>
           </div>
           <div className="images-videos-container">
@@ -105,7 +105,7 @@ console.log(film)
               <h2 id="videos-heading">Videos</h2>
             </section>
           </div>
-          {/* <Cast film={film} checkImage={checkImage}/> */}
+          <Cast film={film} checkImage={checkImage}/>
         </div>
       )}
     </>

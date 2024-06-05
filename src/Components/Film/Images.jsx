@@ -50,7 +50,7 @@ export default function Images() {
               </ul>
             </section>
             <section className="logos-box">
-              <h2>Logos</h2>
+              <h2>Worldwide Logos</h2>
               <ul className="film-image-list">
                 {film.images.logos.map((image, index) => (
                   <li key={index}>
