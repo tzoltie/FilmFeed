@@ -11,7 +11,7 @@
 
 .crew-box{
     display: flex;
-    gap: 3rem;
+    gap: 1.5rem;
 }
 
 .poster-title-box {
@@ -37,6 +37,39 @@
     margin-top: 1.2rem;
 }
 
+.header-footer {
+    display: flex;
+    margin: 1.5rem;
+    gap: 4rem;
+    place-content: center;
+}
+
+#genre {
+    margin: 0;
+    padding: 0;
+}
+
+.images-videos-container {
+    display: flex;
+    gap: 10rem;
+    place-content: center;
+    margin-top: 2.5rem;
+}
+
+.images-box, .videos-box {
+    border-bottom: 5px solid #96B6C5;
+}
+
+.images-box:hover, .videos-box:hover {
+    color: #96B6C5;
+    border-bottom: 5px solid black
+}
+
+.images-box:focus, .videos-box:focus, .images-box:active, .videos-box:active {
+    color: #96B6C5;
+    border-bottom: 5px solid black
+}
+
 .cast-crew-box {
     width: 100vw;
     overflow-x: scroll;
@@ -49,7 +82,7 @@
     display: none;
 }
 
-.cast-list {
+.cast-list, .crew-list {
     display: flex;
     gap: 3rem;
     padding: 5rem 2.5rem;
@@ -72,27 +105,6 @@
     border: 1px solid #96B6C5;
     background-color: #ADC4CE;
     place-content: center;
-}
-
-.images-videos-container {
-    display: flex;
-    gap: 10rem;
-    place-content: center;
-    margin-top: 2.5rem;
-}
-
-.images-box, .videos-box {
-    border-bottom: 5px solid #96B6C5;
-}
-
-.images-box:hover, .videos-box:hover {
-    color: #96B6C5;
-    border-bottom: 5px solid black
-}
-
-.images-box:focus, .videos-box:focus, .images-box:active, .videos-box:active {
-    color: #96B6C5;
-    border-bottom: 5px solid black
 }
 
 .link {

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../../styling/FilmPage.css";
 import Cast from "./Cast";
+import Crew from "./Crew"
 
 export default function FilmPage() {
   const [film, setFilm] = useState({});
@@ -46,6 +47,14 @@ export default function FilmPage() {
     );
   }
 
+  function getUrl(film) {
+    const url = film.homepage
+    if(url === null || undefined) {
+      <p>no site available</p>
+    }
+    return url
+  }
+
   function checkImage(cast) {
     const profileImage = cast.profile_path;
     if (profileImage === null) {
@@ -71,6 +80,13 @@ export default function FilmPage() {
     }
     return initials;
   }
+
+  function removeDuplicates(film) {
+    const crew = film.credits.crew
+    const dupsRemoved = [...new Set(crew)]
+    return dupsRemoved
+  }
+  removeDuplicates(film)
 console.log(film)
   return (
     <>
@@ -87,11 +103,42 @@ console.log(film)
                 id="page-poster"
               />
               <p id="synopsis">{film.overview}</p>
-              <p id="synopsis">{checkSynopsis(film)}</p>
+              {/* <p id="synopsis">{checkSynopsis(film)}</p> */}
             </section>
             <section className="crew-box">
-              <h4>Director: {getCrew(film, "Director")}</h4>
-              <h4>Writer: {getCrew(film, "Writer")}</h4>
+              <h4>Director:</h4>
+              {/* <p>{getCrew(film, "Director")}</p>
+              <h4>Writer:</h4>
+              <p>{getCrew(film, "Writer")}</p> */}
+            </section>
+          </div>
+          <div className="header-footer">
+          <section className="runtime-box">
+                <h3>Runtime</h3>
+                <p>{`${film.runtime} mins`}</p>
+            </section>
+            <section className="genre-box">
+              <h3>Genres</h3>
+              {/* <ul id="genre">
+              {film.genres.map((i) => 
+              <li key={i.id}>{i.name}</li>)}
+              </ul> */}
+            </section>
+            <section className="status-box">
+                <h3>Status</h3>
+                <p>{film.status}</p>
+            </section>
+            <section className="budget-box">
+              <h3>Budget</h3>
+              <p>{`$${film.budget}`}</p>
+            </section>
+            <section className="revenue-box">
+              <h3>Revenue</h3>
+              <p>{`$${film.revenue}`}</p>
+            </section>
+            <section className="origin-box">
+              <h3>Country of origin</h3>
+              {/* <p>{film.origin_country[0]}</p> */}
             </section>
           </div>
           <div className="images-videos-container">
@@ -105,7 +152,8 @@ console.log(film)
               <h2 id="videos-heading">Videos</h2>
             </section>
           </div>
-          <Cast film={film} checkImage={checkImage}/>
+          {/* <Cast film={film} checkImage={checkImage}/> */}
+          {/* <Crew film={film} checkImage={checkImage} removeDuplicates={removeDuplicates}/> */}
         </div>
       )}
     </>
