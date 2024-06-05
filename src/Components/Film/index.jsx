@@ -47,6 +47,11 @@ export default function FilmPage() {
     );
   }
 
+  function updateToCurrency(number) {
+    let value = Intl.NumberFormat('en-Us', { style: 'currency', currency: 'USD'}).format(number)
+    return value
+  }
+
   function getUrl(film) {
     const url = film.homepage
     if(url === null || undefined) {
@@ -86,7 +91,7 @@ export default function FilmPage() {
     const dupsRemoved = [...new Set(crew)]
     return dupsRemoved
   }
-  removeDuplicates(film)
+
 console.log(film)
   return (
     <>
@@ -107,9 +112,9 @@ console.log(film)
             </section>
             <section className="crew-box">
               <h4>Director:</h4>
-              {/* <p>{getCrew(film, "Director")}</p>
+              {/* <p>{getCrew(film, "Director")}</p> */}
               <h4>Writer:</h4>
-              <p>{getCrew(film, "Writer")}</p> */}
+              {/* <p>{getCrew(film, "Writer")}</p> */}
             </section>
           </div>
           <div className="header-footer">
@@ -130,11 +135,11 @@ console.log(film)
             </section>
             <section className="budget-box">
               <h3>Budget</h3>
-              <p>{`$${film.budget}`}</p>
+              {/* <p>{updateToCurrency(film.budget)}</p> */}
             </section>
             <section className="revenue-box">
               <h3>Revenue</h3>
-              <p>{`$${film.revenue}`}</p>
+              {/* <p>{updateToCurrency(film.revenue)}</p> */}
             </section>
             <section className="origin-box">
               <h3>Country of origin</h3>
