@@ -11,7 +11,9 @@
 
 .crew-box{
     display: flex;
-    gap: 1.5rem;
+    gap: 5rem;
+    place-content: center;
+
 }
 
 .poster-title-box {

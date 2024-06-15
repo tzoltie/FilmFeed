@@ -5,7 +5,7 @@ import Cast from "./Cast";
 import Crew from "./Crew"
 
 export default function FilmPage() {
-  const [film, setFilm] = useState({});
+  const [film, setFilm] = useState([]);
   const urlPararms = useParams();
 
   useEffect(() => {
@@ -14,26 +14,31 @@ export default function FilmPage() {
     )
       .then((response) => response.json())
       .then((json) => setFilm(json));
-  }, [urlPararms, setFilm]);
-
-  if (!film) {
-    return <p>Loading...</p>;
-  }
+  }, [urlPararms]);
 
     function checkSynopsis(film) {
+      if (typeof film !== 'object') {
+        return <p>Loading synopsis...</p>;
+      }
+
       const synopsis = film.overview;
-      if (synopsis.length < 5) {
+      if (synopsis?.length < 5) {
         return (
           <p>
             Oops, looks like this synopsis is unavailable. Pesky borrowers upto
             their mischief
           </p>
         );
+      } else {
+        return synopsis;
       }
-      return synopsis;
     }
 
   function getCrew(film, job) {
+    if (typeof film !== 'object' || typeof job !== 'object') {
+      return <img className="profile-image"/>
+    }
+
     const crew = film.credits.crew;
     const findCrewByJob = crew.find((crewMember) => {
       if (crewMember.job === job) return crewMember;
@@ -53,6 +58,9 @@ export default function FilmPage() {
   }
 
   function getUrl(film) {
+    if (typeof film !== 'object') {
+      return;
+    }
     const url = film.homepage
     if(url === null || undefined) {
       <p>no site available</p>
@@ -61,6 +69,9 @@ export default function FilmPage() {
   }
 
   function checkImage(cast) {
+    if (typeof cast !== 'object') {
+      return;
+    }
     const profileImage = cast.profile_path;
     if (profileImage === null) {
       return <h2 id="unknown-profile-image">{getInitials(cast)}</h2>;
@@ -75,7 +86,10 @@ export default function FilmPage() {
   }
 
   function getInitials(cast) {
-    const name = cast.name;
+    if (typeof cast !== 'object') {
+      return;
+    }
+    const name = cast?.name;
     const letters = name.split(" ");
     let initials = "";
     for (let i = 0; i < letters.length; i++) {
@@ -86,11 +100,7 @@ export default function FilmPage() {
     return initials;
   }
 
-  function removeDuplicates(film) {
-    const crew = film.credits.crew
-    const dupsRemoved = [...new Set(crew)]
-    return dupsRemoved
-  }
+  
 
 console.log(film)
   return (
@@ -108,13 +118,17 @@ console.log(film)
                 id="page-poster"
               />
               <p id="synopsis">{film.overview}</p>
-              {/* <p id="synopsis">{checkSynopsis(film)}</p> */}
+              <p id="synopsis">{checkSynopsis(film)}</p>
             </section>
             <section className="crew-box">
-              <h4>Director:</h4>
-              {/* <p>{getCrew(film, "Director")}</p> */}
-              <h4>Writer:</h4>
-              {/* <p>{getCrew(film, "Writer")}</p> */}
+              <section>
+                <h4>Director:</h4>
+                <p>{getCrew(film, "Director")}</p>
+              </section>
+              <section>
+                <h4>Writer:</h4>
+                <p>{getCrew(film, "Writer")}</p>
+              </section>
             </section>
           </div>
           <div className="header-footer">
@@ -124,10 +138,13 @@ console.log(film)
             </section>
             <section className="genre-box">
               <h3>Genres</h3>
-              {/* <ul id="genre">
-              {film.genres.map((i) => 
-              <li key={i.id}>{i.name}</li>)}
-              </ul> */}
+              <ul id="genre">
+              {film.length === 0 ? (
+                <li></li>
+              ) : (  
+              film.genres.map((i) => 
+              <li key={i.id}>{i.name}</li>))}
+              </ul>
             </section>
             <section className="status-box">
                 <h3>Status</h3>
@@ -135,15 +152,19 @@ console.log(film)
             </section>
             <section className="budget-box">
               <h3>Budget</h3>
-              {/* <p>{updateToCurrency(film.budget)}</p> */}
+              <p>{updateToCurrency(film.budget)}</p>
             </section>
             <section className="revenue-box">
               <h3>Revenue</h3>
-              {/* <p>{updateToCurrency(film.revenue)}</p> */}
+              <p>{updateToCurrency(film.revenue)}</p>
             </section>
             <section className="origin-box">
               <h3>Country of origin</h3>
-              {/* <p>{film.origin_country[0]}</p> */}
+              {film.length === 0 ? (
+                <p></p>
+              ) : (
+                <p>{film.origin_country[0]}</p>
+              )} 
             </section>
           </div>
           <div className="images-videos-container">
@@ -157,8 +178,8 @@ console.log(film)
               <h2 id="videos-heading">Videos</h2>
             </section>
           </div>
-          {/* <Cast film={film} checkImage={checkImage}/> */}
-          {/* <Crew film={film} checkImage={checkImage} removeDuplicates={removeDuplicates}/> */}
+          <Cast film={film} checkImage={checkImage}/>
+          <Crew film={film} checkImage={checkImage}/>
         </div>
       )}
     </>
