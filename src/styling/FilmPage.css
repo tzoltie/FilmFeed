@@ -96,6 +96,9 @@
     margin: 2.5rem;
 }
 
+.poster {
+    width: 133px;
+}
 
 .profile-image, #unknown-profile-image {
     border-radius: 50px;
@@ -103,7 +106,7 @@
     width: 92px;
 }
 
-#unknown-profile-image {
+#unknown-profile-image, #unknown-poster {
     border: 1px solid #96B6C5;
     background-color: #ADC4CE;
     place-content: center;

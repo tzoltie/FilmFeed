@@ -4,6 +4,7 @@ import Feed from './Components/Feed';
 import { Routes, Route } from 'react-router';
 import FilmPage from './Components/Film';
 import Images from './Components/Film/Images';
+import CastPage from './Components/People/castPage';
 
 function App() {
 
@@ -22,6 +23,9 @@ function App() {
         <Route 
         path='/:id/images'
         element={<Images />}/>
+        <Route 
+        path='/:id/cast&crew'
+        element={<CastPage />}/>
       </Routes>
       
     </div>

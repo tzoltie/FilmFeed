@@ -16,14 +16,15 @@
     height: 200px;
 }
 
-.feed-container {
+.upcoming-list-container, .popular-list-container, .cinema-list-container, .film-list-container {
+    width: 100vw;
     overflow-x: scroll;
     overflow-y: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-.feed-container::-webkit-scrollbar {
+.upcoming-list-container::-webkit-scrollbar, .popular-list-container::-webkit-scrollbar, .cinema-list-container::-webkit-scrollbar {
     display: none;
 }
 

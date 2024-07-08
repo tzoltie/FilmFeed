@@ -1,31 +1,47 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
+import "../../../styling/FilmPage.css"
 
 export default function FilmCard({ film }) {
-  const title = film.original_title;
 
 
   if (!film) {
     <p>Loading...</p>;
   }
 
+  
+  let title = film.original_title;
   function checkTitle() {
-    if (title.length > 24) {
-      return title.slice(0, 24) + "...";
+    if(film.character) {
+      title = film.character
     }
-    return title;
+    if(typeof title !== 'string') {
+      return <h3>...</h3>
+    }
+      if (title.length > 24) {
+        return title.slice(0, 24) + "...";
+      }
+      return title;
   }
+  const poster = film.poster_path
+  function checkPoster() {
+    if(typeof poster !== 'string') {
+      return <img className="poster" id="unknown-poster"/>
+    }
+    return <img
+    src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+    className="poster"
+    alt={`${title} movie poster`}
+    />
+  }
+  
 
   return (
     <>
       {film && (
         <Link to={`/${film.id}`} className="link">
           <li className="film-list-item">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-              className="poster"
-              alt={`${title} movie poster`}
-            />
+            {checkPoster()}
             <h3>{checkTitle()}</h3>
           </li>
         </Link>

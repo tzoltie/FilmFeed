@@ -14,13 +14,13 @@ export default function Crew({checkImage, film}) {
             <h2 className="heading">Crew</h2>
             <ul className="crew-list">
               {film.length === 0 ? (
-                <li></li>
+                <p></p>
               ) : (
-              removeDuplicates(film).map((cast) => (
-                <li key={cast.id} className="crew-list-item">
-                    {checkImage(cast)}
-                  <p>{cast.character}</p>
-                  <h4>{cast.name}</h4>
+              removeDuplicates(film).map((crew) => (
+                <li key={crew.id} className="crew-list-item">
+                    {checkImage(crew)}
+                  <p>{crew.job}</p>
+                  <h4>{crew.name}</h4>
                 </li>
               )))}
             </ul>

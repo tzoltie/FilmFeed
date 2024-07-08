@@ -36,7 +36,7 @@ export default function FilmPage() {
 
   function getCrew(film, job) {
     if (typeof film !== 'object' || typeof job !== 'object') {
-      return <img className="profile-image"/>
+      return <img className="profile-image" id="unknown-profile-image"/>
     }
 
     const crew = film.credits.crew;
@@ -70,7 +70,7 @@ export default function FilmPage() {
 
   function checkImage(cast) {
     if (typeof cast !== 'object') {
-      return;
+      return <img className="profile-image" id="unknown-profile-image"/>
     }
     const profileImage = cast.profile_path;
     if (profileImage === null) {
@@ -87,7 +87,7 @@ export default function FilmPage() {
 
   function getInitials(cast) {
     if (typeof cast !== 'object') {
-      return;
+      return
     }
     const name = cast?.name;
     const letters = name.split(" ");
@@ -122,12 +122,12 @@ console.log(film)
             </section>
             <section className="crew-box">
               <section>
-                <h4>Director:</h4>
-                <p>{getCrew(film, "Director")}</p>
+                <h4>Director:</h4>  
+                {getCrew(film, "Director")}
               </section>
               <section>
                 <h4>Writer:</h4>
-                <p>{getCrew(film, "Writer")}</p>
+                {getCrew(film, "Writer")}
               </section>
             </section>
           </div>

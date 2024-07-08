@@ -26,40 +26,49 @@ export default function Images() {
             <section className="posters-box">
               <h2>Posters</h2>
               <ul className="film-image-list">
-                {film.images.posters.map((image, index) => (
+                {film.length === 0 ? (
+                  <li></li>
+                ) : (
+                film.images.posters.map((image, index) => (
                   <li key={index}>
                     <img
                       src={`http://image.tmdb.org/t/p/w92${image.file_path}`}
                       alt="poster"
                     />
                   </li>
-                ))}
+                )))}
               </ul>
             </section>
             <section className="backdrops-box">
               <h2>Backdrops</h2>
               <ul className="film-image-list">
-                {film.images.backdrops.map((image, index) => (
+              {film.length === 0 ? (
+                  <li></li>
+                ) : (
+                film.images.backdrops.map((image, index) => (
                   <li key={index}>
                     <img
                       src={`http://image.tmdb.org/t/p/w92${image.file_path}`}
                       alt="backdrop images"
                     />
                   </li>
-                ))}
+                )))}
               </ul>
             </section>
             <section className="logos-box">
               <h2>Worldwide Logos</h2>
               <ul className="film-image-list">
-                {film.images.logos.map((image, index) => (
+              {film.length === 0 ? (
+                  <li></li>
+                ) : (
+                film.images.logos.map((image, index) => (
                   <li key={index}>
                     <img
                       src={`http://image.tmdb.org/t/p/w92${image.file_path}`}
                       alt="backdrop images"
                     />
                   </li>
-                ))}
+                )))}
               </ul>
             </section>
           </div>
