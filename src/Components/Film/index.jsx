@@ -139,7 +139,7 @@ console.log(film)
             <section className="genre-box">
               <h3>Genres</h3>
               <ul id="genre">
-              {film.length === 0 ? (
+              {film?.genres.length === 0 ? (
                 <li></li>
               ) : (  
               film.genres.map((i) => 

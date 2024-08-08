@@ -1,0 +1,60 @@
+.login-page {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr ;
+    border: 2px dotted black;
+    margin: 100px 100px;
+    place-content: center;
+}
+
+.textinput {
+    border: none;
+    outline: none;
+    font-size: medium;
+    height: 50px;
+    width: 300px;
+    border-bottom: 3px solid #96B6C5;
+}
+
+.textinput:focus {
+    border-bottom: 5px solid #96B6C5;
+}
+
+.login-form-container {
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.login-form-buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.login-form {
+    display: flex;
+    gap: 5rem;
+}
+
+.sign-up-form-container {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    padding: 2rem;
+    gap: 3.5rem;
+    place-content: center;
+}
+
+.sign-up-form {
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: 2rem;
+}
+
+.login-button {
+    cursor: pointer;
+    border-radius: 7px;
+    height: 30px;
+    width: 100px;
+    justify-items: center;
+    padding: 0.5rem;
+}

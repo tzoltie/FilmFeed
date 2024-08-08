@@ -25,6 +25,7 @@
   text-decoration: none;
 }
 
-/* .footer {
-  display: none;
-} */
+.login-button {
+  background-color: #96B6C5;
+}
+

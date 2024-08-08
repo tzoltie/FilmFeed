@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router';
 import FilmPage from './Components/Film';
 import Images from './Components/Film/Images';
 import CastPage from './Components/People/castPage';
+import Login from './Components/User/login';
 
 function App() {
 
@@ -26,6 +27,9 @@ function App() {
         <Route 
         path='/:id/cast&crew'
         element={<CastPage />}/>
+        <Route 
+        path='/login'
+        element={<Login />}/>
       </Routes>
       
     </div>

@@ -1,6 +1,7 @@
 import search from '../../assets/svg/search.svg'
 import '../../styling/dashboard.css'
 import film from '../../assets/svg/filmreel.svg'
+import user from '../../assets/svg/userIcon.svg'
 import { Link } from 'react-router-dom'
 
 export default function Dashboard() {
@@ -14,6 +15,13 @@ export default function Dashboard() {
                     src={film}
                     className='icon'
                     id='film-reel'
+                    />
+                    </Link>
+                    <Link to="/login" className='link'>
+                    <img
+                    src={user}
+                    className='icon'
+                    id='user-icon'
                     />
                     </Link>
                 </section>
