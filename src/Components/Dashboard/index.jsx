@@ -3,8 +3,22 @@ import '../../styling/dashboard.css'
 import film from '../../assets/svg/filmreel.svg'
 import user from '../../assets/svg/userIcon.svg'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 export default function Dashboard() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    useEffect(() => {
+        userLoggedIn()
+    }, [])
+
+    function userLoggedIn() {
+        const token = localStorage.getItem('token')
+        if(token.length > 1 && typeof token === 'string') {
+            setIsLoggedIn(true)
+        }
+    }
+
+
     return (
         <>
             <header className="header">
@@ -38,7 +52,18 @@ export default function Dashboard() {
                 <Link to='/popular' className='link' id='popular-films-link'>
                 <h2>Popular Films</h2>
                 </Link>
+                <h2>Cinema Greats</h2>
+                {isLoggedIn &&
+                <>
+                <Link to='/watchlist' className='link'>
+                <h2>Watchlist</h2>
+                </Link>
                 
+                <h2>Reviews</h2>
+                <h2>Diary</h2>
+                <h2>Lists</h2>
+                </>
+                }
                 
             </aside>
             <footer className='footer'>

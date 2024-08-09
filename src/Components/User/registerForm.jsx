@@ -1,12 +1,9 @@
 import { useState } from "react";
 import Button from "../Button";
 import "./styling.css";
-import { register } from "../../Utils/apiClient";
-import { handleRegister } from "../../Utils/auth";
-import { useNavigate } from "react-router-dom";
+import { HandleRegister } from "../../Utils/auth";
 
 export default function RegisterForm() {
-    const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,13 +19,7 @@ export default function RegisterForm() {
   const onClick = (e) => {
     e.preventDefault();
     try  {
-        handleRegister(
-            formData.email,
-            formData.password,
-            formData.username,
-            formData.firstName
-        )
-        register(
+        HandleRegister(
             formData.email,
             formData.password,
             formData.username,
@@ -40,7 +31,6 @@ export default function RegisterForm() {
             username: "",
             firstName: "",
         })
-        navigate('/')
     } catch (err) {
         return alert(err.message)
     }

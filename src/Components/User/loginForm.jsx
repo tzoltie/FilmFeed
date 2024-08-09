@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Button from "../Button";
 import './styling.css'
-import { handleLogin } from "../../Utils/auth";
-import { login } from "../../Utils/apiClient";
+import { HandleLogin } from "../../Utils/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginForm({ setRegistered }) {
@@ -26,13 +25,11 @@ export default function LoginForm({ setRegistered }) {
     const onClick = (e) => {
         e.preventDefault()
         try {
-            handleLogin(formData.email, formData.password)
-            login(formData.email, formData.password)
+            HandleLogin(formData.email, formData.password)
             setFormData({
                 email: "",
                 password: ""
             })
-            navigate('/')
         } catch(err) {
             return alert(err.message)
         }

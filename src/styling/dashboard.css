@@ -12,6 +12,13 @@
     background-color: #96B6C5;
     margin: 0.5rem;
     border-radius: 20px;
+    display: grid;
+    grid-template-rows: 5rem 5rem 5rem 5rem 5rem;
+    padding: 1rem;
+}
+
+.left-sidebar h2 {
+    background-color: #96B6C5;
 }
 
 .footer {
@@ -39,4 +46,8 @@
 
 .link {
     text-decoration: none;
+}
+
+.left-sidebar .link {
+    background-color: #96B6C5;
 }

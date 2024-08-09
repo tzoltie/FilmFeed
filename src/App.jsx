@@ -6,6 +6,7 @@ import FilmPage from './Components/Film';
 import Images from './Components/Film/Images';
 import CastPage from './Components/People/castPage';
 import Login from './Components/User/login';
+import Watchlist from './Components/Watchlist';
 
 function App() {
 
@@ -30,6 +31,9 @@ function App() {
         <Route 
         path='/login'
         element={<Login />}/>
+        <Route 
+        path='/watchlist'
+        element={<Watchlist />}/>
       </Routes>
       
     </div>
