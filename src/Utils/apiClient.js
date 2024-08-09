@@ -10,6 +10,14 @@ const register = (email, password, username, firstName) => {
     return post(payload, 'users/register', false)
 }
 
+const login = (email, password) => {
+    const payload = {
+        email: email,
+        password: password
+    }
+    return post(payload, 'login', false)
+}
+
 async function post(payload, route, auth = true) {
     return apiRequest('POST', payload, route, auth)
 }
@@ -29,7 +37,16 @@ async function apiRequest(method, data, route, auth = true) {
     }
 
     const response = await fetch(`${API_URL}/${route}`, request)
-    return response.json()
+    const stringed = response.json()
+
+    if(
+        route === 'users/register' ||
+        route === 'login'
+    ) {
+        localStorage.setItem('token', stringed.data.token)
+    }
+    
+    return stringed
 }
 
-export { register }
+export { register, login }

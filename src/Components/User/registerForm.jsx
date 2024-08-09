@@ -47,7 +47,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="form-box">
+    <div className="sign-up-form-box">
       <form className="sign-up-form">
         <input
           className="textinput"

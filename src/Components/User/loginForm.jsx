@@ -1,8 +1,12 @@
 import { useState } from "react";
 import Button from "../Button";
 import './styling.css'
+import { handleLogin } from "../../Utils/auth";
+import { login } from "../../Utils/apiClient";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm({ setRegistered }) {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -16,8 +20,24 @@ export default function LoginForm({ setRegistered }) {
 
     const onChange = (e) => {
         const { name, value } = e.target
-        setFormData({...formData, [name]: value})
+        setFormData({ ...formData, [name]: value })
     }
+
+    const onClick = (e) => {
+        e.preventDefault()
+        try {
+            handleLogin(formData.email, formData.password)
+            login(formData.email, formData.password)
+            setFormData({
+                email: "",
+                password: ""
+            })
+            navigate('/')
+        } catch(err) {
+            return alert(err.message)
+        }
+    }
+
     return (
         <>
         <form className="login-form">
@@ -26,6 +46,7 @@ export default function LoginForm({ setRegistered }) {
                 type="textbox"
                 placeholder='Email'
                 value={formData.email}
+                name="email"
                 onChange={onChange}
                 required
                 
@@ -35,13 +56,14 @@ export default function LoginForm({ setRegistered }) {
                 type='textbox'
                 placeholder='Password'
                 value={formData.password}
+                name="password"
                 onChange={onChange}
                 required
             />
             
         </form>
         <div className="login-form-buttons">
-            <Button text="Login" className="login-button" />
+            <Button text="Login" className="login-button" onClick={onClick}/>
             <Button text={"Sign Up"} className={"login-button"} onClick={() => renderSignUpForm()}/>
         </div>
 

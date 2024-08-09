@@ -29,6 +29,8 @@
 .login-button {
   color: #F1F0E8;
   background-color: #96B6C5;
+  text-align: center;
+  padding-top: 0.2rem;
 }
 
 .login-button:hover {

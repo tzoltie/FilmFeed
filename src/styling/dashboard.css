@@ -16,7 +16,6 @@
 
 .footer {
     grid-area: footer;
-    background-color: #ADC4CE;
 }
 
 .search-bar-container, .logo-container {

@@ -18,11 +18,21 @@ function handleRegister(email, password, username, firstName) {
 
 }
 
+function handleLogin(email, password) {
+    if(!email) {
+        throw new Error(ERR.EMAIL_MISSING)
+    }
+    if(!password) {
+        throw new Error(ERR.PASSWORD_MISSING)
+    }
+}
+
 function isEmailValid(email) {
     const regEx = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/
     return regEx.test(email)
 }
 
 export {
-    handleRegister
+    handleRegister,
+    handleLogin
 }

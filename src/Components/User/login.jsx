@@ -23,7 +23,7 @@ export default function Login() {
                 {!registered &&
                 <div className='sign-up-form-container'>
                     <h2>Sign Up</h2>
-                    <div>
+                    <div className='sign-up-form-body'>
                         <img 
                         src={backArrow}
                         className='icon'
