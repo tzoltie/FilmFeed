@@ -29,6 +29,7 @@
 .login-form-buttons{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    place-items: center;
 }
 
 .login-form {
@@ -38,16 +39,26 @@
 
 .sign-up-form-container {
     display: grid;
-    grid-template-columns: 50px 1fr;
-    padding: 2rem;
-    gap: 3.5rem;
+    grid-template-rows: 1fr;
+    padding: 1rem;
+    gap: 1.75rem;
     place-content: center;
+}
+
+.sign-up-form-container div {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+}
+
+.form-box {
+    display: grid;
+    grid-template-rows: 1fr;
 }
 
 .sign-up-form {
     display: grid;
     grid-template-rows: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .login-button {

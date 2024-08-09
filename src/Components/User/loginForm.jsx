@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../Button";
 import './styling.css'
 
-export default function LoginForm({setRegistered, setButtonText, setFormClass}) {
+export default function LoginForm({ setRegistered }) {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -10,8 +10,6 @@ export default function LoginForm({setRegistered, setButtonText, setFormClass}) 
 
     function renderSignUpForm() {
         setRegistered(false)
-        setButtonText("Sign Up")
-        setFormClass("sign-up-form")
         return 
      }
     

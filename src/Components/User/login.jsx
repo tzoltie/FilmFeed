@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Button from '../Button'
 import LoginForm from './loginForm'
 import './styling.css'
 import backArrow from '../../assets/svg/backarrow.svg'
@@ -7,14 +6,9 @@ import RegisterForm from './registerForm'
 
 export default function Login() {
     const [registered, setRegistered] = useState(true)
-    const [buttonText, setButtonText] = useState("Login")
-    const [formClass, setFormClass] = useState("login-form")
-
 
     function backToLogin() {
         setRegistered(true)
-        setButtonText("Login")
-        setFormClass("login-form")
     }
 
     return (
@@ -22,18 +16,23 @@ export default function Login() {
             <section className="login-page">
                 {registered &&
                 <div className='login-form-container'>
-                <LoginForm text={buttonText} registered={registered} formClass={formClass} setRegistered={setRegistered} setButtonText={setButtonText} setFormClass={setFormClass}/>
+                    <h2>Sign In</h2>
+                <LoginForm setRegistered={setRegistered} />
                 </div>
                 }
                 {!registered &&
                 <div className='sign-up-form-container'>
-                    <img 
+                    <h2>Sign Up</h2>
+                    <div>
+                        <img 
                         src={backArrow}
                         className='icon'
                         id='form-backarrow'
                         onClick={() => backToLogin()}
-                    />
-                    <RegisterForm />
+                        />
+                        <RegisterForm />
+                    </div>
+                    <h3>By creating an account you will be able to log and review every film you watch.</h3>
                 </div>
                 }
             </section>
