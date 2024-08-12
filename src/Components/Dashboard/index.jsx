@@ -1,9 +1,9 @@
 import search from '../../assets/svg/search.svg'
 import '../../styling/dashboard.css'
 import film from '../../assets/svg/filmreel.svg'
-import user from '../../assets/svg/userIcon.svg'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import user from '../../assets/svg/userIcon.svg'
 
 export default function Dashboard() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -14,7 +14,6 @@ export default function Dashboard() {
     function userLoggedIn() {
         const token = localStorage.getItem('token')
         if(token.length > 1 && typeof token === 'string') {
-            console.log(token)
             setIsLoggedIn(true)
         }
     }

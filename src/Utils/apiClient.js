@@ -27,17 +27,18 @@ async function post(payload, route, auth = true) {
 }
 
 async function get(route, auth = true) {
-    return apiRequest('GET', null, route, auth)
+    return apiRequest('GET', null,route, auth)
 }
 
 async function apiRequest(method, data, route, auth = true) {
+
     const request = {
         headers: {
             'Content-Type': 'application/json',
         },
         method,
     }
-    if(method.toUpperCase !== 'GET') {
+    if(method.toUpperCase() !== 'GET') {
         request.body = JSON.stringify(data)
     }
     if(auth) {

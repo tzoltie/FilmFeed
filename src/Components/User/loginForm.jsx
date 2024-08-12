@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Button from "../Button";
 import './styling.css'
-import { HandleLogin } from "../../Utils/auth";
-import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export default function LoginForm({ setRegistered }) {
-    const navigate = useNavigate()
+    const { onLogin } = useAuth()
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -25,7 +24,7 @@ export default function LoginForm({ setRegistered }) {
     const onClick = (e) => {
         e.preventDefault()
         try {
-            HandleLogin(formData.email, formData.password)
+            onLogin(formData.email, formData.password)
             setFormData({
                 email: "",
                 password: ""

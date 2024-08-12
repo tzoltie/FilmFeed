@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Button from "../Button";
 import "./styling.css";
-import { HandleRegister } from "../../Utils/auth";
+import useAuth from "../hooks/useAuth";
 
 export default function RegisterForm() {
+  const { onRegister } = useAuth()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -19,7 +20,7 @@ export default function RegisterForm() {
   const onClick = (e) => {
     e.preventDefault();
     try  {
-        HandleRegister(
+        onRegister(
             formData.email,
             formData.password,
             formData.username,

@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react"
 import { getUserWatchlist } from "../../Utils/apiClient"
-import FilmCard from "../Feed/FilmCard/Index.jsx"
 import "./styling.css"
+import FilmCard from "../Feed/FilmCard/FilmCard.jsx"
+import useAuth from "../hooks/useAuth.jsx"
 
 export default function Watchlist() {
+    const { user } = useAuth()
     const [usersFilms, setUsersFilms] = useState([])
     const [emptyWatchlist, setEmptyWatchlist] = useState([{}, {}, {}, {}, {}, {}, {}])
     useEffect(() => {
-        getUserWatchlist().then(setUsersFilms)
+        getUserWatchlist(user.id).then(setUsersFilms)
     }, [])
-
-    function getUserId() {
-        const token = localStorage.getItem('token')
-        if(typeof token === 'string') {
-            const decodedToken = token
-        }
-    }
 
     console.log(usersFilms)
     
