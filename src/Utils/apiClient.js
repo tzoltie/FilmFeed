@@ -22,9 +22,10 @@ const getUserWatchlist = (userId) => {
     return get(`watchlist/${userId}`, true)
 }
 
-const addFilmToWatchlist = (filmId, watchlistId) => {
+const addFilmToWatchlist = (filmId, filmTitle, watchlistId) => {
     const payload = {
-        id: filmId
+        title: filmTitle,
+        filmId: filmId
     }
     return post(payload, `watchlist/${watchlistId}`, true)
 }

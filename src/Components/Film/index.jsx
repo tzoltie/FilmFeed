@@ -11,7 +11,7 @@ import Button from "../Button";
 export default function FilmPage() {
   const [film, setFilm] = useState([]);
   const urlPararms = useParams();
-  const { user } = useAuth()
+  const { loggedInUser } = useAuth()
 
   useEffect(() => {
     fetch(
@@ -106,9 +106,8 @@ export default function FilmPage() {
   }
 
   async function addFilmToList() {
-    await addFilmToWatchlist(film.id, user.id)
+    await addFilmToWatchlist(film.id, film.title,loggedInUser.id)
   }
-  console.log("user",user)
 
   return (
     <>

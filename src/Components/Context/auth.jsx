@@ -42,7 +42,7 @@ function AuthProvider({ children }) {
             return alert(error)
         }
         setToken(res.data.token)
-        localStorage.setItem('token', token)
+        localStorage.setItem('token', res.data.token)
         setloggedInUser(res.data.user)
         
         navigate('/')
@@ -67,7 +67,7 @@ function AuthProvider({ children }) {
                 return alert(error)
             }
             setToken(res.data.token)
-            localStorage.setItem('token', token)
+            localStorage.setItem('token', res.data.token)
             setloggedInUser(res.data.user)
             navigate('/')
         } catch (err) {

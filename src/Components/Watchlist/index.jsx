@@ -5,15 +5,13 @@ import FilmCard from "../Feed/FilmCard/FilmCard.jsx"
 import useAuth from "../hooks/useAuth.jsx"
 
 export default function Watchlist() {
-    const { user } = useAuth()
+    const { loggedInUser } = useAuth()
     const [usersFilms, setUsersFilms] = useState([])
     const [emptyWatchlist, setEmptyWatchlist] = useState([{}, {}, {}, {}, {}, {}, {}])
     useEffect(() => {
-        getUserWatchlist(user.id).then(setUsersFilms)
-    }, [user])
+        getUserWatchlist(loggedInUser.id).then(setUsersFilms)
+    }, [loggedInUser])
 
-    console.log(user)
-    console.log(usersFilms)
     
     return (
         <div className="watchlist-container">
@@ -21,10 +19,10 @@ export default function Watchlist() {
                 <h2>Your watchlist</h2>
             </header>
             <main>
-                {usersFilms.length === 0 ? (
+                {usersFilms.length === 0 || usersFilms.status === "fail" ? (
                 <div className="empty-watchlist-container">
                     <div className="empty-watchlist-header">
-                        <h3>Add films to your watchlist</h3>
+                        <h3>{loggedInUser.username}, add films to your watchlist</h3>
                     </div>
                     <div>
                         <ul className="empty-watchlist-list">
@@ -36,7 +34,7 @@ export default function Watchlist() {
                 ) : (
                     <div className="watchlist-container">
                         <ul className="watchlist-list">
-                        {usersFilms?.map((film) => 
+                        {usersFilms.map((film) => 
                             <FilmCard film={film} key={film.id}/>)}
                         </ul>
                     </div>
