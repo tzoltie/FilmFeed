@@ -10,8 +10,9 @@ export default function Watchlist() {
     const [emptyWatchlist, setEmptyWatchlist] = useState([{}, {}, {}, {}, {}, {}, {}])
     useEffect(() => {
         getUserWatchlist(user.id).then(setUsersFilms)
-    }, [])
+    }, [user])
 
+    console.log(user)
     console.log(usersFilms)
     
     return (
@@ -21,7 +22,7 @@ export default function Watchlist() {
             </header>
             <main>
                 {usersFilms.length === 0 ? (
-                    <div className="empty-watchlist-container">
+                <div className="empty-watchlist-container">
                     <div className="empty-watchlist-header">
                         <h3>Add films to your watchlist</h3>
                     </div>
@@ -35,7 +36,7 @@ export default function Watchlist() {
                 ) : (
                     <div className="watchlist-container">
                         <ul className="watchlist-list">
-                        {usersFilms.map((film) => 
+                        {usersFilms?.map((film) => 
                             <FilmCard film={film} key={film.id}/>)}
                         </ul>
                     </div>

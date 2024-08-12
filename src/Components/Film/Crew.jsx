@@ -16,8 +16,8 @@ export default function Crew({checkImage, film}) {
               {film.length === 0 ? (
                 <p></p>
               ) : (
-              removeDuplicates(film).map((crew) => (
-                <li key={crew.id} className="crew-list-item">
+              removeDuplicates(film).map((crew, index) => (
+                <li key={index} className="crew-list-item">
                     {checkImage(crew)}
                   <p>{crew.job}</p>
                   <h4>{crew.name}</h4>

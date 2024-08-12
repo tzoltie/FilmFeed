@@ -7,7 +7,8 @@ import Images from './Components/Film/Images';
 import CastPage from './Components/People/castPage';
 import Login from './Components/User/login';
 import Watchlist from './Components/Watchlist';
-import { AuthProvider } from './Components/Context/auth';
+import { AuthProvider } from './Components/Context/auth.jsx';
+import LandingPage from './Components/landingPage';
 
 function App() {
 
@@ -17,6 +18,10 @@ function App() {
       <AuthProvider>
         <Dashboard />
         <Routes>
+          <Route 
+          path='/welcome'
+          element={<LandingPage />}
+          />
           <Route 
           path='/'
           element={<Feed />}

@@ -4,20 +4,27 @@ import film from '../../assets/svg/filmreel.svg'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import user from '../../assets/svg/userIcon.svg'
+import logout from '../../assets/svg/logout.svg'
+import useAuth from '../hooks/useAuth'
 
 export default function Dashboard() {
+    const { loggedInUser, handleLogout } = useAuth()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {
         userLoggedIn()
-    }, [])
+    }, [loggedInUser])
 
     function userLoggedIn() {
         const token = localStorage.getItem('token')
-        if(token.length > 1 && typeof token === 'string') {
+        if(token) {
             setIsLoggedIn(true)
         }
     }
 
+    function logOut() {
+        setIsLoggedIn(false)
+        handleLogout
+    }
 
     return (
         <>
@@ -31,11 +38,12 @@ export default function Dashboard() {
                     id='film-reel'
                     />
                     </Link>
-                    <Link to="/login" className='link'>
+                    <Link to="/welcome" className='link'>
                     <img
                     src={user}
                     className='icon'
                     id='user-icon'
+                    onClick={logOut}
                     />
                     </Link>
                 </section>

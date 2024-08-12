@@ -8,7 +8,7 @@ const AuthContext = createContext()
 function AuthProvider({ children }) {
     const navigate = useNavigate()
     const location = useLocation()
-    const [user, setUser] = useState(null)
+    const [loggedInUser, setloggedInUser] = useState(null)
     const [token, setToken] = useState(null)
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function AuthProvider({ children }) {
         }
         setToken(res.data.token)
         localStorage.setItem('token', token)
-        setUser(res.data.user)
+        setloggedInUser(res.data.user)
         
         navigate('/')
         } catch(err) {
@@ -62,14 +62,13 @@ function AuthProvider({ children }) {
             }
         
             const res = await login(email, password)
-            console.log(res)
             if(res.data.error) {
                 const error = res.data.error
                 return alert(error)
             }
             setToken(res.data.token)
             localStorage.setItem('token', token)
-            setUser(res.data.user)
+            setloggedInUser(res.data.user)
             navigate('/')
         } catch (err) {
             alert(err.message)
@@ -79,7 +78,7 @@ function AuthProvider({ children }) {
     const handleLogout = () => {
         localStorage.removeItem('token')
         setToken(null)
-        setUser(null)
+        setloggedInUser(null)
     }
     
     const isEmailValid = (email) => {
@@ -89,10 +88,12 @@ function AuthProvider({ children }) {
 
     const value = {
         token,
-        user,
+        loggedInUser,
         onLogin: handleLogin,
         onLogout: handleLogout,
-        onRegister: handleRegister
+        onRegister: handleRegister,
+        setToken,
+        setloggedInUser
     }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

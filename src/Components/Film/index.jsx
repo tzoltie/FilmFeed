@@ -3,10 +3,15 @@ import { useParams, Link } from "react-router-dom";
 import "../../styling/FilmPage.css";
 import Cast from "./Cast";
 import Crew from "./Crew"
+import AddFilm from "../AddFilm";
+import { addFilmToWatchlist } from "../../Utils/apiClient";
+import useAuth from "../hooks/useAuth";
+import Button from "../Button";
 
 export default function FilmPage() {
   const [film, setFilm] = useState([]);
   const urlPararms = useParams();
+  const { user } = useAuth()
 
   useEffect(() => {
     fetch(
@@ -100,9 +105,11 @@ export default function FilmPage() {
     return initials;
   }
 
-  
+  async function addFilmToList() {
+    await addFilmToWatchlist(film.id, user.id)
+  }
+  console.log("user",user)
 
-console.log(film)
   return (
     <>
       {film && (
@@ -139,7 +146,7 @@ console.log(film)
             <section className="genre-box">
               <h3>Genres</h3>
               <ul id="genre">
-              {film?.genres.length === 0 ? (
+              {film.length === 0 ? (
                 <li></li>
               ) : (  
               film.genres.map((i) => 
@@ -180,6 +187,7 @@ console.log(film)
           </div>
           <Cast film={film} checkImage={checkImage}/>
           <Crew film={film} checkImage={checkImage}/>
+          <Button text={AddFilm} onClick={addFilmToList} className={"addFilm-button"}/>
         </div>
       )}
     </>
