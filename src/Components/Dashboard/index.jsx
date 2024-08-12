@@ -14,6 +14,7 @@ export default function Dashboard() {
     function userLoggedIn() {
         const token = localStorage.getItem('token')
         if(token.length > 1 && typeof token === 'string') {
+            console.log(token)
             setIsLoggedIn(true)
         }
     }

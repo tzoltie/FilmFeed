@@ -18,8 +18,16 @@ const login = (email, password) => {
     return post(payload, 'login', false)
 }
 
+const getUserWatchlist = (userId) => {
+    return get(`watchlist/${userId}`, true)
+}
+
 async function post(payload, route, auth = true) {
     return apiRequest('POST', payload, route, auth)
+}
+
+async function get(route, auth = true) {
+    return apiRequest('GET', null, route, auth)
 }
 
 async function apiRequest(method, data, route, auth = true) {
@@ -41,4 +49,4 @@ async function apiRequest(method, data, route, auth = true) {
     return response.json()
 }
 
-export { register, login }
+export { register, login, getUserWatchlist }

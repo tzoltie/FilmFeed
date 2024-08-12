@@ -1,0 +1,15 @@
+.empty-watchlist-item {
+    height: 200px;
+    width: 133px;
+    border: 1px solid #96B6C5;
+}
+
+.empty-watchlist-list {
+    display: flex;
+    gap: 0.9rem;
+    margin-top: 2.5rem;
+}
+
+.empty-watchlist-header {
+    text-align: center;
+}
