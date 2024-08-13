@@ -31,7 +31,9 @@
   color: #F1F0E8;
   background-color: #96B6C5;
   text-align: center;
-  padding-top: 0.2rem;
+  padding: 0.5rem;
+  height: 40px;
+  width: 100px;
 }
 
 .login-button:hover {

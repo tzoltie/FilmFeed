@@ -10,13 +10,13 @@ export default function Watchlist() {
     const [emptyWatchlist, setEmptyWatchlist] = useState([{}, {}, {}, {}, {}, {}, {}])
     useEffect(() => {
         getUserWatchlist(loggedInUser.id).then(setUsersFilms)
-    }, [loggedInUser])
+    }, [loggedInUser.id])
 
-    
+    console.log(usersFilms)
     return (
         <div className="watchlist-container">
             <header>
-                <h2>Your watchlist</h2>
+                <h2>{`${loggedInUser.profile.name}'s`} watchlist</h2>
             </header>
             <main>
                 {usersFilms.length === 0 || usersFilms.status === "fail" ? (
@@ -26,7 +26,7 @@ export default function Watchlist() {
                     </div>
                     <div>
                         <ul className="empty-watchlist-list">
-                        {emptyWatchlist.map((li, index) => 
+                        {usersFilms.map((li, index) => 
                             <li key={index} className="empty-watchlist-item"></li>)}
                         </ul>
                     </div>
@@ -34,7 +34,7 @@ export default function Watchlist() {
                 ) : (
                     <div className="watchlist-container">
                         <ul className="watchlist-list">
-                        {usersFilms.map((film) => 
+                        {usersFilms.data.watchlist.map((film) => 
                             <FilmCard film={film} key={film.id}/>)}
                         </ul>
                     </div>

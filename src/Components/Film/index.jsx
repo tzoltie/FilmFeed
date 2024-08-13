@@ -106,7 +106,7 @@ export default function FilmPage() {
   }
 
   async function addFilmToList() {
-    await addFilmToWatchlist(film.id, film.title,loggedInUser.id)
+    await addFilmToWatchlist(film.id, film.title, film.poster_path, loggedInUser.id)
   }
 
   return (

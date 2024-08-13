@@ -59,10 +59,3 @@
     grid-template-rows: 1fr;
     gap: 1.5rem;
 }
-
-.login-button {
-    cursor: pointer;
-    border-radius: 7px;
-    height: 30px;
-    width: 100px;
-}

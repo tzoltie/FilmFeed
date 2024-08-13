@@ -18,15 +18,26 @@ export default function FilmCard({ film }) {
     if(typeof title !== 'string') {
       return <h3>...</h3>
     }
-      if (title.length > 24) {
-        return title.slice(0, 24) + "...";
-      }
-      return title;
+    if (title.length > 24) {
+      return title.slice(0, 24) + "...";
+    }
+    if(film.title) {
+      title = film.title
+    }
+    return title;
   }
-  const poster = film.poster_path
+  
+  let poster = film.poster_path
   function checkPoster() {
     if(typeof poster !== 'string') {
       return <img className="poster" id="unknown-poster"/>
+    }
+    if(film.poster) {
+      return <img
+      src={`https://image.tmdb.org/t/p/w500${film.poster}`}
+      className="poster"
+      alt={`${title} movie poster`}
+      />
     }
     return <img
     src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
@@ -34,7 +45,6 @@ export default function FilmCard({ film }) {
     alt={`${title} movie poster`}
     />
   }
-  
 
   return (
     <>

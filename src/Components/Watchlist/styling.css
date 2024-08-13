@@ -13,3 +13,9 @@
 .empty-watchlist-header {
     text-align: center;
 }
+
+.watchlist-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
