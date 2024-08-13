@@ -69,7 +69,9 @@ export default function Dashboard() {
                 
                 <h2>Reviews</h2>
                 <h2>Diary</h2>
+                <Link to='/lists' className='link'>
                 <h2>Lists</h2>
+                </Link>
                 </>
                 }
                 

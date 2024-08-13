@@ -9,6 +9,7 @@ import Login from './Components/User/login';
 import Watchlist from './Components/Watchlist';
 import { AuthProvider } from './Components/Context/auth.jsx';
 import LandingPage from './Components/landingPage';
+import UsersLists from './Components/UsersList/index.jsx';
 
 function App() {
 
@@ -45,6 +46,10 @@ function App() {
           <Route 
           path='/watchlist'
           element={<Watchlist />}
+          />
+          <Route 
+          path='/lists'
+          element={<UsersLists />}
           />
         </Routes>
       </AuthProvider>

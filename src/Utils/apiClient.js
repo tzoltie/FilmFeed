@@ -31,6 +31,13 @@ const addFilmToWatchlist = (filmId, filmTitle, filmPoster, watchlistId) => {
     return post(payload, `watchlist/${watchlistId}`, true)
 }
 
+const getUsersLists = (userId) => {
+    return get(`lists/${userId}`, true)
+}
+const getUsersListById = (id) => {
+    return get(`lists/${id}`, true)
+}
+
 async function post(payload, route, auth = true) {
     return apiRequest('POST', payload, route, auth)
 }
@@ -59,4 +66,4 @@ async function apiRequest(method, data, route, auth = true) {
     return response.json()
 }
 
-export { register, login, getUserWatchlist, addFilmToWatchlist }
+export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById }

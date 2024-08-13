@@ -3,10 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import "../../styling/FilmPage.css";
 import Cast from "./Cast";
 import Crew from "./Crew"
-import AddFilm from "../AddFilm";
 import { addFilmToWatchlist } from "../../Utils/apiClient";
 import useAuth from "../hooks/useAuth";
 import Button from "../Button";
+import Add from "../AddFilm";
 
 export default function FilmPage() {
   const [film, setFilm] = useState([]);
@@ -186,7 +186,7 @@ export default function FilmPage() {
           </div>
           <Cast film={film} checkImage={checkImage}/>
           <Crew film={film} checkImage={checkImage}/>
-          <Button text={AddFilm} onClick={addFilmToList} className={"addFilm-button"}/>
+          <Button text={Add} onClick={addFilmToList} className={"addFilm-button"}/>
         </div>
       )}
     </>
