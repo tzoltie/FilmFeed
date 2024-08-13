@@ -1,0 +1,22 @@
+.addFilm-header {
+    padding: 1rem;
+    display: flex;
+    width: 50%;
+}
+
+.addFilm-header form {
+    width: 100%;
+}
+
+#searchFilm-icon {
+    height: 18px;
+    margin-top: 0.25rem;
+}
+
+.new-list-container {
+    display: flex;
+}
+
+.empty-list-item header {
+    width: 50%;
+}
