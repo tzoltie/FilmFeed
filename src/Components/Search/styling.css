@@ -1,6 +1,4 @@
-
-
-.search-results-container, .lists-films-container {
+.search-results-container, .lists-films-container, .new-film-container {
     display: grid;
     grid-template-rows: auto;
     min-height: fit-content;
@@ -21,13 +19,13 @@
     gap: 1rem;
 }
 
-.search-result-list-item {
+.search-result-list-item, .new-film-list-item {
     display: flex;
     height: 100px;
     border-bottom: 1px solid #96B6C5;
 }
 
-.search-result-poster {
+.search-result-poster, .new-film-poster {
     width: 60px;
     height: 80px;
 }
@@ -40,4 +38,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: fit-content;
+}
+
+.newlist-films-list {
+    padding-top: 1rem;
 }
