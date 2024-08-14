@@ -74,7 +74,7 @@ export default function Feed() {
             <li></li>
               ) : (
           popular.map((film) => (
-            <FilmCard film={film} key={film.id}/>
+            <FilmCard film={film} key={film.id} styling={"feed-card"}/>
           )))}
         </ul>
       </section>
@@ -85,7 +85,7 @@ export default function Feed() {
             <li></li>
           ) : (
           topFilms.map((film) => (
-            <FilmCard film={film} key={film.id}/>
+            <FilmCard film={film} key={film.id} styling={"feed-card"}/>
           ))
           )}
         </ul>

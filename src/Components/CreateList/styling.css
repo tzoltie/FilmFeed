@@ -4,10 +4,6 @@
     width: 50%;
 }
 
-.addFilm-header form {
-    width: 100%;
-}
-
 #searchFilm-icon {
     height: 18px;
     margin-top: 0.25rem;
@@ -19,4 +15,12 @@
 
 .empty-list-item header {
     width: 50%;
+}
+
+.addFilmToList-container {
+    width: 100%;
+}
+
+.empty-list-item {
+    height: 100%;
 }
