@@ -4,6 +4,7 @@ import "../UsersList/styling.css"
 import "./styling.css"
 import Add from "../AddFilm"
 import Search from "../Search"
+import DoneCheck from "../Assets/Done"
 
 export default function CreateList() {
     const [newFilm, setNewFilm] = useState(false)
@@ -20,6 +21,10 @@ export default function CreateList() {
         setNewFilm(true)
     }
 
+    const listComplete = () => {
+        
+    }
+
     return (
         <div className="new-list-container">
             <div className="empty-list-item">
@@ -32,10 +37,11 @@ export default function CreateList() {
                     required
                     onChange={titleOnChange}
                     />
+                    <Button text={<DoneCheck />} onClick={() => listComplete} className={"list-complete-btn"}/>
                 </header>
                 <main className="search-container">
                     {!newFilm &&
-                        <Button text={Add} className="add-film-to-list-btn" onClick={onClick}/>
+                        <Button text={<Add />} className="add-film-to-list-btn" onClick={onClick}/>
                     }
                     {newFilm &&
                     <div className="addFilmToList-container">

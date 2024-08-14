@@ -34,9 +34,11 @@ const addFilmToWatchlist = (filmId, filmTitle, filmPoster, watchlistId) => {
 const getUsersLists = (userId) => {
     return get(`lists/${userId}`, true)
 }
+
 const getUsersListById = (id) => {
     return get(`lists/${id}`, true)
 }
+
 
 async function post(payload, route, auth = true) {
     return apiRequest('POST', payload, route, auth)

@@ -32,7 +32,7 @@ export default function UsersLists() {
                         <ul className="empty-list-list">
                             <li className="empty-list-item">
                                 <section className="list-poster">
-                                    <Button text={Add} onClick={onClick} className="add-list-button"/>
+                                    <Button text={<Add />} onClick={onClick} className="add-list-button"/>
                                 </section>
                                 <div className="list-title-container">
                                     <h4>Add new list</h4>

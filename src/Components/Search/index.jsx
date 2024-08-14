@@ -41,7 +41,6 @@ export default function Search() {
             </div>
         }
     }
-    console.log(addedFilms)
 
     const film = [{id: 1, original_title: "The Batman", release_date: 2021}, {id: 2, original_title: "James Bond"}, {id: 3, original_title: "Blade Runner", release_date: 1984}, {id: 4, original_title: "Muholland Drive", release_date: 2021}]
 
@@ -61,7 +60,7 @@ export default function Search() {
             className="icon"
             id="searchFilm-icon"
             />
-            {addedFilms.length > 0 && displayListFilms()}
+            {addedFilms?.length > 0 && displayListFilms()}
         </div>
         {!searchComplete &&
         <div className="search-results-container">

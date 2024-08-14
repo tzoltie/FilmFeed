@@ -59,25 +59,19 @@ export default function FilmCard({ film, styling, addFilm, currentFilms }) {
     );
   }
 
+  const [inList, setInList] = useState(false)
+
   const onClickAdd = () => {
     addFilm([...currentFilms, film])
-    console.log("add clicked")
+    setInList(true)
   }
 
   const onClickRemove = (id) => {
-    console.log(id)
     const updatedList = currentFilms.filter((film) => (film.id !== id))
-    console.log("removed clicked")
+    addFilm(updatedList)
+    setInList(false)
   }
-
-  const [inList, setInList] = useState(false)
-
-  useEffect(() => {
-    const filmInList = currentFilms?.find((li) => (li.original_title === film.original_title))
-      if(filmInList) {
-        setInList(true)
-      }
-  }, [currentFilms])
+  
 
   const renderCorrectCard = () => {
     const currentUrl =  window.location.href
@@ -97,7 +91,7 @@ export default function FilmCard({ film, styling, addFilm, currentFilms }) {
                 {checkPoster()}
                 {checkTitle()}
               </li>
-              <Button className={"add-to-list-button"} text={<Remove />} onClick={onClickRemove(film.id)}/>
+              <Button className={"add-to-list-button"} text={<Remove />} onClick={() => onClickRemove(film.id)}/>
             </div>
     }
     return <Link to={`/${film.id}`} className="link">

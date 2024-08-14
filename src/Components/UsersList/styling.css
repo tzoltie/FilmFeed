@@ -73,11 +73,30 @@
     border: none;
     outline: none;
     border-bottom: 1px solid #96B6C5;
-    width: 100%;
+    width: 91%;
     height: 20px;
     font-size: medium;
 }
 
 .search-films-searchbar {
     width: 93%;
+}
+
+.list-complete-btn {
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    position: relative;
+    background-color: #F1F0E8;
+    place-self: end;
+}
+
+.list-complete-btn:hover {
+    border: none;
+}
+
+.done-check {
+    position: absolute;
+    top: 0;
+    left: 20%;
 }
