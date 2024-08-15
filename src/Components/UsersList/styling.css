@@ -17,7 +17,6 @@
 .list-poster {
     height: 140px;
     width: 100px;
-    
 }
 
 .list-title-container, .addFilmToList-container {
@@ -56,7 +55,7 @@
 .new-list-container > .empty-list-item {
     width: 94.5%;
     display: grid;
-    grid-template-rows: 2rem;
+    grid-template-rows: 3rem;
 }
 
 .add-film-to-list-btn {
@@ -99,4 +98,8 @@
     position: absolute;
     top: 0;
     left: 20%;
+}
+
+.newlist-films-list {
+    padding: 0 0.5rem 0 1rem;
 }

@@ -39,6 +39,13 @@ const getUsersListById = (id) => {
     return get(`lists/${id}`, true)
 }
 
+const addMultiFilmsList = (listTitle, filmsArr) => {
+    const payload = {
+        title: listTitle,
+        films: filmsArr
+    }
+    return post(payload, 'lists/newList', true)
+}
 
 async function post(payload, route, auth = true) {
     return apiRequest('POST', payload, route, auth)
@@ -49,7 +56,6 @@ async function get(route, auth = true) {
 }
 
 async function apiRequest(method, data, route, auth = true) {
-
     const request = {
         headers: {
             'Content-Type': 'application/json',
@@ -89,4 +95,4 @@ async function tmdbApiRequest(route) {
     return response.json()
 }
 
-export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById }
+export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList }

@@ -5,9 +5,16 @@ import "./styling.css"
 import Add from "../AddFilm"
 import Search from "../Search"
 import DoneCheck from "../Assets/Done"
+import FilmCard from "../Feed/FilmCard/FilmCard"
+import useSearch from "../hooks/useSearch"
+import { addMultiFilmsList } from "../../Utils/apiClient"
 
-export default function CreateList() {
+export default function CreateList({ setNewList, setListsUpdated }) {
+    const { request, setRequest } = useSearch()
     const [newFilm, setNewFilm] = useState(false)
+    const [addList, setAddList] = useState(false)
+    const [addedFilms, setAddedFilms] = useState([])
+    const [searchComplete, setSearchComplete] = useState(false)
     const [newListForm, setNewListForm] = useState({
         listTitle: ""
     })
@@ -15,6 +22,7 @@ export default function CreateList() {
     const titleOnChange = (e) => {
         const { name, value } = e.target
         setNewListForm({ [name]: value })
+        setAddList(true)
     }
 
     const onClick = () => {
@@ -22,7 +30,28 @@ export default function CreateList() {
     }
 
     const listComplete = () => {
-        
+        addMultiFilmsList(newListForm.listTitle, addedFilms)
+        setNewFilm(false)
+        setAddList(false)
+        setNewListForm({
+            listTitle: ""
+        })
+        setNewList(false)
+        setSearchComplete(false)
+        setListsUpdated(true)
+        setRequest([])
+    }
+
+    const displayListFilms = () => {
+        const currentUrl =  window.location.href
+        if(currentUrl.includes("/lists")) {
+            return <div className="lists-films-container">
+                <ul className="newlist-films-list">
+                    {addedFilms.map((film) => 
+                    <FilmCard film={film} key={film.id} styling={"new-film"} addFilm={setAddedFilms} currentFilms={addedFilms}/>)}
+                </ul>
+            </div>
+        }
     }
 
     return (
@@ -37,7 +66,8 @@ export default function CreateList() {
                     required
                     onChange={titleOnChange}
                     />
-                    <Button text={<DoneCheck />} onClick={() => listComplete} className={"list-complete-btn"}/>
+                    {addList &&
+                    <Button text={<DoneCheck />} onClick={listComplete} className={"list-complete-btn"}/>}
                 </header>
                 <main className="search-container">
                     {!newFilm &&
@@ -46,8 +76,16 @@ export default function CreateList() {
                     {newFilm &&
                     <div className="addFilmToList-container">
                         <Search />
-                    </div>
-                    }
+                        {!searchComplete &&
+                        <div className="search-results-container">
+                            <ul className="search-results-list">
+                            {!searchComplete && request.results.map((film) => 
+                                <FilmCard film={film} key={film.id} styling={"search-result"} addFilm={setAddedFilms} currentFilms={addedFilms}/>)}
+                            </ul>
+                            {addedFilms?.length > 0 && displayListFilms()}
+                        </div>}
+                    
+                    </div>}
                 </main>
             </div>
         </div>

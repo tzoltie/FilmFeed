@@ -1,20 +1,26 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../../../styling/FilmPage.css";
 import "../../Search/styling.css";
 import Button from "../../Button";
 import Add from "../../AddFilm";
 import Remove from "../../Remove";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function FilmCard({ film, styling, addFilm, currentFilms }) {
+export default function FilmCard({ film, styling, addFilm, currentFilms, listReady }) {
 
   if (!film) {
     <p>Loading...</p>;
   }
 
-  let title = film.original_title;
+  let title = film.title;
   function checkTitle() {
+    if(styling === "search-result" || styling === "new-film") {
+      return <div className="search-result-title-container">
+        <h3>{title.slice(0, 24) + "..."}</h3>
+        <p>{film.release_date.slice(0, 4)}</p>
+      </div>
+    }
     if (film.character) {
       title = film.character;
     }
@@ -23,15 +29,6 @@ export default function FilmCard({ film, styling, addFilm, currentFilms }) {
     }
     if (title.length > 24) {
       return title.slice(0, 24) + "...";
-    }
-    if (film.title) {
-      title = film.title;
-    }
-    if(styling === "search-result" || styling === "new-film") {
-      return <div className="search-result-title-container">
-        <h4>{title}</h4>
-        <p>{film.release_date}</p>
-      </div>
     }
     return <h3>{title}</h3>
   }

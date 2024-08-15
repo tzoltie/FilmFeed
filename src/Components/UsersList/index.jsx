@@ -11,11 +11,13 @@ export default function UsersLists() {
     const { loggedInUser } = useAuth()
     const [usersList, setUsersLists] = useState([])
     const [newList, setNewList] = useState(false)
+    const [listsUpdated, setListsUpdated] = useState(false)
 
     useEffect(() => {
         getUsersLists(loggedInUser.id).then(setUsersLists)
-    }, [loggedInUser, newList])
+    }, [loggedInUser, newList, listsUpdated])
 
+    console.log("lists",usersList)
     const onClick = () => {
         setNewList(true)
     }
@@ -42,9 +44,9 @@ export default function UsersLists() {
                     </div>
                 </div>}
             {!newList &&
-                <CreateList />
+                <CreateList setNewList={setNewList} setListsUpdated={setListsUpdated}/>
             }
-            {usersList.length > 1 &&
+            {usersList.length > 0 &&
                 <div className="list-container">
                     <ul className="list-list">
                     {usersList.data.lists.map((list) => 

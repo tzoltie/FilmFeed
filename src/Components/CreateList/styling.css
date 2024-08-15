@@ -19,8 +19,21 @@
 
 .addFilmToList-container {
     width: 100%;
+    padding: 0;
 }
 
 .empty-list-item {
     height: 100%;
+}
+
+.search-results-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+}
+
+.lists-films-container {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
 }

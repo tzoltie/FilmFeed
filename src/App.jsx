@@ -10,6 +10,7 @@ import Watchlist from './Components/Watchlist';
 import { AuthProvider } from './Components/Context/auth.jsx';
 import LandingPage from './Components/landingPage';
 import UsersLists from './Components/UsersList/index.jsx';
+import { SearchProvider } from './Components/Context/search.jsx';
 
 function App() {
 
@@ -17,41 +18,44 @@ function App() {
   return (
     <div className='app-container'>
       <AuthProvider>
-        <Dashboard />
-        <Routes>
-          <Route 
-          path='/welcome'
-          element={<LandingPage />}
-          />
-          <Route 
-          path='/'
-          element={<Feed />}
-          />
-          <Route 
-          path='/:id'
-          element={<FilmPage />}
-          />
-          <Route 
-          path='/:id/images'
-          element={<Images />}
-          />
-          <Route 
-          path='/:id/cast&crew'
-          element={<CastPage />}
-          />
-          <Route 
-          path='/login'
-          element={<Login />}
-          />
-          <Route 
-          path='/watchlist'
-          element={<Watchlist />}
-          />
-          <Route 
-          path='/lists'
-          element={<UsersLists />}
-          />
-        </Routes>
+        <SearchProvider>
+          <Dashboard />
+          <Routes>
+            <Route 
+            path='/welcome'
+            element={<LandingPage />}
+            />
+            <Route 
+            path='/'
+            element={<Feed />}
+            />
+            <Route 
+            path='/:id'
+            element={<FilmPage />}
+            />
+            <Route 
+            path='/:id/images'
+            element={<Images />}
+            />
+            <Route 
+            path='/:id/cast&crew'
+            element={<CastPage />}
+            />
+            <Route 
+            path='/login'
+            element={<Login />}
+            />
+            <Route 
+            path='/watchlist'
+            element={<Watchlist />}
+            />
+            <Route 
+            path='/lists'
+            element={<UsersLists />}
+            />
+          </Routes>
+        </SearchProvider>
+        
       </AuthProvider>
     </div>
   )
