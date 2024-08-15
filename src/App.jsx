@@ -55,7 +55,7 @@ function App() {
             element={<UsersLists />}
             />
             <Route 
-            path=':listId'
+            path='/:listId/list'
             element={<ListPage />}
             />
           </Routes>
