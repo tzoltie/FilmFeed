@@ -17,7 +17,7 @@ export default function UsersLists() {
         getUsersLists(loggedInUser.id).then(setUsersLists)
     }, [loggedInUser, newList, listsUpdated])
 
-    console.log("lists",usersList)
+    console.log(usersList)
     const onClick = () => {
         setNewList(true)
     }
@@ -43,17 +43,17 @@ export default function UsersLists() {
                         </ul>
                     </div>
                 </div>}
-            {!newList &&
+                {!newList &&
                 <CreateList setNewList={setNewList} setListsUpdated={setListsUpdated}/>
-            }
-            {usersList.length > 0 &&
+                }
+                {usersList &&
                 <div className="list-container">
                     <ul className="list-list">
                     {usersList.data.lists.map((list) => 
-                        <ListCard list={list} key={list.id}/>)}
+                        <ListCard list={list} key={list.id} films={list.films}/>)}
                     </ul>
                 </div>
-            }
+                }
             </main>
         </div>
     )

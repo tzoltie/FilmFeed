@@ -11,6 +11,7 @@ import { AuthProvider } from './Components/Context/auth.jsx';
 import LandingPage from './Components/landingPage';
 import UsersLists from './Components/UsersList/index.jsx';
 import { SearchProvider } from './Components/Context/search.jsx';
+import ListPage from './Components/UsersList/listPage.jsx';
 
 function App() {
 
@@ -53,9 +54,12 @@ function App() {
             path='/lists'
             element={<UsersLists />}
             />
+            <Route 
+            path=':listId'
+            element={<ListPage />}
+            />
           </Routes>
         </SearchProvider>
-        
       </AuthProvider>
     </div>
   )
