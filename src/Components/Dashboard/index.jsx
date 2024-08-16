@@ -1,15 +1,18 @@
 import search from '../../assets/svg/search.svg'
 import '../../styling/dashboard.css'
-import film from '../../assets/svg/filmreel.svg'
+// import film from '../../assets/svg/filmreel.svg'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import user from '../../assets/svg/userIcon.svg'
 import logout from '../../assets/svg/logout.svg'
 import useAuth from '../hooks/useAuth'
+import Search from '../Search'
+import FilmCard from '../Feed/FilmCard/FilmCard'
 
 export default function Dashboard() {
     const { loggedInUser, handleLogout } = useAuth()
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [userSearch, setUserSearch] = useState(false)
     useEffect(() => {
         userLoggedIn()
     }, [loggedInUser])
@@ -26,6 +29,11 @@ export default function Dashboard() {
         handleLogout
     }
 
+    function onClick() {
+        setUserSearch(true)
+    }
+
+    const film = {title: "The Green Mile", poster: "/8VG8fDNiy50H4FedGwdSVUPoaJe.jpg", release_date: "2000-03-03"}
     return (
         <>
             <header className="header">
@@ -48,12 +56,25 @@ export default function Dashboard() {
                     </Link>
                 </section>
                 <section 
-                className='search-bar-container'>
-                    <img 
-                    src={search} 
-                    className='icon' 
-                    id='search'
-                    />
+                className='search-bar-container-dashboard'>
+                    {!userSearch &&
+                    <div className="search-bar-icon-container">
+                        <img 
+                        src={search} 
+                        className='icon' 
+                        id='search'
+                        onClick={onClick}/>
+                    </div>
+                    }
+                    {userSearch &&
+                    <Search />}
+                    {/* <div className="search-results-container-dashboard">
+                        <ul className="search-results-list-dashboard">
+                            <li>
+                                <FilmCard film={film} styling="search-result"/>
+                            </li>
+                        </ul>
+                    </div> */}
                 </section>
             </header>
             <aside className='left-sidebar'>

@@ -46,7 +46,7 @@ export default function UsersLists() {
                 {!newList &&
                 <CreateList setNewList={setNewList} setListsUpdated={setListsUpdated}/>
                 }
-                {usersList &&
+                {usersList.length > 0 &&
                 <div className="list-container">
                     <ul className="list-list">
                     {usersList.data.lists.map((list) => 

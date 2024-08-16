@@ -50,7 +50,7 @@
     margin: 1.5rem;
     gap: 4rem;
     place-content: center;
-    width: 100%;
+    width:fit-content;
 }
 
 #genre {

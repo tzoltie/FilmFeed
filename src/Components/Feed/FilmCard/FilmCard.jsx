@@ -7,7 +7,7 @@ import Add from "../../AddFilm";
 import Remove from "../../Remove";
 import { useState } from "react";
 
-export default function FilmCard({ film, styling, addFilm, currentFilms, listReady }) {
+export default function FilmCard({ film, styling, addFilm, currentFilms }) {
 
   if (!film) {
     <p>Loading...</p>;

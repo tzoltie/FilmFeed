@@ -82,6 +82,18 @@ async function searchFilm(filmTitle) {
     return tmdbApiRequest(`search/movie?query=${filmTitle}`)
 }
 
+async function getTmdbPopularList() {
+    return tmdbApiRequest('movie/popular?language=en-US&page=1?')
+}
+
+async function getTmdbTopRatedList() {
+    return tmdbApiRequest('movie/top_rated?language=en&page=1?')
+}
+
+async function getTmdbTrendingList() {
+    return tmdbApiRequest('trending/movie/day?language=en-US')
+}
+
 async function tmdbApiRequest(route) {
     const request = {
         method: "GET",
@@ -95,4 +107,4 @@ async function tmdbApiRequest(route) {
     return response.json()
 }
 
-export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList }
+export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList }
