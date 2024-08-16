@@ -5,6 +5,7 @@ export default function ListImage({films}) {
     const onClick = (filmId) => {
         navigate(`/${filmId}`)
     }
+    console.log("listImage",films)
     return (
         <div className="list-image-container">
             {films.map(filmObj => 

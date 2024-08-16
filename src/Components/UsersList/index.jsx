@@ -9,18 +9,21 @@ import CreateList from "../CreateList/index.jsx"
 
 export default function UsersLists() {
     const { loggedInUser } = useAuth()
-    const [usersList, setUsersLists] = useState([])
+    const [usersList, setUsersLists] = useState({ status: "pending"})
     const [newList, setNewList] = useState(false)
     const [listsUpdated, setListsUpdated] = useState(false)
 
     useEffect(() => {
         getUsersLists(loggedInUser.id).then(setUsersLists)
+        
     }, [loggedInUser, newList, listsUpdated])
 
-    console.log(usersList)
+
     const onClick = () => {
         setNewList(true)
     }
+
+    console.log(usersList)
    
     return (
         <div className="lists-container">
@@ -28,7 +31,7 @@ export default function UsersLists() {
                 <h2>{`${loggedInUser.profile.name}'s`} lists</h2>
             </header>
             <main>
-            {newList || usersList.length === 0 || usersList?.data.lists.length === 0 || usersList.status === "fail" &&
+            {newList || usersList.status === "pending" || usersList.status === "fail" &&
                 <div className="empty-list-container">
                     <div>
                         <ul className="empty-list-list">
@@ -46,7 +49,7 @@ export default function UsersLists() {
                 {!newList &&
                 <CreateList setNewList={setNewList} setListsUpdated={setListsUpdated}/>
                 }
-                {usersList.length > 0 &&
+                {usersList.status === "success" &&
                 <div className="list-container">
                     <ul className="list-list">
                     {usersList.data.lists.map((list) => 

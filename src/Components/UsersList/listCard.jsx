@@ -5,7 +5,8 @@ export function ListCard({list, films}) {
     const navigate = useNavigate()
 
     const onClick = () => {
-        navigate(`/${list.id}/list`, { state: list })
+        console.log("listCard list", list)
+        navigate(`/${list.id}/list`, { state: {filmList: list} })
     }
 
     return (

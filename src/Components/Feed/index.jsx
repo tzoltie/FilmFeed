@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import FilmCard from "./FilmCard/FilmCard";
 import "../../styling/feed.css";
 import { getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList } from "../../Utils/apiClient";
-import { renderToStaticNodeStream } from "react-dom/server";
 
 export default function Feed() {
   const [popular, setPopular] = useState([])
