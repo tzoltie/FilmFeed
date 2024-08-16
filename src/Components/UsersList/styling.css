@@ -140,3 +140,18 @@
     width: 6rem;
     height: 8.2rem;
 }
+
+.list-page-list {
+    margin: 0;
+    padding: 0;
+}
+
+.list-page-list > .list-image-container {
+    width: 99%;
+    gap: 0.25rem;
+}
+
+.list-page-list > .list-image-container > .list-image {
+    width: 8rem;
+    height: 11rem;
+}

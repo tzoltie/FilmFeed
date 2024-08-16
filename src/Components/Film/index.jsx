@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import "../../styling/FilmPage.css";
 import Cast from "./Cast";
 import Crew from "./Crew"
-import { addFilmToWatchlist } from "../../Utils/apiClient";
+import { addFilmToWatchlist, getFilmById } from "../../Utils/apiClient";
 import useAuth from "../hooks/useAuth";
 import Button from "../Button";
 import Add from "../AddFilm";
@@ -14,11 +14,7 @@ export default function FilmPage() {
   const { loggedInUser } = useAuth()
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${urlPararms.id}?api_key=017864b5160abacb16620d2413135901&append_to_response=credits,images`
-    )
-      .then((response) => response.json())
-      .then((json) => setFilm(json));
+    getFilmById(`${urlPararms.id}`).then(setFilm)
   }, [urlPararms]);
 
     function checkSynopsis(film) {
@@ -39,38 +35,22 @@ export default function FilmPage() {
       }
     }
 
-  function getCrew(film, job) {
-    if (typeof film !== 'object' || typeof job !== 'object') {
-      return <img className="profile-image" id="unknown-profile-image"/>
-    }
-
-    const crew = film.credits.crew;
-    const findCrewByJob = crew.find((crewMember) => {
-      if (crewMember.job === job) return crewMember;
-    });
-
-    return (
-      <>
-        {checkImage(findCrewByJob)}
-        <h4>{findCrewByJob.name}</h4>
-      </>
-    );
-  }
+  // function getCrew(film, job) {
+  //   if(typeof film === 'object' && film.id) {
+  //     const crew = film.credits.crew;
+  //     const findCrewByJob = crew.find((crewMember) => (crewMember.job === job));
+  //     console.log(findCrewByJob)
+  //     return <>
+  //           {checkImage(findCrewByJob)}
+  //           <h4>{findCrewByJob.name}</h4>
+  //         </>
+  //   }
+  //   return <img className="profile-image" id="unknown-profile-image"/>
+  // }
 
   function updateToCurrency(number) {
     let value = Intl.NumberFormat('en-Us', { style: 'currency', currency: 'USD'}).format(number)
     return value
-  }
-
-  function getUrl(film) {
-    if (typeof film !== 'object') {
-      return;
-    }
-    const url = film.homepage
-    if(url === null || undefined) {
-      <p>no site available</p>
-    }
-    return url
   }
 
   function checkImage(cast) {
@@ -111,7 +91,7 @@ export default function FilmPage() {
 
   return (
     <>
-      {film && (
+      {typeof film === 'object' && (
         <div className="film-page-container">
           <h1>{film.title}</h1>
           <div className="film-page-header">
@@ -129,11 +109,11 @@ export default function FilmPage() {
             <section className="crew-box">
               <section>
                 <h4>Director:</h4>  
-                {getCrew(film, "Director")}
+                {/* {getCrew(film, "Director")} */}
               </section>
               <section>
                 <h4>Writer:</h4>
-                {getCrew(film, "Writer")}
+                {/* {getCrew(film, "Writer")} */}
               </section>
             </section>
           </div>
@@ -145,7 +125,7 @@ export default function FilmPage() {
             <section className="genre-box">
               <h3>Genres</h3>
               <ul id="genre">
-              {film.length === 0 ? (
+              {typeof film === 'object' ? (
                 <li></li>
               ) : (  
               film.genres.map((i) => 
@@ -184,9 +164,9 @@ export default function FilmPage() {
               <h2 id="videos-heading">Videos</h2>
             </section>
           </div>
-          <Cast film={film} checkImage={checkImage}/>
-          <Crew film={film} checkImage={checkImage}/>
-          <Button text={Add} onClick={addFilmToList} className={"addFilm-button"}/>
+          {/* <Cast film={film} checkImage={checkImage}/>
+          <Crew film={film} checkImage={checkImage}/> */}
+          <Button text={<Add />} onClick={addFilmToList} className={"addFilm-button"}/>
         </div>
       )}
     </>

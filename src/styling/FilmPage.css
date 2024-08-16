@@ -1,7 +1,12 @@
+.film-page-container {
+    width: fit-content;
+}
+
 .film-page-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: fit-content;
+    width: fit-content;
 }
 
 
@@ -13,7 +18,8 @@
     display: flex;
     gap: 5rem;
     place-content: center;
-
+    width: fit-content;
+    padding: 1rem;
 }
 
 .poster-title-box {
@@ -44,6 +50,7 @@
     margin: 1.5rem;
     gap: 4rem;
     place-content: center;
+    width: 100%;
 }
 
 #genre {
@@ -56,6 +63,7 @@
     gap: 10rem;
     place-content: center;
     margin-top: 2.5rem;
+    width: 100%;
 }
 
 .images-box, .videos-box {

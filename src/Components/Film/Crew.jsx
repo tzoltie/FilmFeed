@@ -1,20 +1,19 @@
 /* eslint-disable react/prop-types */
 export default function Crew({checkImage, film}) {
+  const filmExists = typeof film === 'object' && !Array.isArray(film)
 
   function removeDuplicates(film) {
-    if (typeof film !== 'object') {
-      return <img className="profile-image"/>
-    }
     const crew = film.credits.crew
     const dupsRemoved = [...new Set(crew)]
     return dupsRemoved
   }
+  
     return (
         <div className="cast-crew-box">
             <h2 className="heading">Crew</h2>
             <ul className="crew-list">
-              {film.length === 0 ? (
-                <p></p>
+              {!filmExists ? (
+                <li></li>
               ) : (
               removeDuplicates(film).map((crew, index) => (
                 <li key={index} className="crew-list-item">
