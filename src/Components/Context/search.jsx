@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { searchFilm } from "../../Utils/apiClient";
-import exp from "constants";
 
 
 const SearchContext = createContext()

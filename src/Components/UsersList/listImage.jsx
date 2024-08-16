@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom"
 export default function ListImage({films}) {
     const navigate = useNavigate()
     const onClick = (filmId) => {
-        navigate(`/${filmId}`)
+        navigate({ 
+            pathname: `/${filmId}`
+        })
     }
-    console.log("listImage",films)
+
     return (
         <div className="list-image-container">
             {films.map(filmObj => 

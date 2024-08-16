@@ -28,7 +28,7 @@ const addFilmToWatchlist = (filmId, filmTitle, filmPoster, watchlistId) => {
         filmId: filmId,
         poster: filmPoster
     }
-    return post(payload, `watchlist/${watchlistId}`, true)
+    return post(payload, `watchlist/${watchlistId}/add`, true)
 }
 
 const getUsersLists = (userId) => {

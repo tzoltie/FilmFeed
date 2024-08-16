@@ -15,7 +15,9 @@ function AuthProvider({ children }) {
         const storedToken = localStorage.getItem('token')
         if(storedToken) {
             setToken(storedToken)
-            navigate(location?.pathname || "/")
+            navigate({
+                pathname: location?.pathname || "/"
+            })
         }
     }, [location?.pathname])
 
@@ -45,7 +47,9 @@ function AuthProvider({ children }) {
         localStorage.setItem('token', res.data.token)
         setloggedInUser(res.data.user)
         
-        navigate('/')
+        navigate({
+            pathname: '/'
+        })
         } catch(err) {
             alert(err.message)
         }
@@ -69,7 +73,9 @@ function AuthProvider({ children }) {
             setToken(res.data.token)
             localStorage.setItem('token', res.data.token)
             setloggedInUser(res.data.user)
-            navigate('/')
+            navigate({
+                pathname: '/'
+            })
         } catch (err) {
             alert(err.message)
         }

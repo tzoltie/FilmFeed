@@ -6,16 +6,16 @@ import { FilmList } from "../FilmLists/index.jsx"
 
 export default function Watchlist() {
     const { loggedInUser } = useAuth()
-    const [usersFilms, setUsersFilms] = useState([])
-    const [emptyWatchlist, setEmptyWatchlist] = useState([{}, {}, {}, {}, {}, {}, {}])
+    const [usersFilms, setUsersFilms] = useState({status: "pending"})
     useEffect(() => {
         getUserWatchlist(loggedInUser.id).then(setUsersFilms)
-    }, [loggedInUser.id])
+    }, [loggedInUser])
 
-    console.log(usersFilms)
+
     return (
         <div className="list-container">
-            <FilmList loggedInUser={loggedInUser} list={"watchlist"} usersFilms={usersFilms}/>
+            {usersFilms.status === "success" &&
+            <FilmList loggedInUser={loggedInUser} list={"watchlist"} usersFilms={usersFilms}/>}
         </div>
     )
 }

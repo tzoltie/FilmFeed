@@ -6,11 +6,14 @@ export function ListCard({list, films}) {
 
     const onClick = () => {
         console.log("listCard list", list)
-        navigate(`/${list.id}/list`, { state: {filmList: list} })
+        navigate({
+            pathname: `/${list.id}/list`, 
+            state: list,
+        })
     }
 
     return (
-        <li className="users-list-item" onClick={onClick}>
+        <li className="users-list-item" onClick={() => onClick()}>
             <div>
                 <h3>{list.title}</h3>
             </div>

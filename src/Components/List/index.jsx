@@ -5,15 +5,17 @@ import { getUsersListById } from "../../Utils/apiClient";
 
 export default function List() {
     const { loggedInUser } = useAuth()
-    const [userslist, setUsersList] = useState()
+    const [userslist, setUsersList] = useState({status: "pending"})
     
 
     useEffect(() => {
         getUsersListById(loggedInUser.id).then(setUsersList)
     }, [loggedInUser])
+
     return (
         <div className="list-container">
-            <FilmList loggedInUser={loggedInUser} list={userslist.data.title} results={userslist}/>
+            {userslist.status === "success" &&
+            <FilmList loggedInUser={loggedInUser} list={userslist.data.title} results={userslist}/>}
         </div>
     )
 }

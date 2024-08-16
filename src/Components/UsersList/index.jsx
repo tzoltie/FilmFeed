@@ -23,7 +23,6 @@ export default function UsersLists() {
         setNewList(true)
     }
 
-    console.log(usersList)
    
     return (
         <div className="lists-container">

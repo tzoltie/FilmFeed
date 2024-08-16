@@ -7,7 +7,7 @@ function FilmList({loggedInUser, list, results}) {
                 <h2>{`${loggedInUser.profile.name}'s`} {list}</h2>
             </header>
             <main>
-                {results.length === 0 || results.status === "fail" ? (
+                {results.status === "pending" || results.status === "fail" ? (
                 <div className="empty-watchlist-container">
                     <div className="empty-watchlist-header">
                         <h3>{loggedInUser.username}, add films to your list</h3>

@@ -89,6 +89,7 @@ export default function FilmPage() {
     await addFilmToWatchlist(film.id, film.title, film.poster_path, loggedInUser.id)
   }
 
+
   return (
     <>
       {typeof film === 'object' && (
@@ -166,7 +167,9 @@ export default function FilmPage() {
           </div>
           {/* <Cast film={film} checkImage={checkImage}/>
           <Crew film={film} checkImage={checkImage}/> */}
+          {loggedInUser !== null &&
           <Button text={<Add />} onClick={addFilmToList} className={"addFilm-button"}/>
+          }
         </div>
       )}
     </>
