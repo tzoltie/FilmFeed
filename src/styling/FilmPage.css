@@ -195,3 +195,6 @@
     border-radius: 0;
 }
 
+.user-rating-stars .star {
+    fill: #FF5733;
+}

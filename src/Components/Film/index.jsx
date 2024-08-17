@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import "../../styling/FilmPage.css";
 import Cast from "./Cast";
 import Crew from "./Crew"
-import { addFilmToWatchlist, getFilmById } from "../../Utils/apiClient";
+import { addFilmToWatchlist, getFilmById, getUserRating } from "../../Utils/apiClient";
 import useAuth from "../hooks/useAuth";
 import Button from "../Button";
 import Add from "../AddFilm";
@@ -15,11 +15,13 @@ export default function FilmPage() {
   const [film, setFilm] = useState({title: ""});
   const [review, setReview] = useState(false)
   const [rating, setRating] = useState(0)
+  const [userRating, setUserRating] = useState({status: "pending"})
   const urlPararms = useParams();
   const { loggedInUser } = useAuth()
 
   useEffect(() => {
     getFilmById(`${urlPararms.id}`).then(setFilm)
+    .then(getUserRating(film.id).then(setUserRating))
   }, [urlPararms]);
 
     function checkSynopsis(film) {
@@ -96,7 +98,6 @@ export default function FilmPage() {
   async function addFilmToList() {
     await addFilmToWatchlist(film.id, film.title, film.poster_path, loggedInUser.id)
   }
-  console.log(film)
 
   function calculateAvg(avg) {
     if(avg === 0) {
@@ -115,8 +116,34 @@ export default function FilmPage() {
   }
 
   function onClick(rating) {
+    if(loggedInUser === null) {
+      return alert("Must create an account in order to add review")
+    }
     setReview(true)
     setRating(rating)
+  }
+
+  function getRating() {
+    const reviews = userRating.data.reviews
+    const usersRating = reviews.find((rating) => rating.userId === loggedInUser.id)
+    if(usersRating.rating === 0) {
+      return <h3>No Rating</h3>
+    }
+    if(usersRating.rating === 1) {
+      return <div className="user-rating-stars"><Star /></div>
+    }
+    if(usersRating.rating === 2) {
+      return <div className="user-rating-stars"><Star /><Star /></div>
+    }
+    if(usersRating.rating === 3) {
+      return <div className="user-rating-stars"><Star /><Star /><Star /></div>
+    }
+    if(usersRating.rating === 4) {
+      return <div className="user-rating-stars"><Star /><Star /><Star /><Star /></div>
+    }
+    if(usersRating.rating === 5) {
+      return <div className="user-rating-stars"><Star /><Star /><Star /><Star /><Star /></div>
+    }
   }
 
 
@@ -162,6 +189,9 @@ export default function FilmPage() {
               </div>
               <div>
                 <p>Avg rating: {calculateAvg(film.vote_average)}</p>
+                {userRating.status === "success" &&
+                getRating()
+                }
               </div>
               {review && 
                 <Review rating={rating} filmId={film.id}/>
