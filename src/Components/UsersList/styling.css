@@ -94,7 +94,7 @@
     border: none;
 }
 
-.done-check {
+.list-complete-btn > .done-check {
     position: absolute;
     top: 0;
     left: 20%;

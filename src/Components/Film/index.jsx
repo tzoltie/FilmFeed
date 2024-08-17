@@ -7,9 +7,14 @@ import { addFilmToWatchlist, getFilmById } from "../../Utils/apiClient";
 import useAuth from "../hooks/useAuth";
 import Button from "../Button";
 import Add from "../AddFilm";
+import Star from "../Assets/Star/star";
+import HalfStar from "../Assets/Star/halfStar";
+import Review from "../Review";
 
 export default function FilmPage() {
-  const [film, setFilm] = useState([]);
+  const [film, setFilm] = useState({title: ""});
+  const [review, setReview] = useState(false)
+  const [rating, setRating] = useState(0)
   const urlPararms = useParams();
   const { loggedInUser } = useAuth()
 
@@ -49,6 +54,9 @@ export default function FilmPage() {
   // }
 
   function updateToCurrency(number) {
+    if(number === 0) {
+      return "unavailable"
+    }
     let value = Intl.NumberFormat('en-Us', { style: 'currency', currency: 'USD'}).format(number)
     return value
   }
@@ -88,16 +96,38 @@ export default function FilmPage() {
   async function addFilmToList() {
     await addFilmToWatchlist(film.id, film.title, film.poster_path, loggedInUser.id)
   }
+  console.log(film)
+
+  function calculateAvg(avg) {
+    if(avg === 0) {
+      return 0
+    }
+    const fiveStarAvg = Number(avg) / 2
+    return fiveStarAvg.toFixed(1)
+  }
+
+  function convertReleaseDate(date) {
+    if(date.length <= 4) {
+      return date
+    }
+    const year = date.slice(0, 4)
+    return year
+  }
+
+  function onClick(rating) {
+    setReview(true)
+    setRating(rating)
+  }
 
 
   return (
     <>
-      {typeof film === 'object' && (
+      {film.title.length > 1 && (
         <div className="film-page-container">
           <h1>{film.title}</h1>
           <div className="film-page-header">
             <section className="poster-title-box">
-              <h4 id="release-date">{film.release_date}</h4>
+              <h4 id="release-date">{convertReleaseDate(film.release_date)}</h4>
               <img
                 src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
                 alt={`${film.title} poster`}
@@ -119,40 +149,60 @@ export default function FilmPage() {
             </section>
           </div>
           <div className="header-footer">
-          <section className="runtime-box">
+            <section className="rating-box">
+              <div>
+                <h2>Rating</h2>
+              </div>
+              <div>
+                <Button text={<Star />} className={'star_0-rating-btn'} onClick={() => onClick("1")}/>
+                <Button text={<Star />} className={"star_1-rating-btn"} onClick={() => onClick("2")}/>
+                <Button text={<Star />} className={"star_2-rating-btn"} onClick={() => onClick("3")}/>
+                <Button text={<Star />} className={"star_3-rating-btn"} onClick={() => onClick("4")}/>
+                <Button text={<Star />} className={"star_4-rating-btn"} onClick={() => onClick("5")}/>
+              </div>
+              <div>
+                <p>Avg rating: {calculateAvg(film.vote_average)}</p>
+              </div>
+              {review && 
+                <Review rating={rating} filmId={film.id}/>
+              }
+            </section>
+            <div className="film-details-box">
+              <section className="runtime-box">
                 <h3>Runtime</h3>
                 <p>{`${film.runtime} mins`}</p>
-            </section>
-            <section className="genre-box">
-              <h3>Genres</h3>
-              <ul id="genre">
-              {typeof film === 'object' ? (
-                <li></li>
-              ) : (  
-              film.genres.map((i) => 
-              <li key={i.id}>{i.name}</li>))}
-              </ul>
-            </section>
-            <section className="status-box">
+              </section>
+              <section className="genre-box">
+                <h3>Genres</h3>
+                <ul id="genre">
+                {typeof film === 'object' ? (
+                  <li></li>
+                ) : (  
+                film.genres.map((i) => 
+                  <li key={i.id}>{i.name}</li>))}
+                </ul>
+              </section>
+              <section className="status-box">
                 <h3>Status</h3>
                 <p>{film.status}</p>
-            </section>
-            <section className="budget-box">
-              <h3>Budget</h3>
-              <p>{updateToCurrency(film.budget)}</p>
-            </section>
-            <section className="revenue-box">
-              <h3>Revenue</h3>
-              <p>{updateToCurrency(film.revenue)}</p>
-            </section>
-            <section className="origin-box">
-              <h3>Country of origin</h3>
-              {film.length === 0 ? (
-                <p></p>
-              ) : (
-                <p>{film.origin_country[0]}</p>
-              )} 
-            </section>
+              </section>
+              <section className="budget-box">
+                <h3>Budget</h3>
+                <p>{updateToCurrency(film.budget)}</p>
+              </section>
+              <section className="revenue-box">
+                <h3>Revenue</h3>
+                <p>{updateToCurrency(film.revenue)}</p>
+              </section>
+              <section className="origin-box">
+                <h3>Country of origin</h3>
+                {film.length === 0 ? (
+                  <p></p>
+                ) : (
+                  <p>{film.origin_country[0]}</p>
+                )} 
+              </section>
+            </div>
           </div>
           <div className="images-videos-container">
             <Link to={`/${film.id}/images`}

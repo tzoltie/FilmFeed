@@ -1,0 +1,51 @@
+.submit-review-btn {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: #F1F0E8;
+    text-align: center;
+    padding: 0;
+}
+
+.submit-review-btn:hover {
+    border: none;
+}
+
+.submit-review-btn:hover .done-check {
+    fill: #FF5733;
+}
+
+.review-container div {
+    text-align: end;
+}
+
+.review-container {
+    width: 100%;
+    padding: 2rem;
+}
+
+.review-container form {
+    height: 8rem;
+}
+
+.review-text-input {
+    height: 8rem;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: large;
+}
+
+.review-text-input:focus {
+    border-bottom: 3px solid #96B6C5;
+    border-top: 3px solid #96B6C5;
+    outline: none;
+}
+
+.star_0-rating-btn, .star_1-rating-btn, .star_2-rating-btn, .star_3-rating-btn, .star_4-rating-btn {
+    background-color: #F1F0E8;
+    border: none;
+}
+
+.star_1-rating-btn:hover .star, .star_0-rating-btn:hover .star, .star_2-rating-btn:hover .star, .star_3-rating-btn:hover .star, .star_4-rating-btn:hover .star {
+    fill: #FF5733;
+}

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../../styling/FilmPage.css";
 import "../../Search/styling.css";
 import Button from "../../Button";

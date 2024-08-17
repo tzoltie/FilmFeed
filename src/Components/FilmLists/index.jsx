@@ -1,6 +1,7 @@
 import FilmCard from "../Feed/FilmCard/FilmCard";
 
 function FilmList({loggedInUser, list, results}) {
+    console.log(results)
     return (
         <>
             <header>

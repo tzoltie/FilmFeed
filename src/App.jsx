@@ -48,7 +48,7 @@ function App() {
             />
             <Route 
             path='/watchlist'
-            element={<Watchlist />}
+            element={<ListPage />}
             />
             <Route 
             path='/lists'

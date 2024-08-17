@@ -46,11 +46,24 @@
 }
 
 .header-footer {
+    display: grid;
+    grid-template-rows: auto;
+    margin: 1.5rem;
+    gap: 4rem;
+    place-content: center;
+    width:fit-content;
+}
+
+.film-details-box {
     display: flex;
     margin: 1.5rem;
     gap: 4rem;
     place-content: center;
     width:fit-content;
+}
+
+.rating-box div {
+    text-align: center;
 }
 
 #genre {
@@ -176,8 +189,9 @@
     padding: 0;
 }
 
-.add-to-list-button:hover {
+.add-to-list-button:hover .add-button {
     border: none;
     border-bottom: 4px solid #96B6C5;
     border-radius: 0;
 }
+
