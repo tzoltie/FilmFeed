@@ -8,7 +8,6 @@ import useAuth from "../hooks/useAuth";
 import Button from "../Button";
 import Add from "../AddFilm";
 import Star from "../Assets/Star/star";
-import HalfStar from "../Assets/Star/halfStar";
 import Review from "../Review";
 import StarRating from "../Rating";
 
@@ -16,13 +15,13 @@ export default function FilmPage() {
   const [film, setFilm] = useState({title: ""});
   const [review, setReview] = useState(false)
   const [rating, setRating] = useState(0)
-  const [userRating, setUserRating] = useState({status: "pending"})
+  const [userRating, setUserRating] = useState({status: "pending", data: {reviews: []}})
   const urlPararms = useParams();
   const { loggedInUser } = useAuth()
 
   useEffect(() => {
     getFilmById(`${urlPararms.id}`).then(setFilm)
-    .then(getUserRating(film.id).then(setUserRating))
+    getUserRating(`${urlPararms.id}`).then(setUserRating)
   }, [urlPararms, review]);
 
     function checkSynopsis(film) {
@@ -127,7 +126,7 @@ export default function FilmPage() {
   function getRating() {
     const reviews = userRating.data.reviews
     const usersRating = reviews.find((rating) => rating.userId === loggedInUser.id)
-    return usersRating
+    return <StarRating userRating={usersRating.rating}/>
   }
 
 
@@ -171,10 +170,14 @@ export default function FilmPage() {
                 <Button text={<Star />} className={"star_3-rating-btn"} onClick={() => onClick("4")}/>
                 <Button text={<Star />} className={"star_4-rating-btn"} onClick={() => onClick("5")}/>
               </div>
-              <div>
+              <div className="avg-user-rating-box">
                 <p>Avg rating: {calculateAvg(film.vote_average)}</p>
-                {userRating.status === "success" &&
-                <StarRating userRating={getRating()}/>
+                {userRating.status === "success" && userRating.data.reviews.length > 0 &&
+                <>
+                {getRating()}
+                <p>Last rating:</p>
+                </>
+                
                 }
               </div>
               {review && 
@@ -229,8 +232,8 @@ export default function FilmPage() {
               <h2 id="videos-heading">Videos</h2>
             </section>
           </div>
-          {/* <Cast film={film} checkImage={checkImage}/>
-          <Crew film={film} checkImage={checkImage}/> */}
+          <Cast list={film.credits.cast} checkImage={checkImage} heading={"Cast"} />
+          <Crew list={film.credits.crew} checkImage={checkImage} heading={"Crew"}/>
           {loggedInUser !== null &&
           <Button text={<Add />} onClick={addFilmToList} className={"addFilm-button"}/>
           }

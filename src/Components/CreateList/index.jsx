@@ -77,15 +77,20 @@ export default function CreateList({ setNewList, setListsUpdated }) {
                     {newFilm &&
                     <div className="addFilmToList-container">
                         <Search />
-                        {!searchComplete &&
+                        {request.results.length > 0 && !searchComplete ? (
                         <div className="search-results-container">
                             <ul className="search-results-list">
-                            {!searchComplete && request.results.map((film) => 
+                            {request.results.map((film) => 
                                 <FilmCard film={film} key={film.id} styling={"search-result"} addFilm={setAddedFilms} currentFilms={addedFilms}/>)}
                             </ul>
                             {addedFilms?.length > 0 && displayListFilms()}
-                        </div>}
-                    
+                        </div>) : (
+                        <div className="search-results-container">
+                            <ul className="search-results-list">
+                                <li>No results found</li>
+                            </ul>
+                        </div>
+                        )}
                     </div>}
                 </main>
             </div>

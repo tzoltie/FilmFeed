@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
-export default function Crew({checkImage, film}) {
-  const filmExists = typeof film === 'object' && !Array.isArray(film)
+import { Link } from "react-router-dom"
 
-  function removeDuplicates(film) {
-    const crew = film.credits.crew
-    const dupsRemoved = [...new Set(crew)]
+export default function Crew({checkImage, list}) {
+
+  function removeDuplicates(list) {
+    const dupsRemoved = [...new Set(list)]
     return dupsRemoved
   }
   
@@ -12,16 +11,15 @@ export default function Crew({checkImage, film}) {
         <div className="cast-crew-box">
             <h2 className="heading">Crew</h2>
             <ul className="crew-list">
-              {!filmExists ? (
-                <li></li>
-              ) : (
-              removeDuplicates(film).map((crew, index) => (
+              {removeDuplicates(list).map((crew, index) => (
                 <li key={index} className="crew-list-item">
-                    {checkImage(crew)}
+                  <Link to={`/${crew.id}/cast&crew`} className="link">
+                  {checkImage(crew)}
                   <p>{crew.job}</p>
                   <h4>{crew.name}</h4>
+                  </Link>
                 </li>
-              )))}
+              ))}
             </ul>
           </div>
     )

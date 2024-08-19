@@ -8,9 +8,12 @@ import logout from '../../assets/svg/logout.svg'
 import useAuth from '../hooks/useAuth'
 import Search from '../Search'
 import FilmCard from '../Feed/FilmCard/FilmCard'
+import useSearch from '../hooks/useSearch'
 
 export default function Dashboard() {
     const { loggedInUser, handleLogout } = useAuth()
+    const { request, setRequest, setSearchForm } = useSearch()
+    const [searchComplete, setSearchComplete] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [userSearch, setUserSearch] = useState(false)
     useEffect(() => {
@@ -33,7 +36,12 @@ export default function Dashboard() {
         setUserSearch(true)
     }
 
-    // const film = {title: "The Green Mile", poster: "/8VG8fDNiy50H4FedGwdSVUPoaJe.jpg", release_date: "2000-03-03"}
+    function searchResOnClick() {
+        setRequest({results: []})
+        setSearchForm({ filmTitle: "" })
+        setSearchComplete(true)
+    }
+
     return (
         <>
             <header className="header">
@@ -55,8 +63,7 @@ export default function Dashboard() {
                     />
                     </Link>
                 </section>
-                <section 
-                className='search-bar-container-dashboard'>
+                <section className='search-bar-container-dashboard'>
                     {!userSearch &&
                     <div className="search-bar-icon-container">
                         <img 
@@ -68,13 +75,13 @@ export default function Dashboard() {
                     }
                     {userSearch &&
                     <Search />}
-                    {/* <div className="search-results-container-dashboard">
-                        <ul className="search-results-list-dashboard">
-                            <li>
-                                <FilmCard film={film} styling="search-result"/>
-                            </li>
+                    {request.results.length > 0 &&
+                    <div className="search-results-container-dashboard">
+                        <ul className="search-results-list-dashboard" onClick={() => searchResOnClick()}>
+                            {request.results.map((film) => 
+                            <FilmCard film={film} key={film.id} styling={"search-result"}/>)}
                         </ul>
-                    </div> */}
+                    </div>}
                 </section>
             </header>
             <aside className='left-sidebar'>

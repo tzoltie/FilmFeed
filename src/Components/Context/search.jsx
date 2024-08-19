@@ -5,7 +5,7 @@ import { searchFilm } from "../../Utils/apiClient";
 const SearchContext = createContext()
 
 function SearchProvider({ children }) {
-    const [request, setRequest] = useState([])
+    const [request, setRequest] = useState({results: []})
     const [searchComplete, setSearchComplete] = useState(false)
     const [searchForm, setSearchForm] = useState({
         filmTitle: ""
@@ -13,7 +13,7 @@ function SearchProvider({ children }) {
     useEffect(() => {
         const delayApiSearch = setTimeout(() => {
             searchFilm(searchForm.filmTitle).then(setRequest)
-        }, 3000)
+        }, 2000)
         setSearchComplete(true)
         return () => clearTimeout(delayApiSearch)
     }, [searchForm])

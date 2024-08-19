@@ -85,12 +85,12 @@
 
 .images-box:hover, .videos-box:hover {
     color: #96B6C5;
-    border-bottom: 5px solid black
+    border-bottom: 5px solid #FF5733;
 }
 
 .images-box:focus, .videos-box:focus, .images-box:active, .videos-box:active {
     color: #96B6C5;
-    border-bottom: 5px solid black
+    border-bottom: 5px solid #FF5733;
 }
 
 .cast-crew-box {
@@ -197,4 +197,9 @@
 
 .user-rating-stars .star {
     fill: #FF5733;
+}
+
+.avg-user-rating-box {
+    display: grid;
+    gap: 1rem;
 }

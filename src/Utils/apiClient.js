@@ -98,7 +98,7 @@ async function apiRequest(method, data, route, auth = true) {
 }
 
 async function getFilmById(id) {
-    return tmdbApiRequest(`movie/${id}`)
+    return tmdbApiRequest(`movie/${id}?append_to_response=credits&language=en-US`)
 }
 
 async function searchFilm(filmTitle) {

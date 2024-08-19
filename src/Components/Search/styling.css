@@ -22,7 +22,7 @@
 .search-result-list-item, .new-film-list-item {
     display: flex;
     height: 100px;
-    border-bottom: 1px solid #96B6C5;
+    border-bottom: 1px solid #FF5733;
 }
 
 .search-result-poster, .new-film-poster {

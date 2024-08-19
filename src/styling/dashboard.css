@@ -43,6 +43,9 @@
     place-self: center end;
     margin-right: 1rem;
     width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .logo-container {
@@ -80,7 +83,7 @@
 
 .search-bar-container-dashboard > .searchbar-results-container > .searchbar-container {
     background-color: #96B6C5;
-    border-bottom: 1px solid #F1F0E8;
+    border-bottom: 1px solid #FF5733;
 }
 
 .search-bar-container-dashboard > .searchbar-results-container > .searchbar-container > .search-films-searchbar {
@@ -94,8 +97,23 @@
 
 .search-bar-container-dashboard > .searchbar-results-container > .searchbar-container > #searchFilm-icon {
     background-color: #96B6C5;
+    fill: #FF5733;
 }
 
 .search-bar-container-dashboard > .searchbar-results-container {
     width: 100%;
+}
+
+.search-results-container-dashboard {
+    height: fit-content;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.search-results-list-dashboard {
+    padding: 1rem;
+    background-color: #FF5733;
 }
