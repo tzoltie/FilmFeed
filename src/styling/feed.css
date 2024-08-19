@@ -2,7 +2,6 @@
     grid-area: main;
     background-color: #F1F0E8;
     margin: 0.5rem;
-    width: 100vw;
     display: grid;
     gap: 2rem;
 }
@@ -24,7 +23,6 @@
 }
 
 .trending-list-container, .popular-list-container, .cinema-list-container, .film-list-container {
-    width: 100vw;
     overflow-x: scroll;
     overflow-y: hidden;
     -ms-overflow-style: none;

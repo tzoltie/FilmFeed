@@ -1,0 +1,64 @@
+.diary-header {
+    padding-left: 1rem;
+}
+
+.month-header {
+    display: flex;
+    gap: 2rem;
+    text-align: center;
+    place-content: center;
+}
+
+.monthly-diary-container {
+    border-bottom: 1px solid #96B6C5;
+    padding: 1rem;
+}
+
+.month-title-box {
+    padding-bottom: 1rem;
+    position: sticky;
+    top: 15%;
+    border-top: 4px solid #FF5733;
+    border-bottom: 4px solid #FF5733;
+    text-align: center;
+    padding: 1rem;
+}
+
+.monthly-diary-container ul {
+    display: grid;
+    grid-template-rows: max-content;
+    gap: 1rem;
+    padding: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.populated-diary-container {
+    display: grid;
+    grid-template-rows: auto;
+}
+
+.diary-list-item {
+    display: flex;
+    gap: 1rem;
+}
+
+.diary-list-titleRating {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.diary-film-title {
+    width: fit-content;
+    place-content: center;
+}
+
+.date-box-container {
+    place-content: center;
+}
+
+.date-box {
+    border: 1px solid #FF5733;
+    height: fit-content;
+    padding: 1rem;
+}

@@ -13,8 +13,8 @@
   'left main' 1fr
   'left footer' 5rem/
   20rem 1fr;
-  height: 100vh;
   width: 100vw;
+  height: 100%;
 }
 
 .icon {
@@ -27,6 +27,10 @@
   color: #213547;
 }
 
+.link:hover {
+  color: #FF5733;
+}
+
 .login-button {
   color: #F1F0E8;
   background-color: #96B6C5;
@@ -37,7 +41,7 @@
 }
 
 .login-button:hover {
-  color: black;
+  color: #FF5733;
   border: 2px solid #96B6C5;
   background-color: #F1F0E8;
 }
@@ -53,9 +57,9 @@
 }
 
 .addFilm-button:hover {
-  border: 3px solid #96B6C5;
+  border: 3px solid #FF5733;
 }
 
 .add-button:hover {
-  fill: #96B6C5;
+  fill: #FF5733;
 }

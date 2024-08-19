@@ -12,6 +12,7 @@ import LandingPage from './Components/landingPage';
 import UsersLists from './Components/UsersList/index.jsx';
 import { SearchProvider } from './Components/Context/search.jsx';
 import ListPage from './Components/UsersList/listPage.jsx';
+import Diary from './Components/Diary/index.jsx';
 
 function App() {
 
@@ -23,11 +24,11 @@ function App() {
           <Dashboard />
           <Routes>
             <Route 
-            path='/welcome'
+            path='/'
             element={<LandingPage />}
             />
             <Route 
-            path='/'
+            path='/home'
             element={<Feed />}
             />
             <Route 
@@ -58,6 +59,12 @@ function App() {
             path='/:listId/list'
             element={<ListPage />}
             />
+            <Route 
+            path='/popular'
+            />
+            <Route 
+            path='/diary'
+            element={<Diary />}/>
           </Routes>
         </SearchProvider>
       </AuthProvider>

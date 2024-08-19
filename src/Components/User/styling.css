@@ -15,7 +15,7 @@
 }
 
 .textinput:focus {
-    border-bottom: 5px solid #96B6C5;
+    border-bottom: 3px solid #FF5733;
 }
 
 .login-form-container {

@@ -1,4 +1,6 @@
 import FilmCard from "../Feed/FilmCard/FilmCard";
+import ListImage from "../UsersList/listImage";
+import ListPage from "../UsersList/listPage";
 
 function FilmList({loggedInUser, list, results}) {
     console.log(results)
@@ -21,12 +23,7 @@ function FilmList({loggedInUser, list, results}) {
                     </div>
                 </div>
                 ) : (
-                    <div className="watchlist-container">
-                        <ul className="watchlist-list">
-                        {results.data.watchlist.map((film) => 
-                            <FilmCard film={film} key={film.id}/>)}
-                        </ul>
-                    </div>
+                    <ListPage />
                 )}
             </main>
         </>

@@ -1,6 +1,6 @@
 import search from '../../assets/svg/search.svg'
 import '../../styling/dashboard.css'
-// import film from '../../assets/svg/filmreel.svg'
+import film from '../../assets/svg/filmreel.svg'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import user from '../../assets/svg/userIcon.svg'
@@ -33,20 +33,20 @@ export default function Dashboard() {
         setUserSearch(true)
     }
 
-    const film = {title: "The Green Mile", poster: "/8VG8fDNiy50H4FedGwdSVUPoaJe.jpg", release_date: "2000-03-03"}
+    // const film = {title: "The Green Mile", poster: "/8VG8fDNiy50H4FedGwdSVUPoaJe.jpg", release_date: "2000-03-03"}
     return (
         <>
             <header className="header">
                 <section 
                 className="logo-container">
-                    <Link to="/" className='link'>
+                    <Link to="/home" className='link'>
                     <img 
                     src={film}
                     className='icon'
                     id='film-reel'
                     />
                     </Link>
-                    <Link to="/welcome" className='link'>
+                    <Link to="/" className='link'>
                     <img
                     src={user}
                     className='icon'
@@ -89,7 +89,9 @@ export default function Dashboard() {
                 </Link>
                 
                 <h2>Reviews</h2>
+                <Link to='/diary' className='link'>
                 <h2>Diary</h2>
+                </Link>
                 <Link to='/lists' className='link'>
                 <h2>Lists</h2>
                 </Link>

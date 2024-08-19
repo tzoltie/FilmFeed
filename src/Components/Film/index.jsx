@@ -10,6 +10,7 @@ import Add from "../AddFilm";
 import Star from "../Assets/Star/star";
 import HalfStar from "../Assets/Star/halfStar";
 import Review from "../Review";
+import StarRating from "../Rating";
 
 export default function FilmPage() {
   const [film, setFilm] = useState({title: ""});
@@ -22,7 +23,7 @@ export default function FilmPage() {
   useEffect(() => {
     getFilmById(`${urlPararms.id}`).then(setFilm)
     .then(getUserRating(film.id).then(setUserRating))
-  }, [urlPararms]);
+  }, [urlPararms, review]);
 
     function checkSynopsis(film) {
       if (typeof film !== 'object') {
@@ -126,24 +127,7 @@ export default function FilmPage() {
   function getRating() {
     const reviews = userRating.data.reviews
     const usersRating = reviews.find((rating) => rating.userId === loggedInUser.id)
-    if(usersRating.rating === 0) {
-      return <h3>No Rating</h3>
-    }
-    if(usersRating.rating === 1) {
-      return <div className="user-rating-stars"><Star /></div>
-    }
-    if(usersRating.rating === 2) {
-      return <div className="user-rating-stars"><Star /><Star /></div>
-    }
-    if(usersRating.rating === 3) {
-      return <div className="user-rating-stars"><Star /><Star /><Star /></div>
-    }
-    if(usersRating.rating === 4) {
-      return <div className="user-rating-stars"><Star /><Star /><Star /><Star /></div>
-    }
-    if(usersRating.rating === 5) {
-      return <div className="user-rating-stars"><Star /><Star /><Star /><Star /><Star /></div>
-    }
+    return usersRating
   }
 
 
@@ -190,11 +174,11 @@ export default function FilmPage() {
               <div>
                 <p>Avg rating: {calculateAvg(film.vote_average)}</p>
                 {userRating.status === "success" &&
-                getRating()
+                <StarRating userRating={getRating()}/>
                 }
               </div>
               {review && 
-                <Review rating={rating} filmId={film.id}/>
+                <Review rating={rating} filmId={film.id} film={{poster: film.poster_path, title: film.title}} setReview={setReview}/>
               }
             </section>
             <div className="film-details-box">

@@ -5,6 +5,9 @@
     background-color: #96B6C5;
     margin: 0.5rem 0.5rem 0.5rem 0;
     border-radius: 20px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1%;
 }
 
 .left-sidebar {
@@ -15,6 +18,9 @@
     display: grid;
     grid-template-rows: 5rem 5rem 5rem 5rem 5rem;
     padding: 1rem;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
 }
 
 .left-sidebar h2 {
@@ -49,6 +55,14 @@
 
 #search, #film-reel {
     background-color: #96B6C5;
+}
+
+#search:hover, #film-reel:hover, #user-icon:hover {
+    fill: #FF5733;
+}
+
+.user-icon:hover {
+    fill: #FF5733;
 }
 
 .logo-container > .link {

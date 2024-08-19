@@ -5,10 +5,10 @@ import DoneCheck from "../Assets/Done/index.jsx"
 import { addRating } from "../../Utils/apiClient.js"
 
 
-export default function Review({rating, filmId}) {
+export default function Review({rating, filmId, film, setReview}) {
     const [reviewForm, setReviewForm] = useState({
         content: "",
-        rating: 0
+        rating: rating
     })
     const onChange = (e) => {
         const { name, value } = e.target
@@ -19,11 +19,12 @@ export default function Review({rating, filmId}) {
     }
 
     const submitReview = () => {
-        addRating(reviewForm, filmId)
+        addRating(reviewForm, filmId, film)
         setReviewForm({
             content: "",
             rating: 0
         })
+        setReview(false)
     }
 
     return (

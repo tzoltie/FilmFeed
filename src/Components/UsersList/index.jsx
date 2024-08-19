@@ -51,7 +51,7 @@ export default function UsersLists() {
                 {usersList.status === "success" &&
                 <div className="list-container">
                     <ul className="list-list">
-                    {usersList.data.lists.map((list) => 
+                    {usersList.data.lists.toReversed().map((list) => 
                         <ListCard list={list} key={list.id} films={list.films}/>)}
                     </ul>
                 </div>
