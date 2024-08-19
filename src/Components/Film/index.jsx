@@ -42,18 +42,14 @@ export default function FilmPage() {
       }
     }
 
-  // function getCrew(film, job) {
-  //   if(typeof film === 'object' && film.id) {
-  //     const crew = film.credits.crew;
-  //     const findCrewByJob = crew.find((crewMember) => (crewMember.job === job));
-  //     console.log(findCrewByJob)
-  //     return <>
-  //           {checkImage(findCrewByJob)}
-  //           <h4>{findCrewByJob.name}</h4>
-  //         </>
-  //   }
-  //   return <img className="profile-image" id="unknown-profile-image"/>
-  // }
+  function getCrew(crew, job) {
+      const findCrewByJob = crew.find((crewMember) => (crewMember.job === job));
+    return <>
+      {checkImage(findCrewByJob)}
+      <h4>{findCrewByJob.name}</h4>
+    </>
+  }
+  console.log(film)
 
   function updateToCurrency(number) {
     if(number === 0) {
@@ -147,14 +143,14 @@ export default function FilmPage() {
               <p id="synopsis">{film.overview}</p>
               <p id="synopsis">{checkSynopsis(film)}</p>
             </section>
-            <section className="crew-box">
+            <section className="director-writer-box">
               <section>
-                <h4>Director:</h4>  
-                {/* {getCrew(film, "Director")} */}
+                <h4>Director</h4>
+                {getCrew(film.credits.crew, "Director")}
               </section>
               <section>
-                <h4>Writer:</h4>
-                {/* {getCrew(film, "Writer")} */}
+                <h4>Writer</h4>
+                {getCrew(film.credits.crew, "Writer")}
               </section>
             </section>
           </div>
@@ -232,8 +228,10 @@ export default function FilmPage() {
               <h2 id="videos-heading">Videos</h2>
             </section>
           </div>
-          <Cast list={film.credits.cast} checkImage={checkImage} heading={"Cast"} />
-          <Crew list={film.credits.crew} checkImage={checkImage} heading={"Crew"}/>
+          <div className="cast_crew-container">
+            <Cast list={film.credits.cast} checkImage={checkImage} heading={"Cast"} />
+            <Crew list={film.credits.crew} checkImage={checkImage} heading={"Crew"}/>
+          </div>
           {loggedInUser !== null &&
           <Button text={<Add />} onClick={addFilmToList} className={"addFilm-button"}/>
           }

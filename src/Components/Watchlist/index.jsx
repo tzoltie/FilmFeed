@@ -17,8 +17,8 @@ export default function Watchlist() {
 console.log("watchlist comp",usersFilms)
     return (
         <div className="list-container">
-            {/* {usersFilms.status === "success" &&
-            <FilmList loggedInUser={loggedInUser} list={"watchlist"} results={usersFilms} />} */}
+            {usersFilms.status === "success" &&
+            <FilmList loggedInUser={loggedInUser} list={"watchlist"} results={usersFilms} />}
         </div>
     )
 }

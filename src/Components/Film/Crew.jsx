@@ -8,7 +8,7 @@ export default function Crew({checkImage, list}) {
   }
   
     return (
-        <div className="cast-crew-box">
+        <div className="crew-box">
             <h2 className="heading">Crew</h2>
             <ul className="crew-list">
               {removeDuplicates(list).map((crew, index) => (
@@ -21,6 +21,6 @@ export default function Crew({checkImage, list}) {
                 </li>
               ))}
             </ul>
-          </div>
+        </div>
     )
 }

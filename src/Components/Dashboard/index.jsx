@@ -85,6 +85,7 @@ export default function Dashboard() {
                 </section>
             </header>
             <aside className='left-sidebar'>
+                <section className='sidebar-nav'>
                 <Link to='/popular' className='link' id='popular-films-link'>
                 <h2>Popular Films</h2>
                 </Link>
@@ -104,7 +105,7 @@ export default function Dashboard() {
                 </Link>
                 </>
                 }
-                
+                </section>
             </aside>
             <footer className='footer'>
 

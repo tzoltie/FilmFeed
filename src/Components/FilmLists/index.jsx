@@ -3,7 +3,6 @@ import ListImage from "../UsersList/listImage";
 import ListPage from "../UsersList/listPage";
 
 function FilmList({loggedInUser, list, results}) {
-    console.log(results)
     return (
         <>
             <header>

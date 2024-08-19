@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export default function Cast({list, checkImage}) {
 
     return (
-        <div className="cast-crew-box">
+        <div className="cast-box">
             <h2 className="heading">Cast</h2>
             <ul className="cast-list">
               {list.map((cast) => (
