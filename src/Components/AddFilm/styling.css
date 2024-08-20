@@ -32,6 +32,7 @@
     display: flex;
     background-color: #96B6C5;
     padding: 0.5rem;
+    cursor: pointer;
 }
 
 .menu-item {

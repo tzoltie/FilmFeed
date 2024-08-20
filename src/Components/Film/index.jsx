@@ -11,6 +11,7 @@ import Star from "../Assets/Star/star";
 import Review from "../Review";
 import StarRating from "../Rating";
 import AddFilmMenu from "../AddFilm/menu";
+import Poster from "../Poster";
 
 export default function FilmPage() {
   const [film, setFilm] = useState({title: ""});
@@ -248,7 +249,7 @@ export default function FilmPage() {
           {loggedInUser !== null &&
           <Button text={<Add />} onClick={openPopUp} className={"addFilm-button"}/>}
           {addFilm &&
-            <AddFilmMenu setViewList={setViewList} addToWatchlist={addToWatchlist} ratingSection={ratingSection} poster={film.poster_path} toggleMenu={setAddFilm}/>
+            <AddFilmMenu setViewList={setViewList} addToWatchlist={addToWatchlist} ratingSection={ratingSection} toggleMenu={setAddFilm} poster={film.poster_path}/>
           }
         </div>
       )}

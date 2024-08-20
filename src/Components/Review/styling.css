@@ -33,11 +33,13 @@
     outline: none;
     border: none;
     font-size: large;
+    border-bottom: 3px solid #96B6C5;
+    border-top: 3px solid #96B6C5;
 }
 
 .review-text-input:focus {
-    border-bottom: 3px solid #96B6C5;
-    border-top: 3px solid #96B6C5;
+    border-bottom: 3px solid #FF5733;
+    border-top: 3px solid #FF5733;
     outline: none;
 }
 

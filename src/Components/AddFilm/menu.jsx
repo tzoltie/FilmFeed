@@ -4,10 +4,13 @@ import AddIcon from "../Assets/Add"
 import AddToListIcon from "../Assets/AddToList"
 import AddToWatchList from "../Assets/AddToWatchlist"
 import Expand from "../Assets/Expand"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import Poster from "../Poster"
+import Shadow from "../Shadow"
 
 export default function AddFilmMenu({ setViewList, addToWatchlist, ratingSection, poster, toggleMenu }) {
     const menuRef = useRef()
+    const [renderPoster, setRenderPoster] = useState(false)
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside)
@@ -36,14 +39,12 @@ export default function AddFilmMenu({ setViewList, addToWatchlist, ratingSection
             return window.scrollTo({top: ratingSection.current, behavior: 'smooth'})
         }
         if(instruction === "poster") {
-            return <img
-            src={`https://image.tmdb.org/t/p/w500${poster}`}
-            className="poster"
-            id="page-poster"
-          />
+            setRenderPoster(true)
+            return
         }
     }
     return (
+        <>
         <div className="add-film-popup" ref={menuRef}>
             <ul className="popup-list">
                 <li className="popup-list-item" onClick={() => onClick("list")}>
@@ -72,5 +73,11 @@ export default function AddFilmMenu({ setViewList, addToWatchlist, ratingSection
                 </li>
             </ul>
         </div>
+        {renderPoster &&
+        <>
+            <Poster poster={poster}/>
+        </>
+        }
+    </>
     )
 }

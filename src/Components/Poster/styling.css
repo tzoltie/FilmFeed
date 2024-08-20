@@ -1,0 +1,9 @@
+.poster-overlay {
+    position: fixed;
+    top: 2%;
+    left: 35%;
+}
+
+#large-poster {
+    height: 800px;
+}
