@@ -14,6 +14,7 @@ import { SearchProvider } from './Components/Context/search.jsx';
 import ListPage from './Components/UsersList/listPage.jsx';
 import Diary from './Components/Diary/index.jsx';
 import PrivateRoutes from './Components/Redirect/index.jsx';
+import List from './Components/List/index.jsx';
 
 function App() {
 
@@ -65,7 +66,7 @@ function App() {
             <Route element={<PrivateRoutes />}>
               <Route 
               path='/:listId/list'
-              element={<ListPage />}
+              element={<List />}
               />
             </Route>
             <Route 

@@ -12,11 +12,11 @@ import useSearch from '../hooks/useSearch'
 
 export default function Dashboard() {
     const { loggedInUser, handleLogout } = useAuth()
-    const { request, setRequest, setSearchForm } = useSearch()
+    const { request, setRequest, setSearchForm, searchResRef } = useSearch()
     const [searchComplete, setSearchComplete] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const searchResRef = useRef()
     const [userSearch, setUserSearch] = useState(false)
+    
     useEffect(() => {
         userLoggedIn()
         document.addEventListener("mousedown", handleClickOutside)

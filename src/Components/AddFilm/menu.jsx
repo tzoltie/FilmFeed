@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import "./styling.css"
 import AddIcon from "../Assets/Add"
 import AddToListIcon from "../Assets/AddToList"
@@ -6,7 +5,6 @@ import AddToWatchList from "../Assets/AddToWatchlist"
 import Expand from "../Assets/Expand"
 import { useEffect, useRef, useState } from "react"
 import Poster from "../Poster"
-import Shadow from "../Shadow"
 
 export default function AddFilmMenu({ setViewList, addToWatchlist, ratingSection, poster, toggleMenu }) {
     const menuRef = useRef()

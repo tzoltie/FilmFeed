@@ -11,9 +11,11 @@ export default function FilmRating({film}) {
     })
     const getUserRating = (film) => {
         const found = film.reviews.find((rating) => rating.userId === loggedInUser.id)
-        if(found) {
-            return setFilmRating(found.rating)
+        console.log(found)
+        if(!found) {
+            return 
         }
+        return setFilmRating(found.rating)
     }
 
     return (

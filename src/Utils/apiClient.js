@@ -59,11 +59,11 @@ const addFilmToWatchlist = (filmId, filmTitle, filmPoster, watchlistId) => {
 }
 
 const getUsersLists = (userId) => {
-    return get(`lists/${userId}`, true)
+    return get(`lists/all/${userId}`, true)
 }
 
 const getUsersListById = (id) => {
-    return get(`lists/${id}`, true)
+    return get(`lists/list/${id}`, true)
 }
 
 const addMultiFilmsList = (listTitle, filmsArr) => {

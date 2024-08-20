@@ -12,7 +12,6 @@ export default function Watchlist() {
         getUserWatchlist(loggedInUser.id).then(setUsersFilms)
     }, [loggedInUser, watchlist])
 
-    console.log(usersFilms)
 
     return (
         <div className="list-container">

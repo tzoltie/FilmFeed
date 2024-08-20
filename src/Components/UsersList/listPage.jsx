@@ -20,6 +20,7 @@ export default function ListPage({list}) {
             </header>
             <main>
                 <div className="list-page-main">
+                    {typeof list[0].filmListId === 'undefined' ? (
                     <ul className="list-page-list">
                         {list.map((film) => 
                         <li key={film.id} onClick={() => onClick(film.id)} className="list-page-list-item" onMouseEnter={() => setShowRating(true)} onMouseLeave={() => setShowRating(false)}>
@@ -30,7 +31,17 @@ export default function ListPage({list}) {
                             />
                             {showRating && <FilmRating film={film}/>}
                         </li>)}
+                    </ul>) : (
+                    <ul className="list-page-list">
+                        {list.map((li) => 
+                        <li key={li.filmId} onClick={() => onClick(li.filmId)} className="list-page-list-item" onMouseEnter={() => setShowRating(true)} onMouseLeave={() => setShowRating(false)}>
+                            <img
+                            src={`https://image.tmdb.org/t/p/w500${li.film.poster}`}
+                            className="list-image"
+                            id="watchlist-image"/>
+                        </li>)}
                     </ul>
+                    )}
                 </div>
             </main>
         </div>

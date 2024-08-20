@@ -11,7 +11,6 @@ import Star from "../Assets/Star/star";
 import Review from "../Review";
 import StarRating from "../Rating";
 import AddFilmMenu from "../AddFilm/menu";
-import Poster from "../Poster";
 
 export default function FilmPage() {
   const [film, setFilm] = useState({title: ""});
