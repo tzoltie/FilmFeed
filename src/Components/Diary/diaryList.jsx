@@ -19,7 +19,7 @@ export default function DiaryList({monthList, month}) {
             <div className="month-title-box"><h2>{month}</h2></div>
             <ul>
                 {monthList.sort((a, b) => a.createdAt - b.createdAt).toReversed().map(review => 
-                    <li key={review.id} className="diary-list-item">
+                    <li key={review.id} className="diary-list-item" onClick={() => onClick(review.filmId)}>
                         <div className="date-box-container">
                             <div className="date-box">
                                 <h4>{getDay(review.createdAt)}</h4>
@@ -30,7 +30,7 @@ export default function DiaryList({monthList, month}) {
                         onClick={() => onClick(review.filmId)}/>
                         <div className="diary-list-titleRating">
                             <div className="diary-film-title"><h3>{review.film.title}</h3></div>
-                            {<StarRating userRating={review.rating}/>}
+                            {<StarRating userRating={review.rating} styling={"user-rating-stars"}/>}
                         </div>
                     </li>
                 )}

@@ -1,0 +1,15 @@
+.watchlist-rating-stars > .star {
+    fill: #FF5733;
+    background-color: rgba(0, 0, 0, 0); 
+}
+
+.watchlist-rating-stars {
+    background-color: rgba(0, 0, 0, 0); 
+    padding: 10px; 
+    border-radius: 5px; 
+    display: inline-block;
+    top: 50%;
+    left: 2%;
+    position: absolute;
+    text-align: center;
+}

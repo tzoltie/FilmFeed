@@ -136,7 +136,7 @@ export default function FilmPage() {
   function getRating() {
     const reviews = userRating.data.reviews
     const usersRating = reviews.find((rating) => rating.userId === loggedInUser.id)
-    return usersRating ? <StarRating userRating={usersRating.rating}/> : <p></p>
+    return usersRating ? <StarRating userRating={usersRating.rating} styling={"user-rating-stars"}/> : <p></p>
   }
 
 

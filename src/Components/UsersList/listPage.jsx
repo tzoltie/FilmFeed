@@ -1,16 +1,18 @@
-import { useLocation } from "react-router-dom"
-import ListImage from "./listImage"
+import { useNavigate } from "react-router-dom"
 import "./styling.css"
-import useAuth from "../hooks/useAuth"
+import { useState } from "react"
+import FilmRating from "../Rating/filmRating"
 
-export default function ListPage() {
-    const listData = useLocation()
-    const list = listData.state
-    // const list = [{film: {id: 238, poster: "/hek3koDUyRQk7FIhPXsa6mT2Zc3.jpg"}}, {film: {id: 242, poster: "/lm3pQ2QoQ16pextRsmnUbG2onES.jpg"}}, {film: {id: 268, poster: "/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg"}}, {film: {id: 278, poster: "/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg"}}, {film: {id: 389, poster: "/ow3wq89wM8qd5X7hWKxiRfsFf9C.jpg"}}, {film: {id: 497, poster: "/8VG8fDNiy50H4FedGwdSVUPoaJe.jpg"}}]
+export default function ListPage({list}) {
+    const [showRating, setShowRating] = useState(false)
+
+    const navigate = useNavigate()
+    const onClick = (filmId) => {
+        navigate(`/${filmId}`)
+    }
+
     return (
         <div className="list-page-container">
-            {list !== null ?
-            <>
             <header>
                 <div className="list-title-container">
                     <h2>{list.title}</h2>
@@ -19,15 +21,18 @@ export default function ListPage() {
             <main>
                 <div className="list-page-main">
                     <ul className="list-page-list">
-                        <ListImage films={list.films}/>
+                        {list.map((film) => 
+                        <li key={film.id} onClick={() => onClick(film.id)} className="list-page-list-item" onMouseEnter={() => setShowRating(true)} onMouseLeave={() => setShowRating(false)}>
+                            <img 
+                            src={`https://image.tmdb.org/t/p/w500${film.poster}`}
+                            className="list-image"
+                            id="watchlist-image"
+                            />
+                            {showRating && <FilmRating film={film}/>}
+                        </li>)}
                     </ul>
                 </div>
             </main>
-            </>
-            : 
-            <div className="list-title-container">
-                <h2>No list found</h2>
-            </div>}
         </div>
     )
 }

@@ -41,6 +41,11 @@
 .diary-list-item {
     display: flex;
     gap: 1rem;
+    cursor: pointer;
+}
+
+.diary-list-item > .list-image {
+    cursor: pointer;
 }
 
 .diary-list-titleRating {

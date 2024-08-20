@@ -53,7 +53,7 @@ function App() {
             <Route element={<PrivateRoutes />}>
               <Route 
               path='/watchlist'
-              element={<ListPage />}
+              element={<Watchlist />}
               />
             </Route>
             <Route element={<PrivateRoutes />}>

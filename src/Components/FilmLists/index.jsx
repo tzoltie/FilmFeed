@@ -1,11 +1,9 @@
-import FilmCard from "../Feed/FilmCard/FilmCard";
-import ListImage from "../UsersList/listImage";
 import ListPage from "../UsersList/listPage";
 
 function FilmList({loggedInUser, list, results}) {
     return (
         <>
-            <header>
+            <header className="list-heading">
                 <h2>{`${loggedInUser.profile.name}'s`} {list}</h2>
             </header>
             <main>
@@ -22,7 +20,7 @@ function FilmList({loggedInUser, list, results}) {
                     </div>
                 </div>
                 ) : (
-                    <ListPage />
+                    <ListPage list={results.data.watchlist}/>
                 )}
             </main>
         </>

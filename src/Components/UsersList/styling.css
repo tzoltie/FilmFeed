@@ -155,3 +155,24 @@
     width: 8rem;
     height: 11rem;
 }
+
+.list-page-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+#watchlist-image {
+    width: 192px;
+    height: 262px;
+}
+
+.list-heading {
+    text-align: center;
+}
+
+.list-page-list-item {
+    cursor: pointer;
+    position: relative;
+}
