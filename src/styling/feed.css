@@ -22,14 +22,14 @@
     height: 200px;
 }
 
-.trending-list-container, .popular-list-container, .cinema-list-container, .film-list-container {
+.trending-list-container, .popular-list-container, .cinema-list-container, .film-list-container, .latest-list-container {
     overflow-x: scroll;
     overflow-y: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-.trending-list-container::-webkit-scrollbar, .popular-list-container::-webkit-scrollbar, .cinema-list-container::-webkit-scrollbar {
+.trending-list-container::-webkit-scrollbar, .popular-list-container::-webkit-scrollbar, .cinema-list-container::-webkit-scrollbar, .latest-list-container::-webkit-scrollbar {
     display: none;
 }
 

@@ -7,6 +7,7 @@ import "./styling.css"
 export default function Diary() {
     const [diary, setDiary] = useState({ status: "pending" })
     const { loggedInUser } = useAuth()
+    const isLoggedIn = localStorage.getItem('token')
     const userDiary = []
     useEffect(() => {
         getUserDiary().then(setDiary)
@@ -67,6 +68,8 @@ export default function Diary() {
 
     return (
         <div className="diary-container">
+            {isLoggedIn.length > 0 &&
+            <>
             <header className="diary-header">
                 <h2>{`${loggedInUser.profile.name}'s`} Diary</h2>
             </header>
@@ -81,6 +84,8 @@ export default function Diary() {
                     </div>
                 )}
             </main>
+            </>
+            }
         </div>
     )
 }

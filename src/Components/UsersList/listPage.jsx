@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom"
 import ListImage from "./listImage"
 import "./styling.css"
+import useAuth from "../hooks/useAuth"
 
 export default function ListPage() {
     const listData = useLocation()

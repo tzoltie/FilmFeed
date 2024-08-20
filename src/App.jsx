@@ -13,6 +13,7 @@ import UsersLists from './Components/UsersList/index.jsx';
 import { SearchProvider } from './Components/Context/search.jsx';
 import ListPage from './Components/UsersList/listPage.jsx';
 import Diary from './Components/Diary/index.jsx';
+import PrivateRoutes from './Components/Redirect/index.jsx';
 
 function App() {
 
@@ -27,10 +28,12 @@ function App() {
             path='/'
             element={<LandingPage />}
             />
-            <Route 
-            path='/home'
-            element={<Feed />}
+            <Route element={<PrivateRoutes />}>
+              <Route 
+              path='/home'
+              element={<Feed />}
             />
+            </Route>
             <Route 
             path='/:id'
             element={<FilmPage />}
@@ -47,24 +50,33 @@ function App() {
             path='/login'
             element={<Login />}
             />
-            <Route 
-            path='/watchlist'
-            element={<ListPage />}
-            />
-            <Route 
-            path='/lists'
-            element={<UsersLists />}
-            />
-            <Route 
-            path='/:listId/list'
-            element={<ListPage />}
-            />
+            <Route element={<PrivateRoutes />}>
+              <Route 
+              path='/watchlist'
+              element={<ListPage />}
+              />
+            </Route>
+            <Route element={<PrivateRoutes />}>
+              <Route 
+              path='/lists'
+              element={<UsersLists />}
+              />
+            </Route>
+            <Route element={<PrivateRoutes />}>
+              <Route 
+              path='/:listId/list'
+              element={<ListPage />}
+              />
+            </Route>
             <Route 
             path='/popular'
             />
-            <Route 
-            path='/diary'
-            element={<Diary />}/>
+            <Route element={<PrivateRoutes />}>
+              <Route 
+              path='/diary'
+              element={<Diary />}
+              />
+            </Route>
           </Routes>
         </SearchProvider>
       </AuthProvider>

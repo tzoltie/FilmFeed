@@ -140,6 +140,10 @@
     margin: 0;
 }
 
+#unknown-poster {
+    height: 200px;
+}
+
 .link {
     text-decoration: none;
 }

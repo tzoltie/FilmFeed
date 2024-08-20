@@ -45,6 +45,10 @@ const getUserWatchlist = (userId) => {
     return get(`watchlist/${userId}`, true)
 }
 
+const getAllReviews = () => {
+    return get('reviews/', true)
+}
+
 const addFilmToWatchlist = (filmId, filmTitle, filmPoster, watchlistId) => {
     const payload = {
         title: filmTitle,
@@ -130,4 +134,4 @@ async function tmdbApiRequest(route) {
     return response.json()
 }
 
-export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList, addRating, getUserRating, getUserDiary }
+export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList, addRating, getUserRating, getUserDiary, getAllReviews }

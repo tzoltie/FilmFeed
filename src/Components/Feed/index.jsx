@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import FilmCard from "./FilmCard/FilmCard";
 import "../../styling/feed.css";
-import { getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList } from "../../Utils/apiClient";
+import { getAllReviews, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList } from "../../Utils/apiClient";
 
 export default function Feed() {
   const [popular, setPopular] = useState([])
   const [topFilms, setTopFilms] = useState([])
   const [trending, setTrending] = useState([])
+  const [usersLatest, setUsersLatest] = useState([])
 
   useEffect(() => {
     getTmdbPopularList().then(setPopular)
     getTmdbTopRatedList().then(setTopFilms)
     getTmdbTrendingList().then(setTrending)
+    getAllReviews().then(setUsersLatest)
   }, [])
 
   return (
@@ -29,6 +31,21 @@ export default function Feed() {
                 <FilmCard film={film} key={film.id} styling={"feed-card"} />
               )))}
           </ul>
+        </div>
+      </section>
+      <section className="feed-list-container">
+        <div>
+          <h2 className="list-title">New from users</h2>
+        </div>
+        <div className="latest-list-container">
+            <ul className="film-list" id="latest">
+              {usersLatest.length === 0 ? (
+                <li></li>
+              ) : (
+                usersLatest.data.reviews.toReversed().map((film) => (
+                  <FilmCard film={film.film} key={film.id} styling={"feed-card"}/>
+                )))}
+            </ul>
         </div>
       </section>
       <section className="feed-list-container">

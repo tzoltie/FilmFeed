@@ -8,7 +8,7 @@ import Remove from "../../Remove";
 import { useState } from "react";
 
 export default function FilmCard({ film, styling, addFilm, currentFilms }) {
-
+  // console.log(film)
   if (!film) {
     <p>Loading...</p>;
   }
@@ -33,12 +33,14 @@ export default function FilmCard({ film, styling, addFilm, currentFilms }) {
     return <h3>{title}</h3>
   }
 
-  let poster = film.poster_path;
   function checkPoster() {
-    if (typeof poster !== "string") {
+    const posterExistsInDb = typeof film['poster_path'] === 'undefined'
+    const noPoster = typeof film['poster'] === 'undefined'
+
+    if (noPoster && posterExistsInDb || film.poster === null) {
       return <img className={`${styling}-poster`} id="unknown-poster" />
     }
-    if (film.poster) {
+    if (posterExistsInDb) {
       return (
         <img
           src={`https://image.tmdb.org/t/p/w500${film.poster}`}

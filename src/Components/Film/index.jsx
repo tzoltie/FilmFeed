@@ -17,6 +17,7 @@ export default function FilmPage() {
   const [rating, setRating] = useState(0)
   const [userRating, setUserRating] = useState({status: "pending", data: {reviews: []}})
   const urlPararms = useParams();
+  const isLoggedIn = localStorage.getItem('token')
   const { loggedInUser } = useAuth()
 
   useEffect(() => {
@@ -43,13 +44,17 @@ export default function FilmPage() {
     }
 
   function getCrew(crew, job) {
-      const findCrewByJob = crew.find((crewMember) => (crewMember.job === job));
+    const findCrewByJob = crew.find((crewMember) => (crewMember.job === job));
+    const screenPlayCredit = crew.find((crewMember) => (crewMember.job === 'Screenplay'))
+    if(!findCrewByJob && screenPlayCredit) {
+      return <>{checkImage(screenPlayCredit)}
+      <h4>{screenPlayCredit.name}</h4></>
+    }
     return <>
       {checkImage(findCrewByJob)}
       <h4>{findCrewByJob.name}</h4>
     </>
   }
-  console.log(film)
 
   function updateToCurrency(number) {
     if(number === 0) {
@@ -112,7 +117,7 @@ export default function FilmPage() {
   }
 
   function onClick(rating) {
-    if(loggedInUser === null) {
+    if(isLoggedIn.length === 0) {
       return alert("Must create an account in order to add review")
     }
     setReview(true)
@@ -122,7 +127,7 @@ export default function FilmPage() {
   function getRating() {
     const reviews = userRating.data.reviews
     const usersRating = reviews.find((rating) => rating.userId === loggedInUser.id)
-    return <StarRating userRating={usersRating.rating}/>
+    return usersRating ? <StarRating userRating={usersRating.rating}/> : <p></p>
   }
 
 

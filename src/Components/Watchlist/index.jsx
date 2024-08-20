@@ -14,7 +14,6 @@ export default function Watchlist() {
         navigate({pathname: '/watchlist', state: usersFilms })
     }, [loggedInUser])
 
-console.log("watchlist comp",usersFilms)
     return (
         <div className="list-container">
             {usersFilms.status === "success" &&
