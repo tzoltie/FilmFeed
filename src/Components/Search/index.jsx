@@ -6,7 +6,7 @@ export default function Search() {
 
     const filmOnChange = (e) => {
         const { name, value } = e.target
-        setSearchForm({ [name]: value })
+        setSearchForm(prevForm => ({ ...prevForm, [name]: value }))
     }
 
     return (
@@ -14,7 +14,7 @@ export default function Search() {
             <div className="searchbar-container">
                 <input 
                 type="text"
-                value={searchForm.film}
+                value={searchForm.filmTitle || ""}
                 name="filmTitle"
                 placeholder="Search films"
                 onChange={filmOnChange}

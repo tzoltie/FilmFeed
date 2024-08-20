@@ -2,7 +2,7 @@ import search from '../../assets/svg/search.svg'
 import '../../styling/dashboard.css'
 import film from '../../assets/svg/filmreel.svg'
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import user from '../../assets/svg/userIcon.svg'
 import logout from '../../assets/svg/logout.svg'
 import useAuth from '../hooks/useAuth'
@@ -15,9 +15,14 @@ export default function Dashboard() {
     const { request, setRequest, setSearchForm } = useSearch()
     const [searchComplete, setSearchComplete] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const searchResRef = useRef()
     const [userSearch, setUserSearch] = useState(false)
     useEffect(() => {
         userLoggedIn()
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
     }, [loggedInUser])
 
     function userLoggedIn() {
@@ -38,8 +43,19 @@ export default function Dashboard() {
 
     function searchResOnClick() {
         setRequest({results: []})
-        setSearchForm({ filmTitle: "" })
+        setSearchForm(prevForm => ({ ...prevForm, filmTitle: "" }))
         setSearchComplete(true)
+    }
+
+    const handleClickOutside = (e) => {
+        if(
+            searchResRef.current &&
+            !searchResRef.current.contains(e.target)
+        ) {
+            setUserSearch(false)
+            setSearchForm(prevForm => ({ ...prevForm, filmTitle: "" }))
+            setRequest({results: []})
+        }
     }
 
     return (
@@ -63,7 +79,7 @@ export default function Dashboard() {
                     />
                     </Link>
                 </section>
-                <section className='search-bar-container-dashboard'>
+                <section className='search-bar-container-dashboard' ref={searchResRef}>
                     {!userSearch &&
                     <div className="search-bar-icon-container">
                         <img 
@@ -75,7 +91,7 @@ export default function Dashboard() {
                     }
                     {userSearch &&
                     <Search />}
-                    {request.results.length > 0 &&
+                    {request.results.length > 0 && userSearch &&
                     <div className="search-results-container-dashboard">
                         <ul className="search-results-list-dashboard" onClick={() => searchResOnClick()}>
                             {request.results.map((film) => 

@@ -13,8 +13,8 @@ function SearchProvider({ children }) {
     useEffect(() => {
         const delayApiSearch = setTimeout(() => {
             searchFilm(searchForm.filmTitle).then(setRequest)
+            .finally(setSearchComplete(true))
         }, 2000)
-        setSearchComplete(true)
         return () => clearTimeout(delayApiSearch)
     }, [searchForm])
     

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../../styling/FilmPage.css";
 import Cast from "./Cast";
@@ -10,11 +10,15 @@ import Add from "../AddFilm";
 import Star from "../Assets/Star/star";
 import Review from "../Review";
 import StarRating from "../Rating";
+import AddFilmMenu from "../AddFilm/menu";
 
 export default function FilmPage() {
   const [film, setFilm] = useState({title: ""});
   const [review, setReview] = useState(false)
   const [rating, setRating] = useState(0)
+  const [addFilm, setAddFilm] = useState(false)
+  const [viewList, setViewList] = useState(false)
+  const ratingSection = useRef({})
   const [userRating, setUserRating] = useState({status: "pending", data: {reviews: []}})
   const urlPararms = useParams();
   const isLoggedIn = localStorage.getItem('token')
@@ -96,7 +100,11 @@ export default function FilmPage() {
     return initials;
   }
 
-  async function addFilmToList() {
+  function openPopUp() {
+    setAddFilm(true)
+  }
+
+  async function addToWatchlist() {
     await addFilmToWatchlist(film.id, film.title, film.poster_path, loggedInUser.id)
   }
 
@@ -182,7 +190,7 @@ export default function FilmPage() {
                 }
               </div>
               {review && 
-                <Review rating={rating} filmId={film.id} film={{poster: film.poster_path, title: film.title}} setReview={setReview}/>
+                <Review rating={rating} filmId={film.id} film={{poster: film.poster_path, title: film.title}} setReview={setReview} ratingSection={ratingSection}/>
               }
             </section>
             <div className="film-details-box">
@@ -238,7 +246,9 @@ export default function FilmPage() {
             <Crew list={film.credits.crew} checkImage={checkImage} heading={"Crew"}/>
           </div>
           {loggedInUser !== null &&
-          <Button text={<Add />} onClick={addFilmToList} className={"addFilm-button"}/>
+          <Button text={<Add />} onClick={openPopUp} className={"addFilm-button"}/>}
+          {addFilm &&
+            <AddFilmMenu setViewList={setViewList} addToWatchlist={addToWatchlist} ratingSection={ratingSection} poster={film.poster_path} toggleMenu={setAddFilm}/>
           }
         </div>
       )}

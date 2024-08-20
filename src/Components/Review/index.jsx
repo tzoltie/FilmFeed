@@ -1,15 +1,17 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import Button from "../Button"
 import "./styling.css"
 import DoneCheck from "../Assets/Done/index.jsx"
 import { addRating } from "../../Utils/apiClient.js"
 
 
-export default function Review({rating, filmId, film, setReview}) {
+export default function Review({rating, filmId, film, setReview, ratingSection}) {
     const [reviewForm, setReviewForm] = useState({
         content: "",
         rating: rating
     })
+   
+
     const onChange = (e) => {
         const { name, value } = e.target
         setReviewForm({
@@ -19,16 +21,17 @@ export default function Review({rating, filmId, film, setReview}) {
     }
 
     const submitReview = () => {
-        addRating(reviewForm, filmId, film)
+        addRating(reviewForm, filmId, film).then(() => {
+            setReview(prev => !prev)
+        })
         setReviewForm({
             content: "",
             rating: 0
         })
-        setReview(false)
     }
 
     return (
-        <div className="review-container">
+        <div className="review-container" ref={ratingSection}>
             <div>
                 <Button className={"submit-review-btn"} text={<DoneCheck />} onClick={() => submitReview()}/>
             </div>

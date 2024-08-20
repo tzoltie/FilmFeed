@@ -1,0 +1,53 @@
+.add-film-popup {
+  height: fit-content;
+  width: fit-content;
+  position: fixed;
+  top: 60%;
+  left: 75%;
+  padding: 1rem;
+  border: 2px solid #FF5733;
+  background-color: #96B6C5;
+  border-radius: 5%;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.popup-heading {
+    background-color: #96B6C5;
+    color: #213547;
+}
+
+.menu-item > .icon:hover{
+    color: #FF5733;
+    fill: #FF5733;
+}
+
+.menu-item > .icon {
+    background-color: #96B6C5;
+}
+
+.popup-list-item {
+    width: 100%;
+    border-bottom: 1px solid white;
+    display: flex;
+    background-color: #96B6C5;
+    padding: 0.5rem;
+}
+
+.menu-item {
+    display: flex;
+}
+
+.menu-item:hover {
+    color: #FF5733;
+    fill: #FF5733;
+}
+
+.popup-list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: auto;
+    background-color: #96B6C5;
+    gap: 1rem;
+}
