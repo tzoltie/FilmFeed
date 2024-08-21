@@ -1,7 +1,6 @@
 import ListPage from "../UsersList/listPage";
 
 function FilmList({loggedInUser, list, results}) {
-    console.log(results)
     return (
         <>
             <header className="list-heading">

@@ -5,7 +5,6 @@ import "../../Search/styling.css";
 import Button from "../../Button";
 import Add from "../../AddFilm";
 import Remove from "../../Remove";
-import { useState } from "react";
 import AddIcon from "../../Assets/Add";
 
 export default function FilmCard({ film, styling, addFilm, currentFilms, inList }) {
@@ -17,13 +16,23 @@ export default function FilmCard({ film, styling, addFilm, currentFilms, inList 
     return title
   }
 
+  function checkDate() {
+    if(
+      typeof film.release_date === 'undefined' ||
+      typeof film.release_date !== 'string') {
+        return ""
+      }
+      return film.release_date.slice(0, 4)
+  }
+
   let title = film.title
   function checkTitle() {
 
     if(styling === "search-result" || styling === "new-film") {
+      
       return <div className="search-result-title-container">
         <h3>{shortenTitle(film.title)}</h3>
-        <p>{film.release_date.slice(0, 4)}</p>
+        <p>{checkDate()}</p>
       </div>
     }
     if (film.character) {
