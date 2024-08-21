@@ -1,0 +1,90 @@
+.profile-container {
+    padding: 1rem;
+    max-width: 100%;
+    height: 100%;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    gap: 1rem;
+}
+
+.profile-image-container {
+    width: fit-content;
+}
+
+.profile-header-bio {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
+
+.bio-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.credits-container {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 1;
+    gap: 1rem;
+}
+
+.crew-credits-list-container {
+    max-width: 100vw;
+    max-height: 4rem;
+}
+
+.credits-list {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.credits-scroll-box {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.credits-scroll-box::-webkit-scrollbar {
+    display: none;
+}
+
+.film-list-container {
+    max-width: 100vw;
+}
+
+
+.credit-box {
+    min-width: fit-content;
+}
+
+.credits-menu-btn:focus {
+    border-bottom: 3px solid #FF5733;
+}
+
+.credits-menu-btn {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 0;
+}
+
+.credits-menu-btn:hover {
+    outline: none;
+    border: none;
+    border-bottom: 3px solid #FF5733;
+}
+
+.credits-poster-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.credits-poster-list > .list-image {
+    height: 2rem;
+}

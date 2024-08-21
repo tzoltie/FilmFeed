@@ -36,6 +36,7 @@
 
 .footer {
     grid-area: footer;
+    max-width: 100%;
 }
 
 .search-bar-container-dashboard, .logo-container, .search-bar-icon-container {

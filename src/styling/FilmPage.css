@@ -104,7 +104,9 @@
 }
 
 .cast_crew-container {
-    width: 100vw;
+    width: 100%;
+    margin-right: 0;
+    padding: 0;
 }
 
 .cast-list, .crew-list {
@@ -177,6 +179,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
 
 #back{
     margin: 2rem 0 0 2rem;
