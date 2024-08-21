@@ -23,6 +23,7 @@
     display: flex;
     height: 100px;
     border-bottom: 1px solid #FF5733;
+    padding: 0.5rem;
 }
 
 .search-result-poster, .new-film-poster {
@@ -41,4 +42,5 @@
 
 .newlist-films-list {
     padding-top: 1rem;
+    width: 100%;
 }

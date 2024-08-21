@@ -1,3 +1,7 @@
+.empty-watchlist-container {
+    height: 100vh;
+}
+
 .empty-watchlist-item {
     height: 200px;
     width: 133px;

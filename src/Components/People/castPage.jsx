@@ -97,24 +97,20 @@ export default function CastPage() {
                         <div className="crew-credits-list-container">
                             <div className="credits-scroll-box">
                                 <ul className="credits-list">
-                                {removeDuplicates(person.combined_credits.crew).map((credits, index) =>
-                                    {typeof person.combined_credits.cast !== 'undefined' ? (
-                                        <>
-                                        <li className="credit-box">
-                                            <Button text={<h2>Actor</h2>} className={"credits-menu-btn"} onClick={() => {onClickShowList(person.combined_credits.cast)}}/>
-                                        </li>
-                                        <li key={index} className="credit-box">
-                                            <Button text={<h2>{credits}</h2>} className={"credits-menu-btn"} onClick={() => onClickShowList(credits)}/>
-                                        </li>
-                                        </>
-                                    ) : (
-                                        <>
-                                        <li key={index} className="credit-box">
+                                {/* {typeof person.combined_credits.cast !== 'undefined' ? (
+                                    <li className="credit-box">
+                                        <Button text={<h2>Actor</h2>} className={"credits-menu-btn"} onClick={() => {onClickShowList(person.combined_credits.cast)}}/>
+                                    </li>
+                                    {removeDuplicates(person.combined_credits.crew).map((credits, index) =>
+                                    <li key={index} className="credit-box">
                                         <Button text={<h2>{credits}</h2>} className={"credits-menu-btn"} onClick={() => onClickShowList(credits)}/>
-                                        </li>
-                                        </>
-                                    )} 
-                                )}
+                                    </li>
+                                    )}) : (
+                                    {removeDuplicates(person.combined_credits.crew).map((credits, index) =>
+                                    <li key={index} className="credit-box">
+                                        <Button text={<h2>{credits}</h2>} className={"credits-menu-btn"} onClick={() => onClickShowList(credits)}/>
+                                    </li>
+                                )})} */}
                                 </ul>
                             </div>
                         </div>

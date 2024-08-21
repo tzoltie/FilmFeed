@@ -1,7 +1,7 @@
 .login-page {
     display: grid;
     grid-template-rows: 1fr;
-    margin: 100px 100px;
+    margin: 10rem 10rem;
     place-content: center;
 }
 

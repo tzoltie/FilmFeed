@@ -1,4 +1,5 @@
 .lists-container {
+    height: 100vw;
     padding: 1rem;
 }
 
@@ -67,7 +68,6 @@
     border: none;
     fill: #FF5733;
 }
-
 
 
 .addFilmToList-container > .search-results-container > .search-results-list > .add-to-list-container > .add-to-list-button > .add-button {
@@ -226,5 +226,9 @@
 
 
 .list-page-main {
+    text-align: center;
+}
+
+.error-heading-container {
     text-align: center;
 }
