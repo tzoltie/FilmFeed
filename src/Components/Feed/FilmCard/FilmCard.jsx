@@ -6,18 +6,23 @@ import Button from "../../Button";
 import Add from "../../AddFilm";
 import Remove from "../../Remove";
 import { useState } from "react";
+import AddIcon from "../../Assets/Add";
 
-export default function FilmCard({ film, styling, addFilm, currentFilms }) {
-  // console.log(film)
-  if (!film) {
-    <p>Loading...</p>;
+export default function FilmCard({ film, styling, addFilm, currentFilms, inList }) {
+
+  function shortenTitle(title) {
+    if(title.length > 24) {
+      return `${title.slice(0, 24)}...`
+    }
+    return title
   }
 
-  let title = film.title;
+  let title = film.title
   function checkTitle() {
+
     if(styling === "search-result" || styling === "new-film") {
       return <div className="search-result-title-container">
-        <h3>{title.slice(0, 24) + "..."}</h3>
+        <h3>{shortenTitle(film.title)}</h3>
         <p>{film.release_date.slice(0, 4)}</p>
       </div>
     }
@@ -27,8 +32,9 @@ export default function FilmCard({ film, styling, addFilm, currentFilms }) {
     if (typeof title !== "string") {
       return <h3>...</h3>;
     }
-    if (title.length > 24) {
-      return title.slice(0, 24) + "...";
+    if (film.title.length > 24) {
+      title = film.title.slice(0, 24) + "...";
+      return title
     }
     return <h3>{title}</h3>
   }
@@ -58,17 +64,17 @@ export default function FilmCard({ film, styling, addFilm, currentFilms }) {
     );
   }
 
-  const [inList, setInList] = useState(false)
+  // const [inList, setInList] = useState(false)
 
   const onClickAdd = () => {
     addFilm([...currentFilms, film])
-    setInList(true)
+    // setInList(true)
   }
 
   const onClickRemove = (id) => {
     const updatedList = currentFilms.filter((film) => (film.id !== id))
     addFilm(updatedList)
-    setInList(false)
+    // setInList(false)
   }
   
 
@@ -81,7 +87,7 @@ export default function FilmCard({ film, styling, addFilm, currentFilms }) {
                 {checkPoster()}
                 {checkTitle()}
               </li>
-              <Button className={"add-to-list-button"} text={<Add />} onClick={onClickAdd}/>
+              <Button className={"add-to-list-button"} text={<AddIcon />} onClick={() => onClickAdd()}/>
             </div>
     }
     if(currentUrl.includes("/lists") && inList) {

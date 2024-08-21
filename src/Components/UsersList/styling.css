@@ -34,6 +34,7 @@
     margin-right: 1rem;
 }
 
+
 .add-to-list-btn-box {
     text-align: center;
 }
@@ -49,6 +50,28 @@
 
 .addFilmToList-container {
     width: 50%;
+}
+
+.addFilmToList-container > .search-results-container > .search-results-list {
+    padding-left: 0;
+}
+
+.addFilmToList-container > .search-results-container > .search-results-list > .add-to-list-container > .add-to-list-button:hover {
+    outline: none;
+    border: none;
+    fill: #FF5733;
+}
+
+.addFilmToList-container > .search-results-container > .lists-films-container > .newlist-films-list >.add-to-list-container > .add-to-list-button:hover {
+    outline: none;
+    border: none;
+    fill: #FF5733;
+}
+
+
+
+.addFilmToList-container > .search-results-container > .search-results-list > .add-to-list-container > .add-to-list-button > .add-button {
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .empty-list-list {
@@ -88,7 +111,7 @@
 }
 
 .add-film-to-list-btn:hover {
-    border: 1px dotted #96B6C5;
+    border: 1px dotted #FF5733;
 }
 
 .listTitle-input, .search-films-searchbar {
@@ -148,10 +171,11 @@
 .users-list-item {
     display: grid;
     grid-template-rows: 2rem;
-    border: 1px solid #96B6C5;
+    border-bottom: 3px solid #96B6C5;
     width: 100%;
     height: 100%;
     text-align: center;
+    padding-bottom: 0.5rem;
 }
 
 .users-list-item div {

@@ -15,13 +15,14 @@
     background-color: #96B6C5;
     margin: 0.5rem;
     border-radius: 20px;
-}
-
-.sidebar-nav {
+    height: fit-content;
     position: sticky;
     position: -webkit-sticky;
     top: 1%;
     left: 0;
+}
+
+.sidebar-nav {
     display: grid;
     grid-template-rows: 5rem 5rem 5rem 5rem 5rem;
     padding: 1rem;

@@ -11,7 +11,7 @@ import { addMultiFilmsList } from "../../Utils/apiClient"
 import { useLocation } from "react-router-dom"
 
 export default function CreateList({ setNewList, setListsUpdated }) {
-    const { request, setRequest } = useSearch()
+    const { request, setRequest, searchResRef } = useSearch()
     const location = useLocation()
     const [newFilm, setNewFilm] = useState(false)
     const [addList, setAddList] = useState(false)
@@ -48,8 +48,9 @@ export default function CreateList({ setNewList, setListsUpdated }) {
         if(location.pathname === "/lists") {
             return <div className="lists-films-container">
                 <ul className="newlist-films-list">
-                    {addedFilms.map((film) => 
-                    <FilmCard film={film} key={film.id} styling={"new-film"} addFilm={setAddedFilms} currentFilms={addedFilms}/>)}
+                    {addedFilms.map((film) => {
+                    const inList = addedFilms.some((addedFilm) => addedFilm.id === film.id)
+                    return <FilmCard film={film} key={film.id} styling={"new-film"} addFilm={setAddedFilms} currentFilms={addedFilms} inList={inList}/>})}
                 </ul>
             </div>
         }
@@ -78,10 +79,11 @@ export default function CreateList({ setNewList, setListsUpdated }) {
                     <div className="addFilmToList-container">
                         <Search />
                         {request.results.length > 0 && !searchComplete ? (
-                        <div className="search-results-container">
+                        <div className="search-results-container" ref={searchResRef}>
                             <ul className="search-results-list">
-                            {request.results.map((film) => 
-                                <FilmCard film={film} key={film.id} styling={"search-result"} addFilm={setAddedFilms} currentFilms={addedFilms}/>)}
+                            {request.results.map((film) => {
+                                const inList = addedFilms.some((addedFilm) => addedFilm.id === film.id)
+                                return <FilmCard film={film} key={film.id} styling={"search-result"} addFilm={setAddedFilms} currentFilms={addedFilms} inList={inList}/>})}
                             </ul>
                             {addedFilms?.length > 0 && displayListFilms()}
                         </div>) : (
