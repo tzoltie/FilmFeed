@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import "../../../styling/FilmPage.css";
 import "../../Search/styling.css";
 import Button from "../../Button";
-import Add from "../../AddFilm";
 import Remove from "../../Remove";
 import AddIcon from "../../Assets/Add";
 

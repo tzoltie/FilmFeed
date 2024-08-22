@@ -4,6 +4,7 @@
     margin: 0.5rem;
     display: grid;
     gap: 2rem;
+    height: 100vh;
 }
 
 .feed-list-container {

@@ -1,0 +1,15 @@
+.profile-page-container {
+    /* height: 100vh; */
+    place-content: center;
+}
+
+.profile-page-card {
+    background-color: #96B6C5;
+    border: 1px solid #FF5733;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.profile-page-header {
+    padding: 1rem;
+}

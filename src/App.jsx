@@ -15,6 +15,7 @@ import ListPage from './Components/UsersList/listPage.jsx';
 import Diary from './Components/Diary/index.jsx';
 import PrivateRoutes from './Components/Redirect/index.jsx';
 import List from './Components/List/index.jsx';
+import Profile from './Components/Profile/index.jsx';
 
 function App() {
 
@@ -77,6 +78,11 @@ function App() {
               path='/diary'
               element={<Diary />}
               />
+            </Route>
+            <Route element={<PrivateRoutes />}>
+              <Route 
+              path='/profile'
+              element={<Profile />}/>
             </Route>
           </Routes>
         </SearchProvider>
