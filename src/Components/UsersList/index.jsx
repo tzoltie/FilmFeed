@@ -15,7 +15,7 @@ export default function UsersLists() {
 
     useEffect(() => {
         getUsersLists(loggedInUser.id).then(setUsersLists)
-        
+        console.log("usersList", usersList)
     }, [loggedInUser, newList, listsUpdated])
 
 

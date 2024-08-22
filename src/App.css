@@ -51,13 +51,28 @@
   top: 85%;
   right: 5%;
   padding: 1rem;
-  border: 1px solid #96B6C5;
+  border: 1px solid #FF5733;
   border-radius: 60px;
-  background-color: #F1F0E8;
+  background-color: #96B6C5;
+}
+
+.addFilm-button {
+  background-color: #96B6C5;
 }
 
 .addFilm-button:hover {
-  border: 3px solid #FF5733;
+  border: 3px solid #96B6C5;
+  background-color: #FF5733;
+}
+
+.add-button {
+  fill: #FF5733;
+  background-color: #96B6C5;
+}
+
+.addFilm-button:hover .add-button {
+  fill: #96B6C5;
+  background-color: #FF5733;
 }
 
 .add-button:hover {

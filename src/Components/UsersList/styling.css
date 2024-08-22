@@ -176,6 +176,7 @@
     height: 100%;
     text-align: center;
     padding-bottom: 0.5rem;
+    cursor: pointer;
 }
 
 .users-list-item div {

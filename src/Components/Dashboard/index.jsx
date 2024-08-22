@@ -34,7 +34,7 @@ export default function Dashboard() {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
-    }, [loggedInUser])
+    })
 
     function userLoggedIn() {
         const token = localStorage.getItem('token')

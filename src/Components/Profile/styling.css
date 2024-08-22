@@ -1,15 +1,212 @@
 .profile-page-container {
-    /* height: 100vh; */
-    place-content: center;
+    place-self: center;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .profile-page-card {
+    height: fit-content;
+}
+
+.profile-page-card, .search-films-to-add-container {
     background-color: #96B6C5;
     border: 1px solid #FF5733;
     border-radius: 10px;
-    width: 50%;
+    width: fit-content;
+    padding: 1rem;
+    text-align: center;
+}
+
+.search-films-to-add-container {
+    height: fit-content;
+}
+
+.search-film > .searchbar-results-container > .searchbar-container {
+    background-color: #96B6C5;
+}
+
+.search-film > .searchbar-results-container > .searchbar-container > .search-films-searchbar {
+    border-bottom: 1px solid #FF5733;
+    background-color: #96B6C5;
+}
+
+.search-film > .searchbar-results-container > .searchbar-container > #searchFilm-icon {
+    background-color: #96B6C5;
+}
+
+.search-film > .searchbar-results-container > .searchbar-container > .search-films-searchbar::placeholder {
+    color: #213547;
 }
 
 .profile-page-header {
     padding: 1rem;
+    background-color: #96B6C5;
+}
+
+.profile-page-header h1, .profile-photo, .profile-photo-container h2, .recently-watched p, .profile-films-list, .users-profile-films-list, .users-profile-films-list div, .users-profile-films-list div .star, .stats-container, .user-stats, .user-stats-list, .user-stats p {
+    background-color: #96B6C5;
+}
+
+.profile-pic, .add-profile-pic-btn {
+    height: 100px;
+    width: 100px;
+    border-radius: 55px;
+    border: 1px solid #FF5733;
+}
+
+.add-profile-pic-btn {
+    background-color: #537788;
+}
+
+.add-profile-pic-btn:hover, .add-profile-pic-btn:hover .icon {
+    outline: none;
+    border: none;
+    background-color: #FF5733;
+    fill: #96B6C5;
+}
+
+.add-profile-pic-btn:hover {
+    border: 1px solid #96B6C5;
+}
+
+.add-profile-pic-btn .icon {
+    height: fit-content;
+    background-color: #537788;
+}
+
+.add-profile-pic-btn > .icon {
+    height: 50px;
+    width: 50px;
+    fill: #FF5733;
+}
+
+.profile-pic-popup-container {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+}
+
+.profile-pic-popup {
+    border: 2px solid #FF5733;
+    background-color: #FF5733;
+}
+
+.profile-pic-input {
+    border: none;
+    outline: none;
+    border-bottom: 3px solid #FF5733;
+    background-color: #96B6C5;
+    width: 350px;
+    color: #213547;
+}
+
+.profile-pic-popup form {
+    background-color: #96B6C5;
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.profile-pic-input::placeholder {
+    color: #213547;
+    font-size: medium;
+}
+
+.profile-pic-input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 3px solid #FF5733;
+}
+
+.submit-fav-films-container {
+    background-color: #96B6C5;
+    padding: 1rem;
+}
+
+.add-profile-btn {
+    padding: 0.5rem;
+    border: 1px solid #FF5733;
+    color: #213547;
+    background-color: #96B6C5;
+}
+
+.add-profile-btn:hover {
+    outline: none;
+    border: none;
+    background-color: #FF5733;
+    border: 1px solid #96B6C5;
+    color: #F1F0E8;
+}
+
+.profile-films-list {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0;
+}
+
+
+.user-rating-container div .star {
+    width: 15px;
+    height: 15px;
+    fill: #FF5733;
+}
+
+.user-rating-container div {
+    height: fit-content;
+}
+
+.users-profile-films-list {
+    text-align: center;
+}
+
+.empty-profile-film-list {
+    height: 131px;
+    width: 96px;
+    background-color: #537788;
+}
+
+.user-stats-list {
+    padding: 0;
+}
+
+.user-stats {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.add-favourite-film-btn {
+    padding: 0;
+    width: 96px;
+    height: 131px;
+    background-color: #537788;
+}
+
+.add-favourite-film-btn:hover, .add-favourite-film-btn:hover .icon {
+    background-color: #FF5733;
+    border: none;
+    outline: none;
+    fill: #537788;
+}
+
+.add-favourite-film-btn .icon {
+    background-color: #537788;
+    fill: #FF5733;
+}
+
+.search-film .searchbar-results-container {
+    width: 100%;
+}
+
+.search-films-favourite-list {
+    padding: 0;
+}
+
+.search-films-favourites-results {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-result {
+    cursor: pointer;
 }

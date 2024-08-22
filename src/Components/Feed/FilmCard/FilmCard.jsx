@@ -5,7 +5,7 @@ import Button from "../../Button";
 import Remove from "../../Remove";
 import AddIcon from "../../Assets/Add";
 
-export default function FilmCard({ film, styling, addFilm, currentFilms, inList }) {
+export default function FilmCard({ film, styling, addFilm, currentFilms, inList, usersFavouriteArr, favouritePicked }) {
 
   function shortenTitle(title) {
     if(title.length > 24) {
@@ -83,11 +83,23 @@ export default function FilmCard({ film, styling, addFilm, currentFilms, inList 
     addFilm(updatedList)
     // setInList(false)
   }
+
+  const onClickAddToFav = () => {
+    usersFavouriteArr([...favouritePicked, film])
+  }
   
 
   const renderCorrectCard = () => {
     const currentUrl =  window.location.href
 
+    if(currentUrl.includes("profile")) {
+      return <div className="add-to-favourite-list-item" onClick={() => onClickAddToFav()}>
+        <li className={`${styling}-list-item`}>
+              {checkPoster()}
+              {checkTitle()}
+              </li>
+      </div>
+    }
     if(currentUrl.includes("/lists") && !inList) {
       return <div className="add-to-list-container">
               <li className={`${styling}-list-item`}>

@@ -37,3 +37,7 @@
     height: fit-content;
     width: fit-content;
 }
+
+.add-film-to-list-btn .add-button {
+    background-color: #F1F0E8;
+}

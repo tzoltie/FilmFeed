@@ -41,7 +41,8 @@ export default function CreateList({ setNewList, setListsUpdated }) {
         setNewList(false)
         setSearchComplete(false)
         setListsUpdated(true)
-        setRequest([])
+        setAddedFilms([])
+        setRequest({results: []})
     }
 
     const displayListFilms = () => {
@@ -69,7 +70,7 @@ export default function CreateList({ setNewList, setListsUpdated }) {
                     onChange={titleOnChange}
                     />
                     {addList &&
-                    <Button text={<DoneCheck />} onClick={listComplete} className={"list-complete-btn"}/>}
+                    <Button text={<DoneCheck />} onClick={() => listComplete()} className={"list-complete-btn"}/>}
                 </header>
                 <main className="search-container">
                     {!newFilm &&

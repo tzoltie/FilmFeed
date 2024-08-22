@@ -18,6 +18,29 @@ const login = (email, password) => {
     return post(payload, 'login', false)
 }
 
+const updateUser = (id, profilePic, username) => {
+    const payload = {
+        profileUrl: profilePic,
+        username: username
+    }
+    return patch(payload, `users/update/${id}`, true)
+}
+
+const getUser = (id) => {
+    return get(`users/${id}`, true)
+}
+
+const getUserFavouriteFilms = (id) => {
+    return get(`favourites/${id}`, true)
+}
+
+const addUserFavouriteFilms = (films, userId) => {
+    const payload = {
+        films
+    }
+    return post(payload, `favourites/${userId}`, true)
+}
+
 const addRating = (review, filmId, film) => {
     const {
         content,
@@ -82,6 +105,10 @@ async function get(route, auth = true) {
     return apiRequest('GET', null, route, auth)
 }
 
+async function patch(payload, route, auth = true) {
+    return apiRequest('PATCH', payload, route, auth)
+}
+
 async function apiRequest(method, data, route, auth = true) {
     const request = {
         headers: {
@@ -97,8 +124,9 @@ async function apiRequest(method, data, route, auth = true) {
     }
 
     const response = await fetch(`${API_URL}/${route}`, request)
-
-    return response.json()
+    const res = response.json()
+    
+    return res
 }
 
 async function getFilmById(id) {
@@ -138,4 +166,4 @@ async function tmdbApiRequest(route) {
     return response.json()
 }
 
-export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList, addRating, getUserRating, getUserDiary, getAllReviews, getProfile }
+export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList, addRating, getUserRating, getUserDiary, getAllReviews, getProfile, getUser, updateUser, getUserFavouriteFilms, addUserFavouriteFilms }
