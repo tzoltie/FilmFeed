@@ -37,7 +37,7 @@ export default function Profile() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [loggedInUser, userPicks]);
+  }, [loggedInUser, userPicks, addImage]);
 
   const checkProfileImg = (image) => {
     if (typeof image !== "string") {

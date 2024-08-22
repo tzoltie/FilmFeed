@@ -16,7 +16,6 @@ export default function Feed() {
     getAllReviews().then(setUsersLatest)
   }, [])
 
-  console.log(popular, topFilms, trending, usersLatest)
   return (
     <div className="feed-container">
       <section className="feed-list-container">
