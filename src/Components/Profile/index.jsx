@@ -4,7 +4,7 @@ import {
     addUserFavouriteFilms,
   getUser,
   getUserFavouriteFilms,
-  updateUser,
+  addProfileImage,
 } from "../../Utils/apiClient";
 import useAuth from "../hooks/useAuth";
 import Button from "../Button";
@@ -62,6 +62,7 @@ export default function Profile() {
   };
 
   const next = () => {
+    addProfileImage(loggedInUser.id, profileURL.url)
     setAddImage(false);
   };
 
@@ -90,7 +91,6 @@ export default function Profile() {
     }
   };
 
-  console.log(favouriteFilms);
 
   return (
     <div className="profile-page-container">
@@ -109,6 +109,7 @@ export default function Profile() {
                   <form>
                     <input
                       type="text"
+                      name="url"
                       placeholder="URL:"
                       value={profileURL.url}
                       onChange={onChange}

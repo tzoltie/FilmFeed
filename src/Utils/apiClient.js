@@ -26,6 +26,13 @@ const updateUser = (id, profilePic, username) => {
     return patch(payload, `users/update/${id}`, true)
 }
 
+const addProfileImage = (userID, url) => {
+    const payload = {
+        profileUrl: url
+    }
+    return post(payload, `users/profilePic/${userID}`, true)
+}
+
 const getUser = (id) => {
     return get(`users/${id}`, true)
 }
@@ -166,4 +173,4 @@ async function tmdbApiRequest(route) {
     return response.json()
 }
 
-export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList, addRating, getUserRating, getUserDiary, getAllReviews, getProfile, getUser, updateUser, getUserFavouriteFilms, addUserFavouriteFilms }
+export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList, addRating, getUserRating, getUserDiary, getAllReviews, getProfile, getUser, updateUser, getUserFavouriteFilms, addUserFavouriteFilms, addProfileImage }
