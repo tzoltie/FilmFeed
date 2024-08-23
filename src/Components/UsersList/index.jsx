@@ -12,11 +12,12 @@ export default function UsersLists() {
     const [usersList, setUsersLists] = useState({ status: "pending"})
     const [newList, setNewList] = useState(false)
     const [listsUpdated, setListsUpdated] = useState(false)
+    const user = JSON.parse(localStorage.getItem('user'))
 
     useEffect(() => {
-        getUsersLists(loggedInUser.id).then(setUsersLists)
+        getUsersLists(user.id).then(setUsersLists)
         console.log("usersList", usersList)
-    }, [loggedInUser, newList, listsUpdated])
+    }, [user, newList, listsUpdated])
 
 
     const onClick = () => {
@@ -27,7 +28,7 @@ export default function UsersLists() {
     return (
         <div className="lists-container">
             <header>
-                <h2>{`${loggedInUser.profile.name}'s`} lists</h2>
+                <h2>{`${user.profile.name}'s`} lists</h2>
             </header>
             <main>
             {newList || usersList.status === "pending" || usersList.status === "fail" &&

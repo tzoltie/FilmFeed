@@ -104,10 +104,11 @@
 }
 
 .cast_crew-container {
-    width: 100%;
+    max-width: 100vw;
     margin-right: 0;
     padding: 0;
 }
+
 
 .cast-list, .crew-list {
     overflow-x: scroll;

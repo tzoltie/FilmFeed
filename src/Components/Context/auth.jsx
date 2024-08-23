@@ -72,6 +72,7 @@ function AuthProvider({ children }) {
             }
             setToken(res.data.token)
             localStorage.setItem('token', res.data.token)
+            localStorage.setItem('user', JSON.stringify(res.data.user))
             setloggedInUser(res.data.user)
             navigate({
                 pathname: '/home'
@@ -83,6 +84,7 @@ function AuthProvider({ children }) {
 
     const handleLogout = () => {
         localStorage.removeItem('token')
+        localStorage.removeItem('user')
         setToken(null)
         setloggedInUser(null)
     }

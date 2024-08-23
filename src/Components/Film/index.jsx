@@ -22,6 +22,7 @@ export default function FilmPage() {
   const [userRating, setUserRating] = useState({status: "pending", data: {reviews: []}})
   const urlPararms = useParams();
   const isLoggedIn = localStorage.getItem('token')
+  const user = JSON.parse(localStorage.getItem('user'))
   const { loggedInUser } = useAuth()
 
   useEffect(() => {
@@ -105,7 +106,7 @@ export default function FilmPage() {
   }
 
   async function addToWatchlist() {
-    await addFilmToWatchlist(film.id, film.title, film.poster_path, loggedInUser.id)
+    await addFilmToWatchlist(film.id, film.title, film.poster_path, user.id)
   }
 
   function calculateAvg(avg) {
@@ -134,7 +135,7 @@ export default function FilmPage() {
 
   function getRating() {
     const reviews = userRating.data.reviews
-    const usersRating = reviews.find((rating) => rating.userId === loggedInUser.id)
+    const usersRating = reviews.find((rating) => rating.userId === user.id)
     return usersRating ? <StarRating userRating={usersRating.rating} styling={"user-rating-stars"}/> : <p></p>
   }
 
@@ -230,7 +231,7 @@ export default function FilmPage() {
               </section>
             </div>
           </div>
-          <div className="images-videos-container">
+          {/* <div className="images-videos-container">
             <Link to={`/${film.id}/images`}
             className="link">
               <section className="images-box">
@@ -240,12 +241,13 @@ export default function FilmPage() {
             <section className="videos-box">
               <h2 id="videos-heading">Videos</h2>
             </section>
-          </div>
+          </div> */}
+          {typeof film.credits !== 'undefined' &&
           <div className="cast_crew-container">
             <Cast list={film.credits.cast} checkImage={checkImage} heading={"Cast"} />
             <Crew list={film.credits.crew} checkImage={checkImage} heading={"Crew"}/>
-          </div>
-          {loggedInUser !== null &&
+          </div>}
+          {typeof user === 'object' &&
           <Button text={<Add />} onClick={openPopUp} className={"addFilm-button"}/>}
           {addFilm &&
             <AddFilmMenu setViewList={setViewList} addToWatchlist={addToWatchlist} ratingSection={ratingSection} toggleMenu={setAddFilm} poster={film.poster_path}/>

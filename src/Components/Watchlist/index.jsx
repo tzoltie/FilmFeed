@@ -8,15 +8,17 @@ export default function Watchlist() {
     const { loggedInUser } = useAuth()
     const [usersFilms, setUsersFilms] = useState({status: "pending"})
     const [watchlist, setWatchlist] = useState(false)
+    const user = JSON.parse(localStorage.getItem('user'))
+
     useEffect(() => {
-        getUserWatchlist(loggedInUser.id).then(setUsersFilms)
-    }, [loggedInUser, watchlist])
+        getUserWatchlist(user.id).then(setUsersFilms)
+    }, [user, watchlist])
 
 
     return (
         <div className="list-container">
             {usersFilms.status === "success" &&
-            <FilmList loggedInUser={loggedInUser} list={"watchlist"} results={usersFilms} />}
+            <FilmList loggedInUser={user} list={"watchlist"} results={usersFilms} />}
         </div>
     )
 }

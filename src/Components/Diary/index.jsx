@@ -9,6 +9,9 @@ export default function Diary() {
     const { loggedInUser } = useAuth()
     const isLoggedIn = localStorage.getItem('token')
     const userDiary = []
+    const user = JSON.parse(localStorage.getItem('user'))
+
+
     useEffect(() => {
         getUserDiary().then(setDiary)
     }, [])
@@ -68,10 +71,10 @@ export default function Diary() {
 
     return (
         <div className="diary-container">
-            {isLoggedIn.length > 0 &&
+            {typeof user === 'object' &&
             <>
             <header className="diary-header">
-                <h2>{`${loggedInUser.profile.name}'s`} Diary</h2>
+                <h2>{`${user.profile.name}'s`} Diary</h2>
             </header>
             <main>
                 {diary.status === "pending" ? (

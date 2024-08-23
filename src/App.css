@@ -9,12 +9,12 @@
 .app-container {
   display: grid;
   grid-template: 
-  'left header' 0.4fr
+  'left header' 7rem
   'left main' 1fr
-  'left footer' 1fr/
+  'left footer' 40rem/
   20rem 2fr;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .icon {

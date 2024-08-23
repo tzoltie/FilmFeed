@@ -3,7 +3,6 @@ import { getUsersListById } from "../../Utils/apiClient";
 import { useParams } from "react-router-dom";
 import ListPage from "../UsersList/listPage";
 import "../UsersList/styling.css"
-import AddIcon from "../Assets/Add";
 import Button from "../Button";
 import Add from "../AddFilm";
 import useSearch from "../hooks/useSearch";

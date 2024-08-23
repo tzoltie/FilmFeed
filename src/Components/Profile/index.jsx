@@ -28,16 +28,17 @@ export default function Profile() {
   const [profileURL, setProfileURL] = useState({
     url: "",
   });
+  const user = JSON.parse(localStorage.getItem('user'))
 
   useEffect(() => {
-    getUser(loggedInUser.id)
+    getUser(user.id)
       .then(setUserProfile)
-      .finally(getUserFavouriteFilms(loggedInUser.id).then(setFavouriteFilms));
+      .finally(getUserFavouriteFilms(user.id).then(setFavouriteFilms));
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [loggedInUser, userPicks, addImage]);
+  }, [user, userPicks, addImage]);
 
   const checkProfileImg = (image) => {
     if (typeof image !== "string") {
@@ -62,7 +63,7 @@ export default function Profile() {
   };
 
   const next = () => {
-    addProfileImage(loggedInUser.id, profileURL.url)
+    addProfileImage(user.id, profileURL.url)
     setAddImage(false);
   };
 
