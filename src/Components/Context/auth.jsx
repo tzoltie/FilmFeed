@@ -83,6 +83,7 @@ function AuthProvider({ children }) {
     }
 
     const handleLogout = () => {
+        console.log("logout run")
         localStorage.removeItem('token')
         localStorage.removeItem('user')
         setToken(null)

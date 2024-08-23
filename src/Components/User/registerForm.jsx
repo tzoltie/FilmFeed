@@ -51,7 +51,7 @@ export default function RegisterForm() {
         />
         <input
           className="textinput"
-          type="textbox"
+          type="password"
           placeholder="Password"
           name="password"
           value={formData.password}

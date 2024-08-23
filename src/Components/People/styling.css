@@ -27,9 +27,13 @@
 
 .credits-container {
     display: flex;
-    flex-direction: row;
-    flex-shrink: 1;
+    overflow-x: auto;
     gap: 1rem;
+    box-sizing: border-box;
+}
+
+.film-list {
+    flex: 0 0 auto;
 }
 
 .crew-credits-list-container {
@@ -39,6 +43,7 @@
 
 .credits-list {
     display: flex;
+    flex-wrap: nowrap;
     flex-direction: row;
     gap: 1rem;
 }
@@ -54,8 +59,9 @@
     display: none;
 }
 
-.film-list-container {
+.film-credits-list-container {
     max-width: 100vw;
+
 }
 
 
@@ -88,3 +94,30 @@
 .credits-poster-list > .list-image {
     height: 2rem;
 }
+
+.credits-list {
+    padding: 0;
+    max-width: 100vw;
+}
+
+.actor-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    width: 100%;
+  }
+  
+  .actor-list-container li {
+    box-sizing: border-box;
+    margin: 1px;
+    cursor: pointer;
+  }
+  
+  .list-image {
+    width: 40%;
+    height: auto;
+    display: block;
+  }
+  

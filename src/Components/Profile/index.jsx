@@ -33,12 +33,12 @@ export default function Profile() {
   useEffect(() => {
     getUser(user.id)
       .then(setUserProfile)
-      .finally(getUserFavouriteFilms(user.id).then(setFavouriteFilms));
+      .then(getUserFavouriteFilms(user.id).then(setFavouriteFilms));
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [user, userPicks, addImage]);
+  }, [userPicks, addImage]);
 
   const checkProfileImg = (image) => {
     if (typeof image !== "string") {
@@ -72,7 +72,7 @@ export default function Profile() {
   };
 
   const submitProfile = () => {
-    addUserFavouriteFilms(userPicks, loggedInUser.id)
+    addUserFavouriteFilms(userPicks, user.id)
     setAddFavourite(false)
   };
 
@@ -92,7 +92,6 @@ export default function Profile() {
     }
   };
 
-
   return (
     <div className="profile-page-container">
       <div className="profile-page-card">
@@ -102,7 +101,7 @@ export default function Profile() {
         {userProfile.status === "success" && (
           <div className="profile-photo-container">
             <div className="profile-photo">
-              {checkProfileImg(userProfile.data.user.profile.profilePic)}
+              {!addImage && checkProfileImg(userProfile.data.user.profile.profilePic)}
             </div>
             {addImage && (
               <div className="profile-pic-popup-container">
@@ -214,25 +213,23 @@ export default function Profile() {
             <div className="recently-watched">
               <p>Recently watched</p>
               <ul className="profile-films-list">
-                {userProfile.data.user.reviews.length > 1
-                  ? userProfile.data.user.reviews
-                      .toReversed()
-                      .slice(0, 4)
-                      .map((film) => (
-                        <li className="users-profile-films-list" key={film.id}>
+                {Array.from({ length: 4}).map((_, index) => {
+                  const latest = userProfile.data.user.reviews[index]
+                    return latest ? (
+                      <li className="users-profile-films-list" key={latest.id}>
                           <img
-                            src={`https://image.tmdb.org/t/p/w500${film.film.poster}`}
+                            src={`https://image.tmdb.org/t/p/w500${latest.film.poster}`}
                             className="list-image"
-                            onClick={() => goToFilm(film.id)}
+                            onClick={() => goToFilm(latest.id)}
                           />
                           <div className="user-rating-container">
-                            <StarRating userRating={film.rating} />
+                            <StarRating userRating={latest.rating} />
                           </div>
-                        </li>
-                      ))
-                  : emptyRecent.map((index) => (
+                      </li>
+                    ) : (
                       <li className="empty-profile-film-list" key={index}></li>
-                    ))}
+                    )
+                })}
               </ul>
             </div>
             <div className="stats-container">

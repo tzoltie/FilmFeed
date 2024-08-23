@@ -49,7 +49,7 @@ export default function LoginForm({ setRegistered }) {
             />
             <input
                 className="textinput"
-                type='textbox'
+                type='password'
                 placeholder='Password'
                 value={formData.password}
                 name="password"

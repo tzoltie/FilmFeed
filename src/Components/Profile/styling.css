@@ -157,6 +157,7 @@
 
 .users-profile-films-list {
     text-align: center;
+    cursor: pointer;
 }
 
 .empty-profile-film-list {
@@ -209,4 +210,14 @@
 
 .search-result {
     cursor: pointer;
+}
+
+.add-to-favourite-list-item .search-result-list-item, .add-to-favourite-list-item .search-result-list-item .search-result-title-container, .add-to-favourite-list-item .search-result-list-item .search-result-title-container h3, .add-to-favourite-list-item .search-result-list-item .search-result-title-container p {
+    color: #F1F0E8;
+    background-color: #537788;
+    cursor: pointer;
+}
+
+.add-to-favourite-list-item .search-result-list-item .search-result-title-container p {
+    text-align: start;
 }

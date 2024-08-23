@@ -16,7 +16,6 @@ export default function UsersLists() {
 
     useEffect(() => {
         getUsersLists(user.id).then(setUsersLists)
-        console.log("usersList", usersList)
     }, [user, newList, listsUpdated])
 
 
@@ -49,7 +48,7 @@ export default function UsersLists() {
                 {!newList &&
                 <CreateList setNewList={setNewList} setListsUpdated={setListsUpdated}/>
                 }
-                {usersList.status === "success" &&
+                {newList || usersList.status === "success" &&
                 <div className="list-container">
                     <ul className="list-list">
                     {usersList.data.lists.toReversed().map((list) => 

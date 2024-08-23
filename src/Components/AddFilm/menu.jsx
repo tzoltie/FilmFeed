@@ -31,7 +31,7 @@ export default function AddFilmMenu({ setViewList, addToWatchlist, ratingSection
             setViewList(true)
         }
         if(instruction === "watchlist") {
-            return addToWatchlist
+            return addToWatchlist()
         }
         if(instruction === "rate") {
             return window.scrollTo({top: ratingSection.current, behavior: 'smooth'})

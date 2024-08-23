@@ -13,7 +13,7 @@ import StarRating from "../Rating";
 import AddFilmMenu from "../AddFilm/menu";
 
 export default function FilmPage() {
-  const [film, setFilm] = useState({title: ""});
+  const [film, setFilm] = useState({id: ""});
   const [review, setReview] = useState(false)
   const [rating, setRating] = useState(0)
   const [addFilm, setAddFilm] = useState(false)
@@ -49,11 +49,16 @@ export default function FilmPage() {
     }
 
   function getCrew(crew, job) {
+    
     const findCrewByJob = crew.find((crewMember) => (crewMember.job === job));
+    
     const screenPlayCredit = crew.find((crewMember) => (crewMember.job === 'Screenplay'))
     if(!findCrewByJob && screenPlayCredit) {
       return <>{checkImage(screenPlayCredit)}
       <h4>{screenPlayCredit.name}</h4></>
+    }
+    if(typeof findCrewByJob === "undefined") {
+      return;
     }
     return <>
       {checkImage(findCrewByJob)}
@@ -105,8 +110,8 @@ export default function FilmPage() {
     setAddFilm(true)
   }
 
-  async function addToWatchlist() {
-    await addFilmToWatchlist(film.id, film.title, film.poster_path, user.id)
+  function addToWatchlist() {
+    addFilmToWatchlist(film.id, film.title, film.poster_path, user.id)
   }
 
   function calculateAvg(avg) {
@@ -142,7 +147,7 @@ export default function FilmPage() {
 
   return (
     <>
-      {film.title.length > 1 && (
+      {typeof film.id === 'number' && (
         <div className="film-page-container">
           <h1>{film.title}</h1>
           <div className="film-page-header">

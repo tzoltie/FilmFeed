@@ -21,12 +21,13 @@ import Button from '../Button'
 import FilmfeedLogo from '../Assets/FilmfeedLogo'
 
 export default function Dashboard() {
-    const { loggedInUser, handleLogout } = useAuth()
+    const { loggedInUser, onLogout } = useAuth()
     const { request, setRequest, setSearchForm, searchResRef } = useSearch()
     const [searchComplete, setSearchComplete] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [userSearch, setUserSearch] = useState(false)
     const navigate = useNavigate()
+    const token = localStorage.getItem('token')
     
     useEffect(() => {
         userLoggedIn()
@@ -37,7 +38,6 @@ export default function Dashboard() {
     })
 
     function userLoggedIn() {
-        const token = localStorage.getItem('token')
         if(token) {
             setIsLoggedIn(true)
         }
@@ -45,7 +45,7 @@ export default function Dashboard() {
 
     function logOut() {
         setIsLoggedIn(false)
-        handleLogout
+        onLogout
         navigate('/')
     }
 
@@ -53,6 +53,9 @@ export default function Dashboard() {
         navigate('/home')
     }
 
+    function goToLists() {
+        navigate('/lists')
+    }
     function onClick() {
         setUserSearch(true)
     }
@@ -109,50 +112,36 @@ export default function Dashboard() {
             </header>
             <aside className='left-sidebar'>
                 <section className='sidebar-nav'>
-                <Link to='/popular' className='link' id='popular-films-link'>
-                    <div className='nav-bar-list-container'>
+                    <div className='nav-bar-list-container' onClick={() => navigate('/popular')}>
                         <PopularReleasesIcon />
                         <h2>Popular Films</h2>
                     </div>
-                </Link>
-                <Link className='link'>
                     <div className='nav-bar-list-container'>
                         <TheatreMaskIcon />
                         <h2>Cinema Greats</h2>
                     </div>
-                </Link>
-                {isLoggedIn &&
+                {typeof token === 'string' &&
                 <>
-                <Link to='/watchlist' className='link'>
-                    <div className='nav-bar-list-container'>
-                        <AddToWatchList />
-                        <h2>Watchlist</h2>
-                    </div>
-                </Link>
-                <Link to="/profile" className='link'>
-                    <div className='nav-bar-list-container'>
-                        <ProfileIcon />
-                        <h2>Profile</h2>
-                    </div>
-                </Link>
-                <Link to='/diary' className='link'>
-                    <div className='nav-bar-list-container'>
-                        <DiaryIcon />
-                        <h2>Diary</h2>
-                    </div>
-                </Link>
-                <Link to='/lists' className='link'>
-                    <div className='nav-bar-list-container'>
-                        <ListIcon />
-                        <h2>Lists</h2>
-                    </div>
-                </Link>
-                <Link to='/' className='link'>
-                    <div className='nav-bar-list-container' onClick={() => logOut()}>
-                        <LogoutIcon className={"logout-btn"}/>
-                        <h2>Logout</h2>
-                    </div>
-                </Link>
+                <div className='nav-bar-list-container' onClick={() => navigate("/watchlist")}>
+                    <AddToWatchList />
+                    <h2>Watchlist</h2>
+                </div>
+                <div className='nav-bar-list-container' onClick={() => navigate("/profile")}>
+                    <ProfileIcon />
+                    <h2>Profile</h2>
+                </div>
+                <div className='nav-bar-list-container' onClick={() => navigate('/diary')}>
+                    <DiaryIcon />
+                    <h2>Diary</h2>
+                </div>
+                <div className='nav-bar-list-container' onClick={() => goToLists()}>
+                    <ListIcon />
+                    <h2>Lists</h2>
+                </div>
+                <div className='nav-bar-list-container' onClick={() => logOut()}>
+                    <LogoutIcon className={"logout-btn"}/>
+                    <h2>Logout</h2>
+                </div>
                 </>
                 }
                 </section>

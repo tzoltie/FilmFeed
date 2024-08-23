@@ -40,7 +40,7 @@ export default function CreateList({ setNewList, setListsUpdated }) {
         })
         setNewList(false)
         setSearchComplete(false)
-        setListsUpdated(true)
+        setListsUpdated(prev => !prev)
         setAddedFilms([])
         setRequest({results: []})
     }
