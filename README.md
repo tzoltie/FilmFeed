@@ -16,6 +16,4 @@ Filmfeed was built with the following technologies:
   <img src="https://adware-technologies.s3.amazonaws.com/uploads/technology/thumbnail/20/express-js.png" alt="Express.js" width="70"/>
   <img src="https://vadosware.io/images/postgres-logo.png" alt="PostgreSQL" width="80"/>
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/2048px-Git_icon.svg.png" alt="Git" width="70"/>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzq550F3AEvCSwoaY7VyO_RniyfWJDI0sJ9w&s" alt="Jasmine"  width="70"/>
-  <img src="https://miro.medium.com/v2/resize:fit:300/1*veOyRtKTPeoqC_VlWNUc5Q.png" alt="Jest" width="70"/>
 </p>
