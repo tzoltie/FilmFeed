@@ -131,8 +131,8 @@ async function apiRequest(method, data, route, auth = true) {
     }
 
     const response = await fetch(`${API_URL}/${route}`, request)
-    const res = response.json()
-    return res
+
+    return response.json()
 }
 
 async function getFilmById(id) {

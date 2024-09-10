@@ -45,6 +45,7 @@ export default function Dashboard() {
 
     function logOut() {
         setIsLoggedIn(false)
+        localStorage.removeItem('user')
         onLogout
         navigate('/')
     }

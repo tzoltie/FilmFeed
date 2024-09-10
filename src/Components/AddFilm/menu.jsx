@@ -31,6 +31,7 @@ export default function AddFilmMenu({ setViewList, addToWatchlist, ratingSection
             setViewList(true)
         }
         if(instruction === "watchlist") {
+            toggleMenu(false)
             return addToWatchlist()
         }
         if(instruction === "rate") {
