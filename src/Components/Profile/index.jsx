@@ -92,6 +92,8 @@ export default function Profile() {
     }
   };
 
+  console.log(userProfile)
+
   return (
     <div className="profile-page-container">
       <div className="profile-page-card">
@@ -214,13 +216,14 @@ export default function Profile() {
               <p>Recently watched</p>
               <ul className="profile-films-list">
                 {Array.from({ length: 4}).map((_, index) => {
-                  const latest = userProfile.data.user.reviews[index]
+                  const latest = userProfile.data.user.reviews.toReversed()[index]
                     return latest ? (
+
                       <li className="users-profile-films-list" key={latest.id}>
                           <img
                             src={`https://image.tmdb.org/t/p/w500${latest.film.poster}`}
                             className="list-image"
-                            onClick={() => goToFilm(latest.id)}
+                            onClick={() => goToFilm(latest.filmId)}
                           />
                           <div className="user-rating-container">
                             <StarRating userRating={latest.rating} />
