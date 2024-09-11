@@ -221,3 +221,7 @@
 .add-to-favourite-list-item .search-result-list-item .search-result-title-container p {
     text-align: start;
 }
+
+.profile-photo-form {
+    background-color: #96B6C5;
+}

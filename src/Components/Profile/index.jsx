@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styling.css";
 import {
     addUserFavouriteFilms,
@@ -23,11 +23,11 @@ export default function Profile() {
   const [addFavourite, setAddFavourite] = useState(false);
   const [userPicks, setUserPicks] = useState([]);
   const { request, setRequest, setSearchForm, searchResRef } = useSearch();
-  const [emptyRecent, setEmptyRecent] = useState([{}, {}, {}, {}]);
   const [addImage, setAddImage] = useState(false);
   const [profileURL, setProfileURL] = useState({
     url: "",
   });
+  const fileUploadRef = useRef()
   const user = JSON.parse(localStorage.getItem('user'))
 
   useEffect(() => {
@@ -42,13 +42,7 @@ export default function Profile() {
 
   const checkProfileImg = (image) => {
     if (typeof image !== "string") {
-      return (
-        <Button
-          text={<AddIcon />}
-          className="add-profile-pic-btn"
-          onClick={() => addProfilePic()}
-        />
-      );
+      return;
     }
     return <img src={image} className="profile-pic" />;
   };
@@ -57,15 +51,18 @@ export default function Profile() {
     setAddImage(true);
   };
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setProfileURL({ [name]: value });
+
+  const handleImgUpload = (e) => {
+    e.preventDefault()
+    fileUploadRef.current.click()
   };
 
-  const next = () => {
-    addProfileImage(user.id, profileURL.url)
-    setAddImage(false);
-  };
+  const uploadImageDisplay = () => {
+    const uploadedImage = fileUploadRef.current.files[0]
+    const cachedURL = URL.createObjectURL(uploadedImage)
+    checkProfileImg(cachedURL)
+    setAddImage(prev => !prev)
+  }
 
   const goToFilm = (filmId) => {
     navigate(`/${filmId}`);
@@ -92,7 +89,6 @@ export default function Profile() {
     }
   };
 
-  console.log(userProfile)
 
   return (
     <div className="profile-page-container">
@@ -104,29 +100,21 @@ export default function Profile() {
           <div className="profile-photo-container">
             <div className="profile-photo">
               {!addImage && checkProfileImg(userProfile.data.user.profile.profilePic)}
+              <form className="profile-photo-form">
+                <input 
+                  type="file"
+                  className="profile-pic-input"
+                  hidden
+                  ref={fileUploadRef}
+                  onChange={uploadImageDisplay}
+                />
+                <Button
+                  text={<AddIcon />}
+                  className="add-profile-pic-btn"
+                  onClick={handleImgUpload}
+                />
+              </form>
             </div>
-            {addImage && (
-              <div className="profile-pic-popup-container">
-                <div className="profile-pic-popup">
-                  <form>
-                    <input
-                      type="text"
-                      name="url"
-                      placeholder="URL:"
-                      value={profileURL.url}
-                      onChange={onChange}
-                      className="profile-pic-input"
-                    />
-                    <Button
-                      text={"Add"}
-                      className="add-profile-btn"
-                      type="submit"
-                      onClick={() => next()}
-                    />
-                  </form>
-                </div>
-              </div>
-            )}
             <div className="username">
               <h2>{userProfile.data.user.username}</h2>
             </div>
