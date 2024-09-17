@@ -55,15 +55,21 @@ export default function FilmPage() {
     
     const screenPlayCredit = crew.find((crewMember) => (crewMember.job === 'Screenplay'))
     if(!findCrewByJob && screenPlayCredit) {
-      return <>{checkImage(screenPlayCredit)}
-      <h4>{screenPlayCredit.name}</h4></>
+      return <>
+      <Link to={`/${screenPlayCredit.id}/cast&crew`} className="link">
+        {checkImage(screenPlayCredit)}
+        <h4>{screenPlayCredit.name}</h4>
+      </Link>
+      </>
     }
     if(typeof findCrewByJob === "undefined") {
       return;
     }
     return <>
+    <Link to={`/${findCrewByJob.id}/cast&crew`} className="link">
       {checkImage(findCrewByJob)}
       <h4>{findCrewByJob.name}</h4>
+    </Link>
     </>
   }
 
@@ -144,7 +150,6 @@ export default function FilmPage() {
     const usersRating = reviews.find((rating) => rating.userId === user.id)
     return usersRating ? <StarRating userRating={usersRating.rating} styling={"user-rating-stars"}/> : <p></p>
   }
-console.log(film)
 
   return (
     <>
@@ -258,6 +263,7 @@ console.log(film)
           {addFilm &&
             <AddFilmMenu setViewList={setViewList} addToWatchlist={addToWatchlist} ratingSection={ratingSection} toggleMenu={setAddFilm} poster={film.poster_path}/>
           }
+          {typeof film.similar !== 'undefined' &&
           <div className="similar-list-container">
             <div>
               <div>
@@ -270,7 +276,7 @@ console.log(film)
                 </li>)}
               </ul>
             </div>
-          </div>
+          </div>}
         </div>
       )}
     </>

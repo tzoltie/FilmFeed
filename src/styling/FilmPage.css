@@ -97,6 +97,7 @@
 
 .cast-box, .crew-box {
     width: 100vw;
+    padding-bottom: 1rem;
 }
 
 .cast-list::-webkit-scrollbar, .crew-list::-webkit-scrollbar, .similar-films-list::-webkit-scrollbar {
