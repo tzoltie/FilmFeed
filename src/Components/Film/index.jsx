@@ -11,6 +11,7 @@ import Star from "../Assets/Star/star";
 import Review from "../Review";
 import StarRating from "../Rating";
 import AddFilmMenu from "../AddFilm/menu";
+import FilmCard from "../Feed/FilmCard/FilmCard";
 
 export default function FilmPage() {
   const [film, setFilm] = useState({id: ""});
@@ -143,7 +144,7 @@ export default function FilmPage() {
     const usersRating = reviews.find((rating) => rating.userId === user.id)
     return usersRating ? <StarRating userRating={usersRating.rating} styling={"user-rating-stars"}/> : <p></p>
   }
-
+console.log(film)
 
   return (
     <>
@@ -257,6 +258,19 @@ export default function FilmPage() {
           {addFilm &&
             <AddFilmMenu setViewList={setViewList} addToWatchlist={addToWatchlist} ratingSection={ratingSection} toggleMenu={setAddFilm} poster={film.poster_path}/>
           }
+          <div className="similar-list-container">
+            <div>
+              <div>
+                <h2>Similar Films</h2>
+              </div>
+              <ul className="similar-films-list">
+                {film.similar.results.map((film) =>
+                <li key={film.id}>
+                  <FilmCard film={film} key={film.id} styling={"feed-card"}/>
+                </li>)}
+              </ul>
+            </div>
+          </div>
         </div>
       )}
     </>

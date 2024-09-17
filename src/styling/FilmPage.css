@@ -99,18 +99,18 @@
     width: 100vw;
 }
 
-.cast-list::-webkit-scrollbar, .crew-list::-webkit-scrollbar {
+.cast-list::-webkit-scrollbar, .crew-list::-webkit-scrollbar, .similar-films-list::-webkit-scrollbar {
     display: none;
 }
 
-.cast_crew-container {
+.cast_crew-container, .similar-list-container {
     max-width: 100vw;
     margin-right: 0;
     padding: 0;
 }
 
 
-.cast-list, .crew-list {
+.cast-list, .crew-list, .similar-films-list {
     overflow-x: scroll;
     overflow-y: hidden;
     -ms-overflow-style: none;
@@ -216,4 +216,11 @@
 .avg-user-rating-box {
     display: grid;
     gap: 1rem;
+}
+
+.similar-list-container {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

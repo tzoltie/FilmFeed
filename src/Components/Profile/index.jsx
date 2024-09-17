@@ -14,7 +14,6 @@ import StarRating from "../Rating";
 import Search from "../Search";
 import useSearch from "../hooks/useSearch";
 import FilmCard from "../Feed/FilmCard/FilmCard";
-import { Blob } from "buffer";
 
 export default function Profile() {
   const { loggedInUser } = useAuth();
