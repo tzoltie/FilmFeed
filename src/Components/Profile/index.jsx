@@ -14,6 +14,7 @@ import StarRating from "../Rating";
 import Search from "../Search";
 import useSearch from "../hooks/useSearch";
 import FilmCard from "../Feed/FilmCard/FilmCard";
+import { Blob } from "buffer";
 
 export default function Profile() {
   const { loggedInUser } = useAuth();
@@ -24,9 +25,6 @@ export default function Profile() {
   const [userPicks, setUserPicks] = useState([]);
   const { request, setRequest, setSearchForm, searchResRef } = useSearch();
   const [addImage, setAddImage] = useState(false);
-  const [profileURL, setProfileURL] = useState({
-    url: "",
-  });
   const fileUploadRef = useRef()
   const user = JSON.parse(localStorage.getItem('user'))
 
@@ -42,25 +40,21 @@ export default function Profile() {
 
   const checkProfileImg = (image) => {
     if (typeof image !== "string") {
+      setAddImage(prev => !prev)
       return;
     }
-    return <img src={image} className="profile-pic" />;
-  };
-
-  const addProfilePic = () => {
-    setAddImage(true);
-  };
-
+    return <img src={image} className="profile-pic" onClick={() => setAddImage(prev => !prev)}/>;
+  }
 
   const handleImgUpload = (e) => {
     e.preventDefault()
     fileUploadRef.current.click()
   };
 
-  const uploadImageDisplay = () => {
+  const uploadImageDisplay = async () => {
     const uploadedImage = fileUploadRef.current.files[0]
     const cachedURL = URL.createObjectURL(uploadedImage)
-    checkProfileImg(cachedURL)
+    addProfileImage(user.id, cachedURL)
     setAddImage(prev => !prev)
   }
 
@@ -89,7 +83,6 @@ export default function Profile() {
     }
   };
 
-
   return (
     <div className="profile-page-container">
       <div className="profile-page-card">
@@ -99,8 +92,8 @@ export default function Profile() {
         {userProfile.status === "success" && (
           <div className="profile-photo-container">
             <div className="profile-photo">
-              {!addImage && checkProfileImg(userProfile.data.user.profile.profilePic)}
-              <form className="profile-photo-form">
+              {!addImage ? checkProfileImg(userProfile.data.user.profile.profilePic) : (
+                <form className="profile-photo-form">
                 <input 
                   type="file"
                   className="profile-pic-input"
@@ -114,6 +107,7 @@ export default function Profile() {
                   onClick={handleImgUpload}
                 />
               </form>
+              )}
             </div>
             <div className="username">
               <h2>{userProfile.data.user.username}</h2>
