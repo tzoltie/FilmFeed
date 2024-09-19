@@ -1,16 +1,12 @@
 import search from '../../assets/svg/search.svg'
 import '../../styling/dashboard.css'
-import film from '../../assets/svg/filmreel.svg'
-import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useRef, useState } from 'react'
-import user from '../../assets/svg/userIcon.svg'
-import logout from '../../assets/svg/logout.svg'
+import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import Search from '../Search'
 import FilmCard from '../Feed/FilmCard/FilmCard'
 import useSearch from '../hooks/useSearch'
 import AddToWatchList from '../Assets/AddToWatchlist'
-import UserIcon from '../Assets/UserIcon'
 import DiaryIcon from '../Assets/Diary'
 import ListIcon from '../Assets/List'
 import ProfileIcon from '../Assets/Profile'
@@ -19,6 +15,7 @@ import PopularReleasesIcon from '../Assets/Popular'
 import LogoutIcon from '../Assets/Logout'
 import Button from '../Button'
 import FilmfeedLogo from '../Assets/FilmfeedLogo'
+
 
 export default function Dashboard() {
     const { loggedInUser, onLogout } = useAuth()

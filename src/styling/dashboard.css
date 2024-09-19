@@ -20,6 +20,7 @@
     position: -webkit-sticky;
     top: 1%;
     left: 0;
+    
 }
 
 .sidebar-nav {
@@ -173,4 +174,29 @@
 .header-title {
     background-color: #96B6C5;
     color: #213547;
+}
+
+@media screen and (max-width: 430px) {
+    .app-container {
+        grid-template: 
+        'header' 7rem
+        'main' 1fr
+        'footer' 40rem/
+        1fr;
+    }
+    .header {
+        margin: 0.12rem;
+    }
+    .left-sidebar {
+        display: none;
+    }
+    .login-page {
+        margin: 0 !important;
+        height: 100%;
+        overflow: hidden;
+    }
+    .login-form {
+        flex-direction: column;
+        gap: 2rem !important;
+    }
 }
