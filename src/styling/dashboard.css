@@ -123,6 +123,12 @@
     margin-top: 2rem;
 }
 
+.search-results-container-dashboard-mobile {
+    height: fit-content;
+    width: 100%;
+    margin-top: 2.5rem;
+}
+
 .search-results-list-dashboard {
     padding: 1rem;
     background-color: #FF5733;
@@ -198,5 +204,8 @@
     .login-form {
         flex-direction: column;
         gap: 2rem !important;
+    }
+    .footer {
+        display: none;
     }
 }

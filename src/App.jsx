@@ -16,6 +16,7 @@ import Diary from './Components/Diary/index.jsx';
 import PrivateRoutes from './Components/Redirect/index.jsx';
 import List from './Components/List/index.jsx';
 import Profile from './Components/Profile/index.jsx';
+import SearchResultsDash from './Components/Dashboard/header/searchResults.jsx';
 
 function App() {
 
@@ -84,6 +85,10 @@ function App() {
               path='/profile'
               element={<Profile />}/>
             </Route>
+            <Route
+              path='/search-result'
+              element={<SearchResultsDash />}
+            />
           </Routes>
         </SearchProvider>
       </AuthProvider>

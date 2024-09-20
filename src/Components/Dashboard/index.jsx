@@ -1,10 +1,8 @@
-import search from '../../assets/svg/search.svg'
 import '../../styling/dashboard.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import Search from '../Search'
-import FilmCard from '../Feed/FilmCard/FilmCard'
 import useSearch from '../hooks/useSearch'
 import AddToWatchList from '../Assets/AddToWatchlist'
 import DiaryIcon from '../Assets/Diary'
@@ -15,12 +13,16 @@ import PopularReleasesIcon from '../Assets/Popular'
 import LogoutIcon from '../Assets/Logout'
 import Button from '../Button'
 import FilmfeedLogo from '../Assets/FilmfeedLogo'
+import SearchResults from '../Search/searchResults'
+import { useMediaQuery } from 'react-responsive'
+import LogoBtn from './header/logoBtn'
+import Searchbar from './header/searchbar'
+import MobileSearchbar from './header/mobileSearchbar'
 
 
 export default function Dashboard() {
     const { loggedInUser, onLogout } = useAuth()
     const { request, setRequest, setSearchForm, searchResRef } = useSearch()
-    const [searchComplete, setSearchComplete] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [userSearch, setUserSearch] = useState(false)
     const navigate = useNavigate()
@@ -33,6 +35,9 @@ export default function Dashboard() {
             document.removeEventListener("mousedown", handleClickOutside)
         }
     })
+
+    const isDesktop = useMediaQuery({query: '(min-width: 1224px)'})
+    const isMobile = useMediaQuery({ query: '(max-width: 430px)'})
 
     function userLoggedIn() {
         if(token) {
@@ -47,21 +52,14 @@ export default function Dashboard() {
         navigate('/')
     }
 
-    function goHome() {
-        navigate('/home')
-    }
-
     function goToLists() {
         navigate('/lists')
     }
     function onClick() {
-        setUserSearch(true)
-    }
+        if(isMobile) {
 
-    function searchResOnClick() {
-        setRequest({results: []})
-        setSearchForm(prevForm => ({ ...prevForm, filmTitle: "" }))
-        setSearchComplete(true)
+        }
+        setUserSearch(true)
     }
 
     const handleClickOutside = (e) => {
@@ -78,35 +76,17 @@ export default function Dashboard() {
     return (
         <>
             <header className="header">
-                <section 
-                className="logo-container">
-                    <Button text={
-                        <div className='logo-text-box'>
-                            <FilmfeedLogo />
-                            <h1 className='header-title'>Filmfeed</h1>
-                        </div>
-                    } className={"logo-btn"} onClick={() => goHome()}/>
-                </section>
-                <section className='search-bar-container-dashboard' ref={searchResRef}>
-                    {!userSearch &&
-                    <div className="search-bar-icon-container">
-                        <img 
-                        src={search} 
-                        className='icon' 
-                        id='search'
-                        onClick={onClick}/>
-                    </div>
-                    }
-                    {userSearch &&
-                    <Search />}
-                    {request.results.length > 0 && userSearch &&
-                    <div className="search-results-container-dashboard">
-                        <ul className="search-results-list-dashboard" onClick={() => searchResOnClick()}>
-                            {request.results.map((film) => 
-                            <FilmCard film={film} key={film.id} styling={"search-result"}/>)}
-                        </ul>
-                    </div>}
-                </section>
+                {isDesktop &&
+                <>
+                <LogoBtn />
+                <Searchbar searchResRef={searchResRef} userSearch={userSearch} request={request} onClick={onClick}/>
+                </>}
+                {isMobile &&
+                <>
+                <LogoBtn />
+                <MobileSearchbar searchResRef={searchResRef} userSearch={userSearch} request={request} onClick={onClick}/>
+                </>
+                }
             </header>
             <aside className='left-sidebar'>
                 <section className='sidebar-nav'>
