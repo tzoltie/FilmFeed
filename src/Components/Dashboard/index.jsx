@@ -2,7 +2,6 @@ import '../../styling/dashboard.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import useAuth from '../hooks/useAuth'
-import Search from '../Search'
 import useSearch from '../hooks/useSearch'
 import AddToWatchList from '../Assets/AddToWatchlist'
 import DiaryIcon from '../Assets/Diary'
@@ -11,9 +10,6 @@ import ProfileIcon from '../Assets/Profile'
 import TheatreMaskIcon from '../Assets/TheatreMasks'
 import PopularReleasesIcon from '../Assets/Popular'
 import LogoutIcon from '../Assets/Logout'
-import Button from '../Button'
-import FilmfeedLogo from '../Assets/FilmfeedLogo'
-import SearchResults from '../Search/searchResults'
 import { useMediaQuery } from 'react-responsive'
 import LogoBtn from './header/logoBtn'
 import Searchbar from './header/searchbar'
@@ -55,9 +51,18 @@ export default function Dashboard() {
     function goToLists() {
         navigate('/lists')
     }
+
+    const appTitle = document.getElementsByClassName("header-title")
+    const mobileDashHeader = document.getElementsByClassName("header")
+    const mobileDashSearchbar = document.getElementsByClassName("search-bar-container-dashboard")
+    const mobileDashTextInput = document.getElementsByClassName("search-films-searchbar")
+
     function onClick() {
         if(isMobile) {
-
+            appTitle[0].style.display = "none"
+            mobileDashHeader[0].style.gridTemplateColumns = "0.2fr 1fr"
+            mobileDashSearchbar[0].style.width = "100%"
+            // mobileDashTextInput[0].style.width = "91%"
         }
         setUserSearch(true)
     }
@@ -70,6 +75,9 @@ export default function Dashboard() {
             setUserSearch(false)
             setSearchForm(prevForm => ({ ...prevForm, filmTitle: "" }))
             setRequest({results: []})
+            appTitle[0].style.display = ""
+            mobileDashHeader[0].style.gridTemplateColumns = "1fr 1fr"
+            mobileDashSearchbar[0].style.width = "85%"
         }
     }
 
