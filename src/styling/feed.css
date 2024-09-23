@@ -36,6 +36,7 @@
 
 .list-title {
     position: absolute;
+    z-index: 1;
 }
 
 .link{

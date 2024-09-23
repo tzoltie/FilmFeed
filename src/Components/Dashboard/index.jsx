@@ -62,6 +62,7 @@ export default function Dashboard() {
             appTitle[0].style.display = "none"
             mobileDashHeader[0].style.gridTemplateColumns = "0.2fr 1fr"
             mobileDashSearchbar[0].style.width = "100%"
+            console.log(mobileDashTextInput[1])
             // mobileDashTextInput[0].style.width = "91%"
         }
         setUserSearch(true)

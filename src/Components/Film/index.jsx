@@ -12,6 +12,9 @@ import Review from "../Review";
 import StarRating from "../Rating";
 import AddFilmMenu from "../AddFilm/menu";
 import FilmCard from "../Feed/FilmCard/FilmCard";
+import { useMediaQuery } from "react-responsive";
+import FilmDetails from "./Details";
+import StarRatingBtn from "../Rating/starRatingBtns";
 
 export default function FilmPage() {
   const [film, setFilm] = useState({id: ""});
@@ -29,7 +32,11 @@ export default function FilmPage() {
   useEffect(() => {
     getFilmById(`${urlPararms.id}`).then(setFilm)
     getUserRating(`${urlPararms.id}`).then(setUserRating)
+    .finally(mobileStyling)
   }, [urlPararms, review]);
+
+  const isDesktop = useMediaQuery({query: '(min-width: 1224px)'})
+  const isMobile = useMediaQuery({ query: '(max-width: 430px)'})
 
     function checkSynopsis(film) {
       if (typeof film !== 'object') {
@@ -71,14 +78,6 @@ export default function FilmPage() {
       <h4>{findCrewByJob.name}</h4>
     </Link>
     </>
-  }
-
-  function updateToCurrency(number) {
-    if(number === 0) {
-      return "unavailable"
-    }
-    let value = Intl.NumberFormat('en-Us', { style: 'currency', currency: 'USD'}).format(number)
-    return value
   }
 
   function checkImage(cast) {
@@ -151,6 +150,19 @@ export default function FilmPage() {
     return usersRating ? <StarRating userRating={usersRating.rating} styling={"user-rating-stars"}/> : <p></p>
   }
 
+  function mobileStyling() {
+    if(!isMobile) {
+      return;
+    } else {
+      document.getElementsByClassName("film-page-header")[0].style.display = "flex"
+      document.getElementsByClassName("star_0-rating-btn")[0].style.padding = "0.6em 1em"
+      document.getElementsByClassName("star_1-rating-btn")[0].style.padding = "0.6em 1em"
+      document.getElementsByClassName("star_2-rating-btn")[0].style.padding = "0.6em 1em"
+      document.getElementsByClassName("star_3-rating-btn")[0].style.padding = "0.6em 1em"
+      document.getElementsByClassName("star_4-rating-btn")[0].style.padding = "0.6em 1em"
+    }
+  }
+
   return (
     <>
       {typeof film.id === 'number' && (
@@ -159,15 +171,30 @@ export default function FilmPage() {
           <div className="film-page-header">
             <section className="poster-title-box">
               <h4 id="release-date">{convertReleaseDate(film.release_date)}</h4>
+              {isDesktop ?
+              <>
               <img
                 src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
                 alt={`${film.title} poster`}
                 className="poster"
                 id="page-poster"
               />
+                <p id="synopsis">{film.overview}</p>
+                <p id="synopsis">{checkSynopsis(film)}</p>
+              </> :
+              <>
+              <img 
+              src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+              alt={`${film.title} poster`}
+              className="poster"
+              id="page-poster-mobile"
+              />
               <p id="synopsis">{film.overview}</p>
               <p id="synopsis">{checkSynopsis(film)}</p>
+              </>
+              }
             </section>
+            {isDesktop &&
             <section className="director-writer-box">
               <section>
                 <h4>Director</h4>
@@ -177,70 +204,33 @@ export default function FilmPage() {
                 <h4>Writer</h4>
                 {getCrew(film.credits.crew, "Writer")}
               </section>
-            </section>
+            </section>}
           </div>
           <div className="header-footer">
             <section className="rating-box">
               <div>
                 <h2>Rating</h2>
               </div>
-              <div>
-                <Button text={<Star />} className={'star_0-rating-btn'} onClick={() => onClick("1")}/>
-                <Button text={<Star />} className={"star_1-rating-btn"} onClick={() => onClick("2")}/>
-                <Button text={<Star />} className={"star_2-rating-btn"} onClick={() => onClick("3")}/>
-                <Button text={<Star />} className={"star_3-rating-btn"} onClick={() => onClick("4")}/>
-                <Button text={<Star />} className={"star_4-rating-btn"} onClick={() => onClick("5")}/>
-              </div>
+              <StarRatingBtn onClick={onClick}/>
               <div className="avg-user-rating-box">
                 <p>Avg rating: {calculateAvg(film.vote_average)}</p>
                 {userRating.status === "success" && userRating.data.reviews.length > 0 &&
                 <>
                 {getRating()}
                 <p>Last rating:</p>
-                </>
-                
-                }
+                </>}
               </div>
               {review && 
                 <Review rating={rating} filmId={film.id} film={{poster: film.poster_path, title: film.title}} setReview={setReview} ratingSection={ratingSection}/>
               }
             </section>
-            <div className="film-details-box">
-              <section className="runtime-box">
-                <h3>Runtime</h3>
-                <p>{`${film.runtime} mins`}</p>
-              </section>
-              <section className="genre-box">
-                <h3>Genres</h3>
-                <ul id="genre">
-                {typeof film === 'object' ? (
-                  <li></li>
-                ) : (  
-                film.genres.map((i) => 
-                  <li key={i.id}>{i.name}</li>))}
-                </ul>
-              </section>
-              <section className="status-box">
-                <h3>Status</h3>
-                <p>{film.status}</p>
-              </section>
-              <section className="budget-box">
-                <h3>Budget</h3>
-                <p>{updateToCurrency(film.budget)}</p>
-              </section>
-              <section className="revenue-box">
-                <h3>Revenue</h3>
-                <p>{updateToCurrency(film.revenue)}</p>
-              </section>
-              <section className="origin-box">
-                <h3>Country of origin</h3>
-                {film.length === 0 ? (
-                  <p></p>
-                ) : (
-                  <p>{film.origin_country[0]}</p>
-                )} 
-              </section>
-            </div>
+            {isDesktop ? 
+            <FilmDetails film={film}/> : 
+            <div className="film-details-container-mobile">
+              <div className="film-details-heading">
+                <h2>Details</h2>
+              </div>
+            </div>}
           </div>
           {/* <div className="images-videos-container">
             <Link to={`/${film.id}/images`}

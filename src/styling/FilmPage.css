@@ -225,3 +225,13 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+.film-details-container-mobile {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.film-details-heading:focus {
+    border-bottom: 2rem solid #FF5733;
+}
