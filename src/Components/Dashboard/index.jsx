@@ -1,27 +1,20 @@
 import '../../styling/dashboard.css'
-import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import useSearch from '../hooks/useSearch'
-import AddToWatchList from '../Assets/AddToWatchlist'
-import DiaryIcon from '../Assets/Diary'
-import ListIcon from '../Assets/List'
-import ProfileIcon from '../Assets/Profile'
-import TheatreMaskIcon from '../Assets/TheatreMasks'
-import PopularReleasesIcon from '../Assets/Popular'
-import LogoutIcon from '../Assets/Logout'
 import { useMediaQuery } from 'react-responsive'
 import LogoBtn from './header/logoBtn'
 import Searchbar from './header/searchbar'
 import MobileSearchbar from './header/mobileSearchbar'
+import Menu from '../Assets/Menu/menu'
+import Sidebar from './sidebar'
+import MobileMenu from './header/mobileMenu'
 
 
 export default function Dashboard() {
-    const { loggedInUser, onLogout } = useAuth()
+    const { loggedInUser, setIsLoggedIn } = useAuth()
     const { request, setRequest, setSearchForm, searchResRef } = useSearch()
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [userSearch, setUserSearch] = useState(false)
-    const navigate = useNavigate()
     const token = localStorage.getItem('token')
     
     useEffect(() => {
@@ -40,17 +33,7 @@ export default function Dashboard() {
             setIsLoggedIn(true)
         }
     }
-
-    function logOut() {
-        setIsLoggedIn(false)
-        localStorage.removeItem('user')
-        onLogout
-        navigate('/')
-    }
-
-    function goToLists() {
-        navigate('/lists')
-    }
+    
 
     const appTitle = document.getElementsByClassName("header-title")
     const mobileDashHeader = document.getElementsByClassName("header")
@@ -60,9 +43,9 @@ export default function Dashboard() {
     function onClick() {
         if(isMobile) {
             appTitle[0].style.display = "none"
-            mobileDashHeader[0].style.gridTemplateColumns = "0.2fr 1fr"
-            mobileDashSearchbar[0].style.width = "100%"
-            console.log(mobileDashTextInput[1])
+            mobileDashHeader[0].style.gridTemplateColumns = "0.1fr 0.1fr 1fr"
+            mobileDashSearchbar[0].style.width = "95%"
+            // console.log(mobileDashTextInput[0])
             // mobileDashTextInput[0].style.width = "91%"
         }
         setUserSearch(true)
@@ -71,14 +54,21 @@ export default function Dashboard() {
     const handleClickOutside = (e) => {
         if(
             searchResRef.current &&
-            !searchResRef.current.contains(e.target)
+            !searchResRef.current.contains(e.target) && isMobile
         ) {
             setUserSearch(false)
             setSearchForm(prevForm => ({ ...prevForm, filmTitle: "" }))
             setRequest({results: []})
             appTitle[0].style.display = ""
-            mobileDashHeader[0].style.gridTemplateColumns = "1fr 1fr"
+            mobileDashHeader[0].style.gridTemplateColumns = "0.1fr 1fr 1fr"
             mobileDashSearchbar[0].style.width = "85%"
+        } else if(
+            searchResRef.current &&
+            !searchResRef.current.contains(e.target)
+        ) {
+            setUserSearch(false)
+            setSearchForm(prevForm => ({ ...prevForm, filmTitle: "" }))
+            setRequest({results: []})   
         }
     }
 
@@ -92,46 +82,14 @@ export default function Dashboard() {
                 </>}
                 {isMobile &&
                 <>
+                <MobileMenu />
                 <LogoBtn />
                 <MobileSearchbar searchResRef={searchResRef} userSearch={userSearch} request={request} onClick={onClick}/>
                 </>
                 }
             </header>
             <aside className='left-sidebar'>
-                <section className='sidebar-nav'>
-                    <div className='nav-bar-list-container' onClick={() => navigate('/popular')}>
-                        <PopularReleasesIcon />
-                        <h2>Popular Films</h2>
-                    </div>
-                    <div className='nav-bar-list-container'>
-                        <TheatreMaskIcon />
-                        <h2>Cinema Greats</h2>
-                    </div>
-                {typeof token === 'string' &&
-                <>
-                <div className='nav-bar-list-container' onClick={() => navigate("/watchlist")}>
-                    <AddToWatchList />
-                    <h2>Watchlist</h2>
-                </div>
-                <div className='nav-bar-list-container' onClick={() => navigate("/profile")}>
-                    <ProfileIcon />
-                    <h2>Profile</h2>
-                </div>
-                <div className='nav-bar-list-container' onClick={() => navigate('/diary')}>
-                    <DiaryIcon />
-                    <h2>Diary</h2>
-                </div>
-                <div className='nav-bar-list-container' onClick={() => goToLists()}>
-                    <ListIcon />
-                    <h2>Lists</h2>
-                </div>
-                <div className='nav-bar-list-container' onClick={() => logOut()}>
-                    <LogoutIcon className={"logout-btn"}/>
-                    <h2>Logout</h2>
-                </div>
-                </>
-                }
-                </section>
+                <Sidebar />
             </aside>
             <footer className='footer'>
 

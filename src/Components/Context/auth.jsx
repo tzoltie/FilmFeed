@@ -10,6 +10,7 @@ function AuthProvider({ children }) {
     const location = useLocation()
     const [loggedInUser, setloggedInUser] = useState(null)
     const [token, setToken] = useState(null)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token')
@@ -103,7 +104,8 @@ function AuthProvider({ children }) {
         onLogout: handleLogout,
         onRegister: handleRegister,
         setToken,
-        setloggedInUser
+        setloggedInUser,
+        setIsLoggedIn
     }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

@@ -42,7 +42,7 @@
     max-width: 100%;
 }
 
-.search-bar-container-dashboard, .logo-container, .search-bar-icon-container {
+.search-bar-container-dashboard, .logo-container, .search-bar-icon-container, .mobile-menu-container {
     background-color: #96B6C5;
 }
 
@@ -157,6 +157,7 @@
 .logout-btn, .logo-btn {
     background-color: #96B6C5;
     padding: 0;
+    height: fit-content;
 }
 
 .logo-btn:hover {
@@ -183,6 +184,18 @@
     color: #213547;
 }
 
+.mobile-menu-dropdown {
+    background-color: #96B6C5;
+    fill: #213547;
+    text-align: center;
+}
+
+.mobile-menu-container {
+    display: flex;
+    place-content: center;
+    height: fit-content;
+}
+
 @media screen and (max-width: 430px) {
     .app-container {
         grid-template: 
@@ -193,6 +206,7 @@
     }
     .header {
         margin: 0.12rem;
+        grid-template-columns: 0.1fr 1fr 1fr;
     }
     .left-sidebar {
         display: none;

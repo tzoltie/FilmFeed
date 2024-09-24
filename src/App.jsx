@@ -17,6 +17,7 @@ import PrivateRoutes from './Components/Redirect/index.jsx';
 import List from './Components/List/index.jsx';
 import Profile from './Components/Profile/index.jsx';
 import SearchResultsDash from './Components/Dashboard/header/searchResults.jsx';
+import MobileMenuDropDown from './Components/MobileDropDownMenu/index.jsx';
 
 function App() {
 
@@ -88,6 +89,10 @@ function App() {
             <Route
               path='/search-result'
               element={<SearchResultsDash />}
+            />
+            <Route 
+              path='/menu'
+              element={<MobileMenuDropDown />}
             />
           </Routes>
         </SearchProvider>

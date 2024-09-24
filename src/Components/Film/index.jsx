@@ -179,7 +179,6 @@ export default function FilmPage() {
                 className="poster"
                 id="page-poster"
               />
-                <p id="synopsis">{film.overview}</p>
                 <p id="synopsis">{checkSynopsis(film)}</p>
               </> :
               <>
