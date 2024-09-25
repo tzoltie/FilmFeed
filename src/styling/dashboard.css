@@ -33,7 +33,7 @@
     border-radius: 20px;
 }
 
-.left-sidebar h2 {
+.left-sidebar h2, .sidebar-nav h2 {
     background-color: #96B6C5;
 }
 
@@ -192,8 +192,9 @@
 
 .mobile-menu-container {
     display: flex;
-    place-content: center;
-    height: fit-content;
+    place-self: center;
+    height: 50%;
+    padding: 0.5rem;
 }
 
 @media screen and (max-width: 430px) {
@@ -208,9 +209,31 @@
         margin: 0.12rem;
         grid-template-columns: 0.1fr 1fr 1fr;
     }
+    .logo-container {
+        margin: 0!important;
+    }
+
     .left-sidebar {
         display: none;
     }
+
+    .drop-down-menu-container {
+        margin-top: 2rem;
+    }
+
+    .nav-bar-list-container {
+        border-bottom: 2px solid #FF5733;
+        background-color: #F1F0E8;
+    }
+
+    .nav-bar-list-container > * {
+        background-color: #F1F0E8 !important;
+    }
+
+    .sidebar-nav {
+        background-color: #F1F0E8;
+    }
+
     .login-page {
         margin: 0 !important;
         height: 100%;

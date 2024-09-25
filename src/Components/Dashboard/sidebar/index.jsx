@@ -24,6 +24,7 @@ export default function Sidebar() {
       navigate('/')
   }
 
+
   return (
     <section className="sidebar-nav">
       <div
