@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import "./styling.css"
 import { useState } from "react"
-import FilmRating from "../Rating/filmRating"
+import { useMediaQuery } from "react-responsive"
+import ListPageList from "./listPageList"
 
 export default function ListPage({list}) {
     const [showRating, setShowRating] = useState(false)
@@ -10,6 +11,8 @@ export default function ListPage({list}) {
     const onClick = (filmId) => {
         navigate(`/${filmId}`)
     }
+    const isDesktop = useMediaQuery({query: '(min-width: 1224px)'})
+    const isMobile = useMediaQuery({ query: '(max-width: 430px)'})
 
     return (
         <div className="list-page-container">
@@ -21,17 +24,10 @@ export default function ListPage({list}) {
             <main>
                 <div className="list-page-main">
                     {typeof list[0].filmListId === 'undefined' ? (
-                    <ul className="list-page-list">
-                        {list.map((film) => 
-                        <li key={film.id} onClick={() => onClick(film.id)} className="list-page-list-item" onMouseEnter={() => setShowRating(true)} onMouseLeave={() => setShowRating(false)}>
-                            <img 
-                            src={`https://image.tmdb.org/t/p/w500${film.poster}`}
-                            className="list-image"
-                            id="watchlist-image"
-                            />
-                            {showRating && <FilmRating film={film}/>}
-                        </li>)}
-                    </ul>) : (
+                    isDesktop ?
+                    <ListPageList list={list} onClick={onClick} showRating={showRating} setShowRating={setShowRating} styling={"list-page-list"} posterId={"watchlist-image"}/> : 
+                    <ListPageList list={list} onClick={onClick} showRating={showRating} setShowRating={setShowRating} styling={"list-page-list-mobile"} posterId={"watchlist-image-mobile"}/>
+                ) : (
                     <ul className="list-page-list">
                         {list.map((li) => 
                         <li key={li.filmId} onClick={() => onClick(li.filmId)} className="list-page-list-item" onMouseEnter={() => setShowRating(true)} onMouseLeave={() => setShowRating(false)}>

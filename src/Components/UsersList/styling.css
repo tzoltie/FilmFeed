@@ -204,11 +204,15 @@
     height: 11rem;
 }
 
-.list-page-list {
+.list-page-list, .list-page-list-mobile {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     padding: 1rem;
+}
+
+.list-page-list-mobile {
+    gap: 0.2rem;
 }
 
 #watchlist-image {
