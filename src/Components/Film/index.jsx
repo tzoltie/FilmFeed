@@ -7,7 +7,6 @@ import { addFilmToWatchlist, getFilmById, getUserRating } from "../../Utils/apiC
 import useAuth from "../hooks/useAuth";
 import Button from "../Button";
 import Add from "../AddFilm";
-import Star from "../Assets/Star/star";
 import Review from "../Review";
 import StarRating from "../Rating";
 import AddFilmMenu from "../AddFilm/menu";
@@ -136,12 +135,28 @@ export default function FilmPage() {
     return year
   }
 
+  const [ratingClick, setRatingClick] = useState(false)
+  
   function onClick(rating) {
-    if(isLoggedIn.length === 0) {
+    if(typeof isLoggedIn !== 'string') {
       return alert("Must create an account in order to add review")
     }
     setReview(true)
     setRating(rating)
+
+    const star = document.getElementsByClassName("star")
+    if(ratingClick) {
+      for(let i = Number(rating); i < 5; i++) {
+        star[i].style.fill = "#5f6368"
+      }
+      return setRatingClick(false)
+    }
+    
+    setRatingClick(true)
+    for(let i = 0; i < Number(rating); i++) {
+      star[i].style.fill = "#FF5733"
+    }
+    
   }
 
   function getRating() {
@@ -171,13 +186,6 @@ export default function FilmPage() {
           <div className="film-page-header">
             <section className="poster-title-box">
               <h4 id="release-date">{convertReleaseDate(film.release_date)}</h4>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                alt={`${film.title} poster`}
-                className="poster"
-                id="page-poster"
-              />
-                <p id="synopsis">{checkSynopsis(film)}</p>
               {isDesktop ?
               <>
               <img

@@ -51,3 +51,8 @@
 .star_1-rating-btn:hover .star, .star_0-rating-btn:hover .star, .star_2-rating-btn:hover .star, .star_3-rating-btn:hover .star, .star_4-rating-btn:hover .star {
     fill: #FF5733;
 }
+
+.star_1-rating-btn:focus, .star_0-rating-btn:focus, .star_2-rating-btn:focus, .star_3-rating-btn:focus, .star_4-rating-btn:focus {
+    border: none;
+    outline: none;
+}
