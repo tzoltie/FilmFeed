@@ -171,6 +171,13 @@ export default function FilmPage() {
           <div className="film-page-header">
             <section className="poster-title-box">
               <h4 id="release-date">{convertReleaseDate(film.release_date)}</h4>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                alt={`${film.title} poster`}
+                className="poster"
+                id="page-poster"
+              />
+                <p id="synopsis">{checkSynopsis(film)}</p>
               {isDesktop ?
               <>
               <img
@@ -254,7 +261,7 @@ export default function FilmPage() {
           }
           {typeof film.similar !== 'undefined' &&
           <div className="similar-list-container">
-            <div>
+            <div className="similar-list-box">
               <div>
                 <h2>Similar Films</h2>
               </div>

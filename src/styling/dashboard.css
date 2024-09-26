@@ -21,7 +21,7 @@
     position: -webkit-sticky;
     top: 1%;
     left: 0;
-    
+    /* display: flex; */
 }
 
 .sidebar-nav {
