@@ -1,5 +1,5 @@
 .lists-container {
-    height: 100vw;
+    height: 100%;
     padding: 1rem;
 }
 
@@ -177,6 +177,8 @@
     text-align: center;
     padding-bottom: 0.5rem;
     cursor: pointer;
+    overflow: hidden;
+    overflow-x: scroll;
 }
 
 .users-list-item div {

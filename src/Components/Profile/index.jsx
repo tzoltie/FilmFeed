@@ -42,6 +42,7 @@ export default function Profile() {
       setAddImage(prev => !prev)
       return;
     }
+    console.log(image)
     return <img src={image} className="profile-pic" onClick={() => setAddImage(prev => !prev)}/>;
   }
 

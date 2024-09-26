@@ -11,6 +11,7 @@ export default function Diary() {
     const userDiary = []
     const user = JSON.parse(localStorage.getItem('user'))
 
+    console.log(diary)
 
     useEffect(() => {
         getUserDiary().then(setDiary)
@@ -66,7 +67,7 @@ export default function Diary() {
         if(dec.length >= 1) {
             userDiary.push({month: "December", list: dec})
         }
-        return userDiary.map((d, index) => <DiaryList month={d.month} monthList={d.list} key={index}/>)
+        return userDiary.toReversed().map((d, index) => <DiaryList month={d.month} monthList={d.list} key={index}/>)
     }
 
     return (
