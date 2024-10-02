@@ -59,3 +59,35 @@
     grid-template-rows: 1fr;
     gap: 1.5rem;
 }
+
+
+.mobile-popup-loginPage {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    right: 10%;
+    border: 1px solid #FF5733;
+    border-radius: 10px;
+    background-color: #96B6C5;
+    padding: 1rem;
+}
+.login-popup-body {
+    border-radius: 10px;
+    background-color: #96B6C5;
+}
+
+.login-popup-body > * {
+    background-color: #96B6C5;
+    border-radius: 10px;
+}
+
+.login-popup-text > * {
+    background-color: #96B6C5;
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+.login-popup-continue {
+    background-color: #FF5733;
+    border: 1px solid #96B6C5;
+}

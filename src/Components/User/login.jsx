@@ -4,9 +4,12 @@ import LoginForm from './loginForm'
 import './styling.css'
 import backArrow from '../../assets/svg/backarrow.svg'
 import RegisterForm from './registerForm'
+import { useMediaQuery } from 'react-responsive';
+import Button from '../Button';
 
 export default function Login() {
     const [registered, setRegistered] = useState(true)
+    const [popup, setPopup] = useState(false)
 
     useEffect(() => {
         checkUser()
@@ -24,6 +27,8 @@ export default function Login() {
             return;
         }
     }
+
+    const isMobile = useMediaQuery({ query: '(max-width: 430px)'})
 
     return (
         <div className="login-page-container">
@@ -50,6 +55,18 @@ export default function Login() {
                 </div>
                 }
             </section>
+            {isMobile && !popup &&
+            <div className="mobile-popup-loginPage">
+                <div className="login-popup-body">
+                    <div className="login-popup-text">
+                        <p>Filmfeed is not currently mobile friendly, for best user experience use on a larger screen.</p>
+                    </div>
+                    <div>
+                        <Button text={"continue"} className={"login-popup-continue"} onClick={()=> setPopup(true)}/>
+                    </div>
+                </div>
+            </div>
+            }
         </div>
     )
 }
