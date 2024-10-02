@@ -17,7 +17,7 @@ import StarRatingBtn from "../Rating/starRatingBtns";
 
 export default function FilmPage() {
   const [film, setFilm] = useState({id: ""});
-  const [review, setReview] = useState(false)
+  const [addReview, setAddReview] = useState(false)
   const [rating, setRating] = useState(0)
   const [addFilm, setAddFilm] = useState(false)
   const [viewList, setViewList] = useState(false)
@@ -32,7 +32,7 @@ export default function FilmPage() {
     getFilmById(`${urlPararms.id}`).then(setFilm)
     getUserRating(`${urlPararms.id}`).then(setUserRating)
     .finally(mobileStyling)
-  }, [urlPararms, review]);
+  }, [urlPararms, addReview]);
 
   const isDesktop = useMediaQuery({query: '(min-width: 1224px)'})
   const isMobile = useMediaQuery({ query: '(max-width: 430px)'})
@@ -141,7 +141,7 @@ export default function FilmPage() {
     if(typeof isLoggedIn !== 'string') {
       return alert("Must create an account in order to add review")
     }
-    setReview(true)
+    setAddReview(true)
     setRating(rating)
 
     const star = document.getElementsByClassName("star")
@@ -234,8 +234,8 @@ export default function FilmPage() {
                 <p>Last rating:</p>
                 </>}
               </div>
-              {review && 
-                <Review rating={rating} filmId={film.id} film={{poster: film.poster_path, title: film.title}} setReview={setReview} ratingSection={ratingSection}/>
+              {addReview && 
+                <Review rating={rating} filmId={film.id} film={{poster: film.poster_path, title: film.title}} setAddReview={setAddReview} ratingSection={ratingSection}/>
               }
             </section>
             {isDesktop ? 
@@ -261,6 +261,41 @@ export default function FilmPage() {
           <div className="cast_crew-container">
             <Cast list={film.credits.cast} checkImage={checkImage} heading={"Cast"} />
             <Crew list={film.credits.crew} checkImage={checkImage} heading={"Crew"}/>
+          </div>}
+          {userRating.data.reviews.length > 0 &&
+          <div className="reviews-container">
+            <ul>
+              {userRating.data.reviews.toReversed().map(review => 
+                <li key={review.id} className="review-list-item">
+                  <div className="review-header-box">
+                    <div>
+                      <img
+                      src={review.user.profile.profilePic}
+                      className="review-profile-pic"/>
+                    </div>
+                    <div>
+                      <StarRating userRating={review.rating} styling={"user-rating-stars-review-section"}/>
+                    </div>
+                  </div>
+                  <div className="review-content-username-box">
+                    <div>
+                      <h5>
+                        {review.user.username}
+                      </h5>
+                    </div>
+                    <div>
+                      <p>
+                        A great film
+                        {/* {review.content} */}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="review-rating">
+                    
+                  </div>
+                </li>
+              )}
+            </ul>
           </div>}
           {typeof user === 'object' &&
           <Button text={<Add />} onClick={openPopUp} className={"addFilm-button"}/>}

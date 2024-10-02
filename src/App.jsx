@@ -1,7 +1,7 @@
 import './App.css'
 import Dashboard from './Components/Dashboard'
 import Feed from './Components/Feed';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, redirect } from 'react-router';
 import FilmPage from './Components/Film';
 import Images from './Components/Film/Images';
 import CastPage from './Components/People/castPage';
@@ -21,7 +21,6 @@ import MobileMenuDropDown from './Components/MobileDropDownMenu/index.jsx';
 
 function App() {
 
-
   return (
     <div className='app-container'>
       <AuthProvider>
@@ -30,8 +29,7 @@ function App() {
           <Routes>
             <Route 
             path='/'
-            element={<LandingPage />}
-            />
+            element={<LandingPage />}/>
             <Route element={<PrivateRoutes />}>
               <Route 
               path='/home'

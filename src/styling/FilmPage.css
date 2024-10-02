@@ -83,9 +83,7 @@
 .images-videos-container {
     display: flex;
     gap: 10rem;
-    place-content: center;
-    margin-top: 2.5rem;
-    width: 100vw;
+    justify-content: center;
 }
 
 .images-box, .videos-box {
@@ -222,6 +220,10 @@
     fill: #FF5733;
 }
 
+.user-rating-stars-review-section .star {
+    width: 10px;
+}
+
 .avg-user-rating-box {
     display: grid;
     gap: 1rem;
@@ -242,4 +244,19 @@
 
 .film-details-heading:focus {
     border-bottom: 2rem solid #FF5733;
+}
+
+.review-list-item {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #96B6C5;
+}
+
+.review-header-box {
+    display: flex;
+    flex-direction: row;
+}
+
+.review-profile-pic {
+    width: 30px;
 }

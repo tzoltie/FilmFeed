@@ -159,6 +159,10 @@ async function getProfile(id) {
     return tmdbApiRequest(`person/${id}?append_to_response=combined_credits,images`)
 }
 
+async function getFilmImagesById(id) {
+    return tmdbApiRequest(`movie/${id}/images`)
+}
+
 async function tmdbApiRequest(route) {
     const request = {
         method: "GET",
@@ -172,4 +176,4 @@ async function tmdbApiRequest(route) {
     return response.json()
 }
 
-export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList, addRating, getUserRating, getUserDiary, getAllReviews, getProfile, getUser, updateUser, getUserFavouriteFilms, addUserFavouriteFilms, addProfileImage }
+export { register, login, getUserWatchlist, addFilmToWatchlist, getUsersLists, getUsersListById, searchFilm, getFilmById, addMultiFilmsList, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList, addRating, getUserRating, getUserDiary, getAllReviews, getProfile, getUser, updateUser, getUserFavouriteFilms, addUserFavouriteFilms, addProfileImage, getFilmImagesById }

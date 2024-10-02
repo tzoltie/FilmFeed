@@ -1,23 +1,20 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import back from "../../assets/svg/backarrow.svg";
+import { getFilmImagesById } from "../../Utils/apiClient";
 
 export default function Images() {
   const [film, setFilm] = useState({});
   const urlPararms = useParams();
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${urlPararms.id}?api_key=017864b5160abacb16620d2413135901&append_to_response=videos,images`
-    )
-      .then((response) => response.json())
-      .then((json) => setFilm(json));
-  }, [urlPararms, setFilm]);
+    getFilmImagesById(urlPararms.id).then(setFilm)
+  }, [urlPararms]);
   console.log(film);
 
   return (
     <div>
-      {film && (
+      {typeof film !== 'undefined' && (
         <>
         <Link to={`/${film.id}`}>
             <img src={back} className="icon" id="back" />
@@ -29,7 +26,7 @@ export default function Images() {
                 {film.length === 0 ? (
                   <li></li>
                 ) : (
-                film.images.posters.map((image, index) => (
+                film?.images.posters.map((image, index) => (
                   <li key={index}>
                     <img
                       src={`http://image.tmdb.org/t/p/w92${image.file_path}`}
@@ -45,7 +42,7 @@ export default function Images() {
               {film.length === 0 ? (
                   <li></li>
                 ) : (
-                film.images.backdrops.map((image, index) => (
+                film?.images.backdrops.map((image, index) => (
                   <li key={index}>
                     <img
                       src={`http://image.tmdb.org/t/p/w92${image.file_path}`}
@@ -61,7 +58,7 @@ export default function Images() {
               {film.length === 0 ? (
                   <li></li>
                 ) : (
-                film.images.logos.map((image, index) => (
+                film?.images.logos.map((image, index) => (
                   <li key={index}>
                     <img
                       src={`http://image.tmdb.org/t/p/w92${image.file_path}`}

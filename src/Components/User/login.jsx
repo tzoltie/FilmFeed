@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import LoginForm from './loginForm'
 import './styling.css'
 import backArrow from '../../assets/svg/backarrow.svg'
@@ -7,8 +8,21 @@ import RegisterForm from './registerForm'
 export default function Login() {
     const [registered, setRegistered] = useState(true)
 
+    useEffect(() => {
+        checkUser()
+    })
+
     function backToLogin() {
         setRegistered(true)
+    }
+
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+    const checkUser = () => {
+        if(typeof token === 'string') {
+            navigate('/home')
+            return;
+        }
     }
 
     return (
