@@ -11,8 +11,6 @@ export default function Diary() {
     const userDiary = []
     const user = JSON.parse(localStorage.getItem('user'))
 
-    console.log(diary)
-
     useEffect(() => {
         getUserDiary().then(setDiary)
     }, [])
@@ -31,7 +29,6 @@ export default function Diary() {
         const nov = diary.data.reviews.filter((review) => {if(review.createdAt[5] === "1" && review.createdAt[6] === "1") return review})
         const dec = diary.data.reviews.filter((review) => {if(review.createdAt[5] === "1" && review.createdAt[6] === "2") return review})
         if(jan.length >= 1) {
-            console.log("jan arr test",jan)
             userDiary.push({month: "January", list: jan})
         }
         if(feb.length >= 1) {

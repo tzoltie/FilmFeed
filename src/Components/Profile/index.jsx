@@ -14,6 +14,7 @@ import StarRating from "../Rating";
 import Search from "../Search";
 import useSearch from "../hooks/useSearch";
 import FilmCard from "../Feed/FilmCard/FilmCard";
+import { useMediaQuery } from "react-responsive";
 
 export default function Profile() {
   const { loggedInUser } = useAuth();
@@ -30,7 +31,8 @@ export default function Profile() {
   useEffect(() => {
     getUser(user.id)
       .then(setUserProfile)
-      .then(getUserFavouriteFilms(user.id).then(setFavouriteFilms));
+      .then(getUserFavouriteFilms(user.id).then(setFavouriteFilms))
+      .then(checkScreenSize)
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -42,7 +44,7 @@ export default function Profile() {
       setAddImage(prev => !prev)
       return;
     }
-    console.log(image)
+
     return <img src={image} className="profile-pic" onClick={() => setAddImage(prev => !prev)}/>;
   }
 
@@ -82,6 +84,15 @@ export default function Profile() {
       setAddFavourite(false);
     }
   };
+
+  const isMobile = useMediaQuery({ query: '(max-width: 430px)' })
+  const checkScreenSize = () => {
+    if(isMobile) {
+      const profileCard = document.getElementsByClassName("profile-page-card")[0]
+      profileCard.style.maxWidth = "100vw"
+      return;
+    }
+  }
 
   return (
     <div className="profile-page-container">

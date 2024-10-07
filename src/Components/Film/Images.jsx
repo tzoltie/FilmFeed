@@ -10,7 +10,6 @@ export default function Images() {
   useEffect(() => {
     getFilmImagesById(urlPararms.id).then(setFilm)
   }, [urlPararms]);
-  console.log(film);
 
   return (
     <div>

@@ -2,10 +2,15 @@
     place-self: center;
     display: flex;
     gap: 0.5rem;
+    margin-top: 1rem;
 }
 
 .profile-page-card {
     height: fit-content;
+}
+
+.profile-page-card > * {
+    background-color: #96B6C5;
 }
 
 .profile-page-card, .search-films-to-add-container {

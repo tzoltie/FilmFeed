@@ -13,7 +13,6 @@ export default function FilmRating({film}) {
     })
     const getUserRating = (film) => {
         const found = film.reviews.find((rating) => rating.userId === user.id)
-        console.log(found)
         if(!found) {
             return 
         }
