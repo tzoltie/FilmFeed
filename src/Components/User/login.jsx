@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import LoginForm from './loginForm'
 import './styling.css'
 import backArrow from '../../assets/svg/backarrow.svg'
@@ -11,21 +11,8 @@ export default function Login() {
     const [registered, setRegistered] = useState(true)
     const [popup, setPopup] = useState(false)
 
-    useEffect(() => {
-        checkUser()
-    })
-
     function backToLogin() {
         setRegistered(true)
-    }
-
-    const token = localStorage.getItem('token')
-    const navigate = useNavigate()
-    const checkUser = () => {
-        if(typeof token === 'string') {
-            navigate('/home')
-            return;
-        }
     }
 
     const isMobile = useMediaQuery({ query: '(max-width: 430px)'})

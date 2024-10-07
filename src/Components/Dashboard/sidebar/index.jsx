@@ -9,7 +9,7 @@ import TheatreMaskIcon from "../../Assets/TheatreMasks";
 import useAuth from "../../hooks/useAuth";
 
 export default function Sidebar() {
-    const { onLogout, setIsLoggedIn } = useAuth()
+    const { onLogout, setIsLoggedIn, isLoggedIn } = useAuth()
     const navigate = useNavigate()
     const token = localStorage.getItem('user')
 
@@ -20,8 +20,10 @@ export default function Sidebar() {
     function logOut() {
       setIsLoggedIn(false)
       localStorage.removeItem('user')
+      localStorage.removeItem('token')
       onLogout
       navigate('/')
+
   }
 
   return (
@@ -37,7 +39,7 @@ export default function Sidebar() {
         <TheatreMaskIcon />
         <h2>Cinema Greats</h2>
       </div>
-      {typeof token === "string" && (
+      {isLoggedIn && (
         <>
           <div
             className="nav-bar-list-container"

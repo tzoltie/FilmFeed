@@ -85,7 +85,6 @@ function AuthProvider({ children }) {
     }
 
     const handleLogout = () => {
-        console.log("logout run")
         localStorage.removeItem('token')
         localStorage.removeItem('user')
         setToken(null)
@@ -105,7 +104,8 @@ function AuthProvider({ children }) {
         onRegister: handleRegister,
         setToken,
         setloggedInUser,
-        setIsLoggedIn
+        setIsLoggedIn,
+        isLoggedIn
     }
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

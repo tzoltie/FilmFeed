@@ -31,6 +31,7 @@ export default function FilmPage() {
   useEffect(() => {
     getFilmById(`${urlPararms.id}`).then(setFilm)
     getUserRating(`${urlPararms.id}`).then(setUserRating)
+    .then(filterReviews)
     .finally(mobileStyling)
   }, [urlPararms, addReview]);
 
@@ -178,6 +179,16 @@ export default function FilmPage() {
     }
   }
 
+  const [filmReviews, setFilmReviews] = useState(false)
+  function filterReviews() {
+    const reviews = userRating.data.reviews.filter((review) => review.content.length > 0)
+    if(reviews.length > 0) {
+      setFilmReviews(true)
+      return reviews
+    }
+  }
+
+
   return (
     <>
       {typeof film.id === 'number' && (
@@ -264,8 +275,13 @@ export default function FilmPage() {
           </div>}
           {userRating.data.reviews.length > 0 &&
           <div className="reviews-container">
+            <div>
+              <h2>
+                Reviews
+              </h2>
+            </div>
             <ul>
-              {userRating.data.reviews.toReversed().map(review => 
+              {filmReviews ? (userRating.data.reviews.filter((review) => review.content.length > 0).toReversed().map(review => 
                 <li key={review.id} className="review-list-item">
                   <div className="review-header-box">
                     <div>
@@ -273,28 +289,30 @@ export default function FilmPage() {
                       src={review.user.profile.profilePic}
                       className="review-profile-pic"/>
                     </div>
-                    <div>
-                      <StarRating userRating={review.rating} styling={"user-rating-stars-review-section"}/>
-                    </div>
                   </div>
                   <div className="review-content-username-box">
-                    <div>
-                      <h5>
+                    <div className="username-rating-box">
+                      <div className="username-box">
+                        <h5>
                         {review.user.username}
-                      </h5>
+                        </h5>
+                      </div>
+                      <div className="users-rating-box">
+                        <StarRating userRating={review.rating} styling={"user-rating-stars-review-section"}/>
+                      </div>
                     </div>
                     <div>
                       <p>
-                        A great film
-                        {/* {review.content} */}
+                        {review.content}
                       </p>
                     </div>
                   </div>
-                  <div className="review-rating">
-                    
-                  </div>
+                </li> )) : (
+                <li className="empty-review-list-item">
+                  <p>Looks like there have been no reviews for this film, let people know what you thought of this film!</p>
                 </li>
-              )}
+                )
+              }
             </ul>
           </div>}
           {typeof user === 'object' &&
