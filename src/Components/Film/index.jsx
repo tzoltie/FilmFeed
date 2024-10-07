@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import "../../styling/FilmPage.css";
 import Cast from "./Cast";
 import Crew from "./Crew"
@@ -14,6 +14,7 @@ import FilmCard from "../Feed/FilmCard/FilmCard";
 import { useMediaQuery } from "react-responsive";
 import FilmDetails from "./Details";
 import StarRatingBtn from "../Rating/starRatingBtns";
+import FilmReview from "./Review";
 
 export default function FilmPage() {
   const [film, setFilm] = useState({id: ""});
@@ -179,13 +180,19 @@ export default function FilmPage() {
     }
   }
 
-  const [filmReviews, setFilmReviews] = useState(false)
+  const [filmReviews, setFilmReviews] = useState([])
+ 
   function filterReviews() {
     const reviews = userRating.data.reviews.filter((review) => review.content.length > 0)
     if(reviews.length > 0) {
-      setFilmReviews(true)
-      return reviews
+      return setFilmReviews(reviews)
     }
+  }
+
+  const [showAllReviews, setShowAllReviews] = useState(false)
+
+  function showReviews() {
+    setShowAllReviews(true)
   }
 
 
@@ -281,39 +288,20 @@ export default function FilmPage() {
               </h2>
             </div>
             <ul>
-              {filmReviews ? (userRating.data.reviews.filter((review) => review.content.length > 0).toReversed().map(review => 
-                <li key={review.id} className="review-list-item">
-                  <div className="review-header-box">
-                    <div>
-                      <img
-                      src={review.user.profile.profilePic}
-                      className="review-profile-pic"/>
-                    </div>
-                  </div>
-                  <div className="review-content-username-box">
-                    <div className="username-rating-box">
-                      <div className="username-box">
-                        <h5>
-                        {review.user.username}
-                        </h5>
-                      </div>
-                      <div className="users-rating-box">
-                        <StarRating userRating={review.rating} styling={"user-rating-stars-review-section"}/>
-                      </div>
-                    </div>
-                    <div>
-                      <p>
-                        {review.content}
-                      </p>
-                    </div>
-                  </div>
-                </li> )) : (
+              {filmReviews.length > 0 ? (filmReviews.length >= 3 && !showAllReviews ? (filmReviews.slice(0, 3).toReversed().map(review => 
+                <FilmReview review={review} key={review.id}/> )) : (
+                  filmReviews.toReversed().map(review =>
+                    <FilmReview review={review} key={review.id}/>
+                  )
+                )) : (
                 <li className="empty-review-list-item">
                   <p>Looks like there have been no reviews for this film, let people know what you thought of this film!</p>
                 </li>
                 )
               }
             </ul>
+            {filmReviews.length > 3 & !showAllReviews &&
+            <Button text={"show more"} className={"show-more-reviews"} onClick={() => showReviews()}/>}
           </div>}
           {typeof user === 'object' &&
           <Button text={<Add />} onClick={openPopUp} className={"addFilm-button"}/>}

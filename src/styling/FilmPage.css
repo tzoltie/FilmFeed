@@ -252,6 +252,9 @@
 .reviews-container {
     max-width: 430px;
     padding-bottom: 1rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .reviews-container > ul {
@@ -292,4 +295,10 @@
 
 .empty-review-list-item {
     padding: 1rem;
+}
+
+.show-more-reviews {
+    background-color: #FF5733;
+    color: #F1F0E8;
+    border: 1px solid #96B6C5;
 }
