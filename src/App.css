@@ -46,7 +46,7 @@
   background-color: #F1F0E8;
 }
 
-.addFilm-button {
+.addFilm-button, .addList-button {
   position: fixed;
   top: 85%;
   right: 5%;
@@ -56,7 +56,7 @@
   background-color: #96B6C5;
 }
 
-.addFilm-button {
+.addFilm-button, .addList-button {
   background-color: #96B6C5;
 }
 
@@ -65,7 +65,7 @@
   background-color: #FF5733;
 }
 
-.add-button {
+.add-button, .addList-button {
   fill: #FF5733;
   background-color: #96B6C5;
 }
