@@ -14,6 +14,14 @@ export default function ListPage({list}) {
     const isDesktop = useMediaQuery({query: '(min-width: 1224px)'})
     const isMobile = useMediaQuery({ query: '(max-width: 430px)'})
 
+    const adjustStylingMobile = () => {
+        if(isMobile) {
+            const poster = document.getElementById("watchlist-image")[0]
+            poster.style.width = "6rem"
+            poster.style.height = "8.2rem"
+        }
+    }
+
     return (
         <div className="list-page-container">
             <header>
@@ -35,6 +43,9 @@ export default function ListPage({list}) {
                             src={`https://image.tmdb.org/t/p/w500${li.film.poster}`}
                             className="list-image"
                             id="watchlist-image"/>
+                            <div>
+                                <h3>{li.film.title}</h3>
+                            </div>
                         </li>)}
                     </ul>
                     )}

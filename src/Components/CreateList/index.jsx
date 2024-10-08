@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Button from "../Button"
 import "../UsersList/styling.css"
 import "./styling.css"
@@ -9,6 +9,7 @@ import FilmCard from "../Feed/FilmCard/FilmCard"
 import useSearch from "../hooks/useSearch"
 import { addMultiFilmsList } from "../../Utils/apiClient"
 import { useLocation } from "react-router-dom"
+import { useMediaQuery } from "react-responsive"
 
 export default function CreateList({ setNewList, setListsUpdated }) {
     const { request, setRequest, searchResRef } = useSearch()
@@ -19,6 +20,11 @@ export default function CreateList({ setNewList, setListsUpdated }) {
     const [searchComplete, setSearchComplete] = useState(false)
     const [newListForm, setNewListForm] = useState({
         listTitle: ""
+    })
+    const isMobile = useMediaQuery({ query: '(max-width: 430px)' })
+
+    useEffect(() => {
+        updateStylingMobile
     })
 
     const titleOnChange = (e) => {
@@ -54,6 +60,14 @@ export default function CreateList({ setNewList, setListsUpdated }) {
                     return <FilmCard film={film} key={film.id} styling={"new-film"} addFilm={setAddedFilms} currentFilms={addedFilms} inList={inList}/>})}
                 </ul>
             </div>
+        }
+    }
+
+    const updateStylingMobile = () => {
+        if(isMobile) {
+            console.log("is mobile")
+            const newListBox = document.getElementsByClassName("empty-list-item")[0]
+            newListBox.style.width = "100%"
         }
     }
 
