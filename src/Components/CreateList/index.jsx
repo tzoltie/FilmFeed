@@ -10,6 +10,8 @@ import useSearch from "../hooks/useSearch"
 import { addMultiFilmsList } from "../../Utils/apiClient"
 import { useLocation } from "react-router-dom"
 import { useMediaQuery } from "react-responsive"
+import SearchResList from "./searchRes"
+import SearchResListContainer from "./searchRes"
 
 export default function CreateList({ setNewList, setListsUpdated }) {
     const { request, setRequest, searchResRef } = useSearch()
@@ -24,8 +26,8 @@ export default function CreateList({ setNewList, setListsUpdated }) {
     const isMobile = useMediaQuery({ query: '(max-width: 430px)' })
 
     useEffect(() => {
-        updateStylingMobile
-    })
+        updateStylingMobile()
+    }, [newFilm, request])
 
     const titleOnChange = (e) => {
         const { name, value } = e.target
@@ -51,30 +53,49 @@ export default function CreateList({ setNewList, setListsUpdated }) {
         setRequest({results: []})
     }
 
-    const displayListFilms = () => {
-        if(location.pathname === "/lists") {
-            return <div className="lists-films-container">
-                <ul className="newlist-films-list">
-                    {addedFilms.map((film) => {
-                    const inList = addedFilms.some((addedFilm) => addedFilm.id === film.id)
-                    return <FilmCard film={film} key={film.id} styling={"new-film"} addFilm={setAddedFilms} currentFilms={addedFilms} inList={inList}/>})}
-                </ul>
-            </div>
-        }
-    }
 
     const updateStylingMobile = () => {
         if(isMobile) {
-            console.log("is mobile")
             const newListBox = document.getElementsByClassName("empty-list-item")[0]
             newListBox.style.width = "100%"
+            const listTitleContainer = document.getElementsByClassName("empty-list-item-header")[0]
+            listTitleContainer.style.width = "100%"
+            const listTitle = document.getElementsByClassName("listTitle-input")[0]
+            listTitle.style.width = "88%"
+        }
+        if(isMobile && newFilm) {
+            const searchbarContainer = document.getElementsByClassName("searchbar-results-container")[0]
+            searchbarContainer.style.width = "100%"
+            const searchbar = document.getElementsByClassName("search-films-searchbar")[0]
+            searchbar.style.width = "90%"
+        }
+        if(isMobile && request.results.length > 0) {
+            const searchResultFilmTitle = document.getElementsByClassName("search-result-title-container")
+            const searchResArr = Array.from(searchResultFilmTitle)
+            searchResArr.forEach((li) => {li.style.padding = "0.25rem"})
+
+            const addToListBtn = document.getElementsByClassName("add-to-list-button")
+            const addToListBtnArr = Array.from(addToListBtn)
+            addToListBtnArr.forEach((btn) => {
+                btn.style.width = "350px"
+                btn.style.left = "70%"
+                btn.style.borderBottom = "1px solid #FF5733"
+            })
+
+            const searchResContainer = document.getElementsByClassName("search-results-container")
+            const searchResContArr = Array.from(searchResContainer)
+            searchResContArr.forEach((cont) => { cont.style.gridTemplateColumns = "1fr 0.5fr"})
+
+            const searchResLi = document.getElementsByClassName("search-result-list-item")
+            const searchResLiArr = Array.from(searchResLi)
+            searchResLiArr.forEach((li) => li.style.borderBottom = "0")
         }
     }
 
     return (
         <div className="new-list-container">
             <div className="empty-list-item">
-                <header>
+                <header className="empty-list-item-header">
                     <input
                     placeholder="List title"
                     className="listTitle-input"
@@ -94,17 +115,7 @@ export default function CreateList({ setNewList, setListsUpdated }) {
                     <div className="addFilmToList-container">
                         <Search />
                         
-                        <div className="search-results-container" ref={searchResRef}>
-                            <ul className="search-results-list">
-                            {request.results.length < 1 && !searchComplete &&
-                                <li>No results found</li>}
-                        {request.results.length > 0 &&
-                            request.results.map((film) => {
-                                const inList = addedFilms.some((addedFilm) => addedFilm.id === film.id)
-                                return <FilmCard film={film} key={film.id} styling={"search-result"} addFilm={setAddedFilms} currentFilms={addedFilms} inList={inList}/>})}
-                            </ul>
-                            {addedFilms?.length > 0 && displayListFilms()}
-                        </div>
+                        <SearchResListContainer searchResRef={searchResRef} request={request} searchComplete={searchComplete} addedFilms={addedFilms} setAddedFilms={setAddedFilms} isMobile={isMobile}/>
                     </div>}
                 </main>
             </div>

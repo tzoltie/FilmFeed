@@ -58,7 +58,7 @@ export default function UsersLists() {
             </main>
             {isMobile && <Button text={<Add />} className={"addList-button"} onClick={() => onClick()}/>}
             </> :
-            <CreateList />
+            <CreateList setNewList={setNewList} setListsUpdated={setListsUpdated}/>
              }
         </div>
     )
