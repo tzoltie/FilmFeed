@@ -1,7 +1,7 @@
 import './App.css'
 import Dashboard from './Components/Dashboard'
 import Feed from './Components/Feed';
-import { Routes, Route, redirect } from 'react-router';
+import { Routes, Route } from 'react-router';
 import FilmPage from './Components/Film';
 import Images from './Components/Film/Images';
 import CastPage from './Components/People/castPage';
@@ -11,7 +11,6 @@ import { AuthProvider } from './Components/Context/auth.jsx';
 import LandingPage from './Components/landingPage';
 import UsersLists from './Components/UsersList/index.jsx';
 import { SearchProvider } from './Components/Context/search.jsx';
-import ListPage from './Components/UsersList/listPage.jsx';
 import Diary from './Components/Diary/index.jsx';
 import PrivateRoutes from './Components/Redirect/index.jsx';
 import List from './Components/List/index.jsx';

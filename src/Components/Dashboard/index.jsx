@@ -6,13 +6,12 @@ import { useMediaQuery } from 'react-responsive'
 import LogoBtn from './header/logoBtn'
 import Searchbar from './header/searchbar'
 import MobileSearchbar from './header/mobileSearchbar'
-import Menu from '../Assets/Menu/menu'
 import Sidebar from './sidebar'
 import MobileMenu from './header/mobileMenu'
 
 
 export default function Dashboard() {
-    const { loggedInUser, setIsLoggedIn } = useAuth()
+    const { setIsLoggedIn } = useAuth()
     const { request, setRequest, setSearchForm, searchResRef } = useSearch()
     const [userSearch, setUserSearch] = useState(false)
     const token = localStorage.getItem('token')
@@ -23,7 +22,7 @@ export default function Dashboard() {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
-    })
+    }, [])
 
     const isDesktop = useMediaQuery({query: '(min-width: 1224px)'})
     const isMobile = useMediaQuery({ query: '(max-width: 430px)'})
@@ -38,15 +37,12 @@ export default function Dashboard() {
     const appTitle = document.getElementsByClassName("header-title")
     const mobileDashHeader = document.getElementsByClassName("header")
     const mobileDashSearchbar = document.getElementsByClassName("search-bar-container-dashboard")
-    const mobileDashTextInput = document.getElementsByClassName("search-films-searchbar")
 
     function onClick() {
         if(isMobile) {
             appTitle[0].style.display = "none"
             mobileDashHeader[0].style.gridTemplateColumns = "0.1fr 0.1fr 1fr"
             mobileDashSearchbar[0].style.width = "95%"
-            // console.log(mobileDashTextInput[0])
-            // mobileDashTextInput[0].style.width = "91%"
         }
         setUserSearch(true)
     }
@@ -84,7 +80,7 @@ export default function Dashboard() {
                 <>
                 <MobileMenu />
                 <LogoBtn />
-                <MobileSearchbar searchResRef={searchResRef} userSearch={userSearch} request={request} onClick={onClick}/>
+                <MobileSearchbar searchResRef={searchResRef} setUserSearch={setUserSearch} userSearch={userSearch} request={request} onClick={onClick} appTitle={appTitle} mobileDashSearchbar={mobileDashSearchbar}/>
                 </>
                 }
             </header>
