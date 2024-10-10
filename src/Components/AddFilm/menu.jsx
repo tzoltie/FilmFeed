@@ -5,17 +5,21 @@ import AddToWatchList from "../Assets/AddToWatchlist"
 import Expand from "../Assets/Expand"
 import { useEffect, useRef, useState } from "react"
 import Poster from "../Poster"
+import { useMediaQuery } from "react-responsive"
 
-export default function AddFilmMenu({ setViewList, addToWatchlist, ratingSection, poster, toggleMenu }) {
+export default function AddFilmMenu({ setViewList, addToWatchlist, ratingSection, poster, toggleMenu, styling }) {
     const menuRef = useRef()
     const [renderPoster, setRenderPoster] = useState(false)
+    const isMobile = useMediaQuery({ query: "(max-width: 430px)"})
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside)
+        updateStylingMobile()
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
-    }, [])
+        
+    }, [renderPoster])
 
     const handleClickOutside = (e) => {
         if(
@@ -23,6 +27,8 @@ export default function AddFilmMenu({ setViewList, addToWatchlist, ratingSection
             !menuRef.current.contains(e.target)
         ) {
             toggleMenu(false)
+            const filmPageContainer = document.getElementsByClassName("film-page-container")[0]
+            filmPageContainer.style.opacity = "1"
         }
     }
 
@@ -35,16 +41,32 @@ export default function AddFilmMenu({ setViewList, addToWatchlist, ratingSection
             return addToWatchlist()
         }
         if(instruction === "rate") {
+            toggleMenu(false)
             return window.scrollTo({top: ratingSection.current, behavior: 'smooth'})
         }
         if(instruction === "poster") {
             setRenderPoster(true)
-            return
+            const filmPageContainer = document.getElementsByClassName("film-page-container")[0]
+            filmPageContainer.style.opacity = "0.33"
+            const poster = document.getElementById("large-poster")
+            poster.style.opacity = "1"
+            return;
         }
     }
+
+    const updateStylingMobile = () => {
+        if(renderPoster && isMobile) {
+            const posterContainer = document.getElementsByClassName("poster-overlay")[0]
+            posterContainer.style.top = "15%"
+            posterContainer.style.left = "8%"
+            const poster = document.getElementById("large-poster")
+            poster.style.height = "550px"
+        }
+    }
+
     return (
         <>
-        <div className="add-film-popup" ref={menuRef}>
+        <div className={styling} ref={menuRef}>
             <ul className="popup-list">
                 <li className="popup-list-item" onClick={() => onClick("list")}>
                     <div className="menu-item">

@@ -72,6 +72,16 @@
     width:fit-content;
 }
 
+.film-details-box-mobile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.film-details-box-mobile > section {
+    text-align: center;
+}
+
 .rating-box div {
     text-align: center;
 }
@@ -241,12 +251,18 @@
 
 .film-details-container-mobile {
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 1rem;
     justify-content: center;
 }
 
-.film-details-heading:focus {
-    border-bottom: 2rem solid #FF5733;
+.film-details-heading {
+    text-align: center;
+}
+
+
+.film-details-heading > h2:focus {
+    border-bottom: 2px solid #FF5733;
 }
 
 .reviews-container {

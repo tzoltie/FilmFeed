@@ -1,4 +1,4 @@
-export default function FilmDetails({film}) {
+export default function FilmDetails({film, styling}) {
     function updateToCurrency(number) {
         if(number === 0) {
           return "unavailable"
@@ -8,21 +8,18 @@ export default function FilmDetails({film}) {
     }
 
   return (
-    <div className="film-details-box">
+    <div className={styling}>
       <section className="runtime-box">
         <h3>Runtime</h3>
         <p>{`${film.runtime} mins`}</p>
       </section>
+      {film.genres.length > 0 &&
       <section className="genre-box">
         <h3>Genres</h3>
         <ul id="genre">
-          {typeof film === "object" ? (
-            <li></li>
-          ) : (
-            film.genres.map((i) => <li key={i.id}>{i.name}</li>)
-          )}
+          {film.genres.map((i) => <li key={i.id}>{i.name}</li>)}
         </ul>
-      </section>
+      </section>}
       <section className="status-box">
         <h3>Status</h3>
         <p>{film.status}</p>

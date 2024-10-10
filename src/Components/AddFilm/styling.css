@@ -1,4 +1,4 @@
-.add-film-popup {
+.add-film-popup, .add-film-popup-mobile {
   height: fit-content;
   width: fit-content;
   position: fixed;
@@ -10,6 +10,11 @@
   border-radius: 5%;
   padding: 1rem;
   gap: 1rem;
+}
+
+.add-film-popup-mobile {
+    top: 57% !important;
+    left: 45% !important;
 }
 
 .popup-heading {
@@ -37,6 +42,7 @@
 
 .menu-item {
     display: flex;
+    background-color: #96B6C5;
 }
 
 .menu-item:hover {

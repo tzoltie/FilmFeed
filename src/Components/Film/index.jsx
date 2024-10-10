@@ -195,6 +195,11 @@ export default function FilmPage() {
     setShowAllReviews(true)
   }
 
+  const [details, setDetails] = useState(false)
+  function showDetails() {
+    setDetails(prev => !prev)
+  }
+
 
   return (
     <>
@@ -257,11 +262,13 @@ export default function FilmPage() {
               }
             </section>
             {isDesktop ? 
-            <FilmDetails film={film}/> : 
+            <FilmDetails film={film} styling={"film-details-box"}/> : 
             <div className="film-details-container-mobile">
-              <div className="film-details-heading">
-                <h2>Details</h2>
+              <div className="film-details-heading" onClick={() => showDetails()} >
+                <h2 tabIndex={"1"}>Details</h2>
               </div>
+              {details &&
+              <FilmDetails film={film} styling={"film-details-box-mobile"}/>}
             </div>}
           </div>
           {/* <div className="images-videos-container">
@@ -305,8 +312,11 @@ export default function FilmPage() {
           </div>}
           {typeof user === 'object' &&
           <Button text={<Add />} onClick={openPopUp} className={"addFilm-button"}/>}
-          {addFilm &&
-            <AddFilmMenu setViewList={setViewList} addToWatchlist={addToWatchlist} ratingSection={ratingSection} toggleMenu={setAddFilm} poster={film.poster_path}/>
+          {addFilm && !isMobile &&
+            <AddFilmMenu setViewList={setViewList} addToWatchlist={addToWatchlist} ratingSection={ratingSection} toggleMenu={setAddFilm} poster={film.poster_path} styling={"add-film-popup"}/>
+          }
+          {addFilm && isMobile &&
+          <AddFilmMenu setViewList={setViewList} addToWatchlist={addToWatchlist} ratingSection={ratingSection} toggleMenu={setAddFilm} poster={film.poster_path} styling={"add-film-popup-mobile"}/>
           }
           {typeof film.similar !== 'undefined' &&
           <div className="similar-list-container">
