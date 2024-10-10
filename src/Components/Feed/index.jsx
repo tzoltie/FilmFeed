@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import FilmCard from "./FilmCard/FilmCard";
 import "../../styling/feed.css";
 import { getAllReviews, getTmdbPopularList, getTmdbTopRatedList, getTmdbTrendingList } from "../../Utils/apiClient";
+import { useMediaQuery } from "react-responsive";
 
 export default function Feed() {
   const [popular, setPopular] = useState([])
@@ -14,7 +15,17 @@ export default function Feed() {
     getTmdbTopRatedList().then(setTopFilms)
     getTmdbTrendingList().then(setTrending)
     getAllReviews().then(setUsersLatest)
+    updateMobileStyling()
   }, [])
+
+  const isMobile = useMediaQuery({ query: '(max-width: 430px)' })
+
+  const updateMobileStyling = () => {
+    if(isMobile) {
+      const feedContainer = document.getElementsByClassName("feed-container")[0]
+      feedContainer.style.height = "100%"
+    }
+  }
 
   return (
     <div className="feed-container">

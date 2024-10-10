@@ -9,10 +9,6 @@
     width: 100%;
     height: fit-content;
 }
-/* 
-.search-films-searchbar {
-    width: 93%;
-} */
 
 .search-results-list, .newlist-films-list {
     display: grid;

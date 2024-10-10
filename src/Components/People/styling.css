@@ -1,6 +1,6 @@
 .profile-container {
     padding: 1rem;
-    max-width: 100%;
+    max-width: 100vw;
     height: 100%;
 }
 
@@ -16,8 +16,7 @@
 }
 
 .profile-header-bio {
-    display: grid;
-    grid-template-columns: 300px 1fr;
+    display: flex;
 }
 
 .bio-container {
@@ -55,7 +54,7 @@
     scrollbar-width: none;
 }
 
-.credits-scroll-box::-webkit-scrollbar {
+.credits-container::-webkit-scrollbar {
     display: none;
 }
 

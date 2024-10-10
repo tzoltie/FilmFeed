@@ -10,6 +10,7 @@ export default function MobileSearchbar({searchResRef, userSearch, request, onCl
             navigate('/search-result')
         }
     }
+    
 
     return (
         <section className='search-bar-container-dashboard' ref={searchResRef}>

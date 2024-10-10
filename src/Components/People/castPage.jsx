@@ -5,6 +5,7 @@ import "../../styling/feed.css";
 import FilmCard from "../Feed/FilmCard/FilmCard";
 import { getProfile } from "../../Utils/apiClient";
 import Button from "../Button";
+import { useMediaQuery } from "react-responsive";
 
 export default function CastPage() {
   const [person, setPerson] = useState({id: ""});
@@ -13,14 +14,19 @@ export default function CastPage() {
   const [allCredits, setAllCredits] = useState([]);
   const [showCredits, setShowCredits] = useState(false)
   const navigate = useNavigate()
+  const isMobile = useMediaQuery({ query: '(max-width: 430px)' })
 
   useEffect(() => {
-    getProfile(urlPararms.id).then(setPerson);
+    getProfile(urlPararms.id).then(setPerson)
   }, [urlPararms.id, showCredits]);
 
   const shortenBio = (bio) => {
     if (typeof bio === "undefined") {
       return bio;
+    }
+    if(isMobile && bio.length > 250) {
+      const shortenBio = bio.slice(0, 250)
+      return `${shortenBio}...`
     }
     if (bio.length > 1000) {
       const shortenedBio = bio.slice(0, 1000);
@@ -75,6 +81,7 @@ export default function CastPage() {
     return bio
   }
 
+
   return (
     <>
       {typeof person.id === 'number' && (
@@ -87,11 +94,20 @@ export default function CastPage() {
             </div>
             <section className="profile-header-bio">
               <div className="profile-image-container">
-                <img
-                  src={`https://image.tmdb.org/t/p/w300${person.profile_path}`}
-                  alt={`${person.name}'s profile image`}
-                  id="persons_profile_img"
-                />
+                {isMobile ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w300${person.profile_path}`}
+                    alt={`${person.name}'s profile image`}
+                    id="persons_profile_img"
+                    style={{height:"250px"}}
+                  />
+                ) : (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w300${person.profile_path}`}
+                    alt={`${person.name}'s profile image`}
+                    id="persons_profile_img"
+                  />
+                )}
               </div>
               <div className="bio-container" onClick={() => onClick()}>
                 {!showBio ? (
