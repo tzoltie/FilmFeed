@@ -16,6 +16,7 @@ function AuthProvider({ children }) {
         const storedToken = localStorage.getItem('token')
         if(storedToken) {
             setToken(storedToken)
+            setIsLoggedIn(true)
             navigate({
                 pathname: location?.pathname || "/home"
             })
