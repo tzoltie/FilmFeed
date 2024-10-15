@@ -48,6 +48,7 @@ function AuthProvider({ children }) {
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('user', JSON.stringify(res.data.user))
         setloggedInUser(res.data.user)
+        setIsLoggedIn(true)
         
         navigate({
             pathname: '/home'
@@ -76,6 +77,7 @@ function AuthProvider({ children }) {
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('user', JSON.stringify(res.data.user))
             setloggedInUser(res.data.user)
+            setIsLoggedIn(true)
             navigate({
                 pathname: '/home'
             })
@@ -89,6 +91,7 @@ function AuthProvider({ children }) {
         localStorage.removeItem('user')
         setToken(null)
         setloggedInUser(null)
+        setIsLoggedIn(false)
     }
     
     const isEmailValid = (email) => {
